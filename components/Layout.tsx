@@ -34,7 +34,7 @@ box-sizing: border-box;
 `
 
 const Content = styled.div`
-padding: 6px 6px;
+padding: 0px 0px;
 `
 
 export default IndexPage

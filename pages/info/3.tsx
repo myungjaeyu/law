@@ -38,9 +38,7 @@ const IndexPage = () => {
 
   const handleNextPage = useCallback(() => {
 
-    console.log(type)
-
-    router.push('/')
+    router.push('/quiz/1')
 
   }, [router, type])
 
@@ -181,7 +179,7 @@ margin-bottom: 16px;
 `
 
 const Footer = styled.div`
-margin-top: 50px;
+padding-top: 50px;
 `
 
 export default IndexPage
