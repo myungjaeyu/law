@@ -178,6 +178,8 @@ const IndexPage = () => {
 
         setCaseMessages(1)
 
+        animateScroll.scrollToBottom()
+
     }, [])
 
     return (
