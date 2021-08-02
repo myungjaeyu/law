@@ -26,7 +26,7 @@ const Container = styled.div`
 
 const Body = styled.div`
 width: 100%;
-height: 100vh;
+min-height: 100vh;
 max-width: 640px;
 margin: auto;
 background: #F2F2F2;
