@@ -1,17 +1,10 @@
 import styled from '@emotion/styled'
-import { useCallback, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { animateScroll } from 'react-scroll'
 
-const toon_images = [
-  { id: 1, src: '악성댓글' },
-  { id: 2, src: '익명' },
-  { id: 3, src: '기프티콘' },
-  { id: 4, src: '사진' },
-  { id: 5, src: '상태메세지' },
-  { id: 6, src: '주작' }
-]
+import { toon_images } from '../../utils/assets'
 
 const IndexPage = () => {
 
@@ -19,14 +12,7 @@ const IndexPage = () => {
 
   const [type, setType] = useState(0)
 
-  const [cases, setCases] = useState([
-    { id: 1, name: '악성댓글', tick: 0, len: 5 },
-    { id: 2, name: '익명', tick: 0, len: 5 },
-    { id: 3, name: '기프티콘', tick: 0, len: 5 },
-    { id: 4, name: '사진', tick: 0, len: 5 },
-    { id: 5, name: '상태메세지', tick: 0, len: 5 },
-    { id: 6, name: '주작', tick: 0, len: 5 }
-  ])
+  const [cases, setCases] = useState([])
 
   const handleSetType = useCallback((id) => {
 
@@ -41,6 +27,16 @@ const IndexPage = () => {
     router.push('/quiz/1')
 
   }, [router, type])
+
+  useEffect(() => {
+
+    setCases(toon_images.map(e => ({
+      ...e,
+      tick: 0,
+      len: 5
+    })))
+
+  }, [])
 
   return (
     <div>
