@@ -151,32 +151,37 @@ const IndexPage = () => {
     const [plaintiff, setPlaintiff]: any = useState({})
     const [defendant, setDefendant]: any = useState({})
 
+    const setCasePlaintiff = (caseId) => {
+
+        const data = cases.plaintiff.find(e => e.id === caseId)
+
+        setPlaintiff(data)
+
+    }
+
     const setCaseIncident = (incidentId) => {
 
         const caseInfo = cases.defendant.find(e => e.id === caseId)
 
         const incidentInfo = caseInfo.incidents.find(e => e.id === incidentId)
 
-        const data = {
-            plaintiff: cases.plaintiff.find(e => e.id === caseId),
-            defendant: incidentInfo
-        }
-
         setIncidentId(incidentId)
-        setPlaintiff(data.plaintiff)
-        setDefendant(data.defendant)
+        setDefendant(incidentInfo)
 
         animateScroll.scrollToTop()
     }
 
     const setCaseMessages = (caseId) => {
         setCaseId(caseId)
+        setCasePlaintiff(caseId)
         setMessages(cases.messages.find(e => e.id === caseId).data)
     }
 
     useEffect(() => {
 
-        setCaseMessages(1)
+        const case_id = 1
+
+        setCaseMessages(case_id)
 
         animateScroll.scrollToBottom()
 
@@ -203,19 +208,19 @@ const IndexPage = () => {
             <Stats type={1} />
 
             <View>
-                {!!(caseId && incidentId) && <ViewBox>
+                <ViewBox>
 
                     <ViewContent>
-                        <ViewImg src={`/images/B_원고_이미지/${plaintiff.src}.png`} />
+                        {!!caseId && <ViewImg src={`/images/B_원고_이미지/${plaintiff.src}.png`} />}
                         <ViewLabel>원고</ViewLabel>
                     </ViewContent>
 
                     <ViewContent>
-                        <ViewImg src={`/images/C_피고_이미지/${defendant.src}.png`} />
+                        {!!incidentId && <ViewImg src={`/images/C_피고_이미지/${defendant.src}.png`} />}
                         <ViewLabel>피고</ViewLabel>
                     </ViewContent>
 
-                </ViewBox>}
+                </ViewBox>
             </View>
 
             <IncidentGroup>
@@ -329,6 +334,12 @@ margin: auto;
 
 const ViewContent = styled.div`
 padding: 16px;
+width: 55%;
+margin-top: auto;
+
+&:nth-child(2) {
+    width: 45%;
+}
 `
 
 const ViewImg = styled.img`
