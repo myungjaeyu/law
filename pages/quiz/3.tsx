@@ -3,10 +3,9 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
-import { Collapse } from 'react-collapse'
-
 import Stats from '../../components/Stats'
 import Switch from '../../components/Switch'
+import Collapse from '../../components/Collapse'
 
 import { case_quiz3 } from '../../utils/assets'
 
@@ -123,32 +122,28 @@ const IndexPage = () => {
 
             <LawGroup>
 
-                {cases.map((x) => <Law key={x.id}>
+                {cases.map((x) => <Collapse
+                    title={x.name}
+                    key={x.id}
+                    checked={getChecked(x.id)}
+                    opend={getOpend(x.id)}
+                    onOpen={() => handleOpend(x.id)}
+                >
+                    {x.data.map((y) => <LawSub key={y.id}>
 
-                    <LawHeader checked={getChecked(x.id)} onClick={() => handleOpend(x.id)}>
-                        <LawTitle>{x.name}</LawTitle>
-                        <LawIconBox>
-                            <LawIcon src={`/icons/angle-${getOpend(x.id) ? 'down' : 'left'}-solid_${getChecked(x.id) ? 'w' : 'g'}.svg`}></LawIcon>
-                        </LawIconBox>
-                    </LawHeader>
+                        <LawSubHeader>
+                            <LawSubTitle>{y.name}</LawSubTitle>
+                            <LawToggleBox>
 
-                    <LawCollapse isOpened={getOpend(x.id)}>
-                        {x.data.map((y) => <LawSub key={y.id}>
+                                <Switch name='incidentId' type='checkbox' onClick={({ target: { checked } }) => handleCheck(checked, x.id, y.id)} />
 
-                            <LawSubHeader>
-                                <LawSubTitle>{y.name}</LawSubTitle>
-                                <LawToggleBox>
+                            </LawToggleBox>
+                        </LawSubHeader>
+                        <LawContent>{y.text}</LawContent>
 
-                                    <Switch name='incidentId' type='checkbox' onClick={({ target: { checked } }) => handleCheck(checked, x.id, y.id)} />
+                    </LawSub>)}
 
-                                </LawToggleBox>
-                            </LawSubHeader>
-                            <LawContent>{y.text}</LawContent>
-
-                        </LawSub>)}
-                    </LawCollapse>
-
-                </Law>)}
+                </Collapse>)}
 
             </LawGroup>
 
@@ -157,32 +152,7 @@ const IndexPage = () => {
 }
 
 const LawGroup = styled.div``
-const Law = styled.div``
 
-type LawHeaderProps = {
-    checked?: boolean
-}
-
-const LawHeader = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-font-size: 18px;
-padding: 6px 16px;
-border-top: 1.5px solid #F1F1F1;
-background: #fff;
-color: #000;
-cursor: pointer;
-
-${({ checked }: LawHeaderProps) => checked ? 'border-top: 1.5px solid #9BC802; background: #9BC802; color: #fff;' : ''}
-`
-const LawTitle = styled.div``
-const LawIconBox = styled.div``
-const LawIcon = styled.img`
-width: 25px;
-height: 25px;
-`
-const LawCollapse = styled(Collapse)``
 const LawSub = styled.div`
 padding: 8px 16px;
 `
