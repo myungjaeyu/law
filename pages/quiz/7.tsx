@@ -60,7 +60,7 @@ const IndexPage = () => {
             <Stats type={5} />
 
             <Collapse
-                title={'원고에게 하고 싶은 말이 있나요?'}
+                title={'원고가 일상을 회복할 수 있는 방법을 선택'}
                 checked={checked}
                 opend={opend}
                 onOpen={handleOpend}
