@@ -128,7 +128,7 @@ cursor: pointer;
 
 const Title = styled.div`
 font-size: 20px;
-font-weight: 500;
+font-weight: 700;
 text-align: center;
 `
 
@@ -159,7 +159,7 @@ font-size: 18px;
 const Label = styled.div`
 height: fit-content;
 text-align: right;
-font-weight: 500;
+font-weight: 700;
 color: #364B6C;
 border-right: 1px solid #ccc;
 margin-right: 8px;

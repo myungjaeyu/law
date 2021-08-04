@@ -34,10 +34,10 @@ const IndexPage = () => {
             opend: false
         },
         penal: {
-            opend: false
+            opend: true
         },
         fine: {
-            opend: false
+            opend: true
         }
     })
 
@@ -104,9 +104,6 @@ const IndexPage = () => {
 
     useEffect(() => {
 
-        handleOpend('penal')
-        handleOpend('fine')
-
         handleCaseDefendantName(1, 1)
 
     }, [])
@@ -135,7 +132,7 @@ const IndexPage = () => {
                 <ViewBox>
 
                     <PenaltyTitle>
-                        <PenaltyIcon src='/icons/leanpub-brands.svg' /> 판결!
+                        <PenaltyIcon src='/images/E_기타_이미지/판결_아이콘.png' /> 판결!
                     </PenaltyTitle>
                     <PenaltyText>
                         피고 [<PenaltyHighlight>{defendantName}</PenaltyHighlight>] 에게
@@ -249,6 +246,7 @@ align-items: center;
 `
 const PanaltyRangeLabel = styled.div`
 width: 30%;
+font-weight: 700;
 `
 
 const PanaltyRangeBox = styled.div`
@@ -282,7 +280,7 @@ outline: none;
 const PenaltyTitle = styled.div`
 color: #9BC802;
 font-size: 26px;
-font-weight: 500;
+font-weight: 700;
 display: flex;
 align-items: center;
 margin-bottom: 8px;
@@ -290,7 +288,7 @@ margin-bottom: 8px;
 
 const PenaltyIcon = styled.img`
 display: inline-block;
-width: 28px;
+width: 30px;
 margin-right: 4px;
 `
 
@@ -305,7 +303,7 @@ type PenaltyHighlightProps = {
 
 const PenaltyHighlight = styled.span`
 color: #9BC802;
-font-weight: 500;
+font-weight: 700;
 min-width: 120px;
 
 ${({ bordered }: PenaltyHighlightProps) => bordered ? 'display: inline-block; border-bottom: 1px solid #9BC802;' : ''}
@@ -361,7 +359,7 @@ text-align: center;
 
 const Title = styled.div`
 font-size: 22px;
-font-weight: 500;
+font-weight: 700;
 `
 
 const Timer = styled.div`

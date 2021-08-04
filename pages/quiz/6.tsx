@@ -150,7 +150,7 @@ text-align: center;
 
 const Title = styled.div`
 font-size: 22px;
-font-weight: 500;
+font-weight: 700;
 `
 
 const Timer = styled.div`

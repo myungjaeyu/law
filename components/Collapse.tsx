@@ -49,7 +49,9 @@ cursor: pointer;
 
 ${({ checked }: HeaderProps) => checked ? 'border-top: 1.5px solid #9BC802; background: #9BC802; color: #fff;' : ''}
 `
-const Title = styled.div``
+const Title = styled.div`
+font-weight: 700;
+`
 const IconBox = styled.div``
 const Icon = styled.img`
 width: 25px;

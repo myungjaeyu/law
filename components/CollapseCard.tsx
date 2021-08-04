@@ -51,7 +51,7 @@ const OptionText = styled.div``
 
 const OptionTitle = styled.div`
 font-size: 18px;
-font-weight: 500;
+font-weight: 700;
 margin-bottom: 6px;
 `
 

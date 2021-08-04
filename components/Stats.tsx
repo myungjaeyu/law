@@ -123,7 +123,7 @@ justify-content: center;
 `
 
 const Description = styled.div`
-font-weight: 500;
+font-weight: 700;
 margin-top: 16px;
 `
 

@@ -211,7 +211,7 @@ text-align: center;
 
 const Title = styled.div`
 font-size: 22px;
-font-weight: 500;
+font-weight: 700;
 `
 
 const Timer = styled.div`
@@ -242,7 +242,7 @@ margin: auto;
 `
 
 const ViewTitle = styled.div`
-font-weight: 500;
+font-weight: 700;
 margin-bottom: 8px;
 `
 

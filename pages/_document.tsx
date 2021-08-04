@@ -27,6 +27,8 @@ class MyDocument extends Document {
                         <meta property="og:image:width" content="800" />
                         <meta property="og:image:height" content="600" />
 
+                        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css" />
+
                     </head>
                     <Main />
                     <NextScript />
