@@ -7,7 +7,7 @@ import Collapse from '../../components/Collapse'
 import CollapseOption from '../../components/CollapseOption'
 import { Range } from 'react-range'
 
-import { defendant_names, young_penalty } from '../../utils/assets'
+import { people_list, young_penalty } from '../../utils/assets'
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -34,7 +34,7 @@ const IndexPage = () => {
 
     const handleCaseDefendantName = (id, subId) => {
 
-        const caseInfo = defendant_names.find(e => e.id === id)
+        const caseInfo = people_list.find(e => e.id === id)
 
         const defendant = caseInfo.data.find(e => e.id === subId)
 

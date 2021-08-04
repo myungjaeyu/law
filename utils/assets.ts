@@ -299,59 +299,71 @@ export const young_penalty = [
     { id: 9, name: '퇴학처분' }
 ]
 
-export const defendant_names = [
+export const people_list = [
     {
-        id: 1, name: '상태메세지', data: [
-            { id: 1, name: 'B반 학생 3명 (14세, 남)' },
-            { id: 2, name: '김대리 (14세, 남)' },
-            { id: 3, name: 'B반 학생 2명 (14세, 남/여)' },
-            { id: 4, name: 'B반 (14세, 여/남)' },
-            { id: 5, name: 'B반 학생 1명 (14세, 남)' }
+        id: 1, name: '상태메세지', src: 'recovery_1', data: [
+            { id: 1, name: 'B반 학생 3명 (14세, 남)', src: 'law_1_1' },
+            { id: 2, name: '김대리 (14세, 남)', src: 'law_1_2' },
+            { id: 3, name: 'B반 학생 2명 (14세, 남/여)', src: 'law_1_3' },
+            { id: 4, name: 'B반 (14세, 여/남)', src: 'law_1_4' },
+            { id: 5, name: 'B반 학생 1명 (14세, 남)', src: 'law_1_5' }
         ]
     },
     {
-        id: 2, name: '기프티콘', data: [
-            { id: 1, name: '김바둑 (16세, 남)' },
-            { id: 2, name: '같은 반 친구 3명 (16세, 남/여)' },
-            { id: 3, name: '김바둑 (16세, 남)' },
-            { id: 4, name: '김바둑 외 3명 (16세, 남/여)' },
-            { id: 5, name: '김바둑과 같은 반 친구들 (16세, 남/여)' }
+        id: 2, name: '기프티콘', src: 'recovery_2', data: [
+            { id: 1, name: '김바둑 (16세, 남)', src: 'law_2_1' },
+            { id: 2, name: '같은 반 친구 3명 (16세, 남/여)', src: 'law_2_2' },
+            { id: 3, name: '김바둑 (16세, 남)', src: 'law_2_3' },
+            { id: 4, name: '김바둑 외 3명 (16세, 남/여)', src: 'law_2_4' },
+            { id: 5, name: '김바둑과 같은 반 친구들 (16세, 남/여)', src: 'law_2_5' }
         ]
     },
     {
-        id: 3, name: '악성댓글', data: [
-            { id: 1, name: '신기해 (17세, 남)' },
-            { id: 2, name: '신기해 (17세, 남)' },
-            { id: 3, name: '신기해 (17세, 남)' },
-            { id: 4, name: '신기해 (17세, 남)' },
-            { id: 5, name: '알 수 없는 사람들 (남/여)' }
+        id: 3, name: '악성댓글', src: 'recovery_3', data: [
+            { id: 1, name: '신기해 (17세, 남)', src: 'law_3_1' },
+            { id: 2, name: '신기해 (17세, 남)', src: 'law_3_2' },
+            { id: 3, name: '신기해 (17세, 남)', src: 'law_3_3' },
+            { id: 4, name: '신기해 (17세, 남)', src: 'law_3_4' },
+            { id: 5, name: '알 수 없는 사람들 (남/여)', src: 'law_3_5' }
         ]
     },
     {
-        id: 4, name: '사진', data: [
-            { id: 1, name: '장사과 (15세, 남)' },
-            { id: 2, name: '오픈 채팅방 56명 (남/여)' },
-            { id: 3, name: '이포도 (21세, 남)' },
-            { id: 4, name: '이포도 (21세, 남)' },
-            { id: 5, name: '박자몽 (15세, 남)' }
+        id: 4, name: '사진', src: 'recovery_4', data: [
+            { id: 1, name: '장사과 (15세, 남)', src: 'law_4_1' },
+            { id: 2, name: '오픈 채팅방 56명 (남/여)', src: 'law_4_2' },
+            { id: 3, name: '이포도 (21세, 남)', src: 'law_4_3' },
+            { id: 4, name: '이포도 (21세, 남)', src: 'law_4_4' },
+            { id: 5, name: '박자몽 (15세, 남)', src: 'law_4_5' }
         ]
     },
     {
-        id: 5, name: '익명', data: [
-            { id: 1, name: '김공책 (15세, 여)' },
-            { id: 2, name: '박필통 (15세, 여)' },
-            { id: 3, name: '김공책 (15세, 여)' },
-            { id: 4, name: '익명 게시판 30명 (남/여)' },
-            { id: 5, name: '익명 게시판 2명 (남/여)' }
+        id: 5, name: '익명', src: 'recovery_5', data: [
+            { id: 1, name: '김공책 (15세, 여)', src: 'law_5_1' },
+            { id: 2, name: '박필통 (15세, 여)', src: 'law_5_2' },
+            { id: 3, name: '김공책 (15세, 여)', src: 'law_5_3' },
+            { id: 4, name: '익명 게시판 30명 (남/여)', src: 'law_5_4' },
+            { id: 5, name: '익명 게시판 2명 (남/여)', src: 'law_5_5' }
         ]
     },
     {
-        id: 6, name: '주작', data: [
-            { id: 1, name: '이독자 (16세, 여)' },
-            { id: 2, name: '이독자 (16세, 여)' },
-            { id: 3, name: '게시판 네티즌 (남/여)' },
-            { id: 4, name: '박영상 (16세, 남)' },
-            { id: 5, name: '박영상 (16세, 남)' }
+        id: 6, name: '주작', src: 'recovery_6', data: [
+            { id: 1, name: '이독자 (16세, 여)', src: 'law_6_1' },
+            { id: 2, name: '이독자 (16세, 여)', src: 'law_6_2' },
+            { id: 3, name: '게시판 네티즌 (남/여)', src: 'law_6_3' },
+            { id: 4, name: '박영상 (16세, 남)', src: 'law_6_4' },
+            { id: 5, name: '박영상 (16세, 남)', src: 'law_6_5' }
         ]
     }
+]
+
+export const to_defendant = [
+    { id: 1, name: '원고에게 진심어린 사과를 하세요.' },
+    { id: 2, name: '같은 행동을 하지 않겠다고 약속하세요.' },
+    { id: 3, name: '판결 내용을 평생 기억하세요.' }
+]
+
+export const to_plaintiff = [
+    { id: 1, name: '누구에게나 일어날 수 있는 일이 있어요' },
+    { id: 2, name: '2차 가해가 있다면 신고하세요' },
+    { id: 3, name: '잘못은 상대방에게 있어요' }
 ]
