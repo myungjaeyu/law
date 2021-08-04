@@ -4,7 +4,23 @@ import { useRouter } from 'next/router'
 
 import { media } from '../config/styles'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { saveControlStorage } from '../services/actions/controlActions'
+import { useEffect } from 'react'
+
+import { case_list } from '../utils/assets'
+
 const IndexPage = () => {
+
+    const { name, caseId, incidentId, laws, penal } = useSelector((state: any) => ({
+        name: state.control.data.name,
+        caseId: state.control.data.caseId,
+        incidentId: state.control.data.incidentId,
+        laws: state.control.laws,
+        penal: state.control.penal
+    }))
+
+    const dispatch = useDispatch()
 
     const router = useRouter()
 
@@ -15,6 +31,8 @@ const IndexPage = () => {
     const handleNextPage = () => {
 
         router.push('/info/3')
+
+        dispatch(saveControlStorage())
 
     }
 
@@ -39,12 +57,12 @@ const IndexPage = () => {
 
             <Card>
                 <Label>판사</Label>
-                <Text>홍길동1</Text>
+                <Text>{name}</Text>
             </Card>
 
             <Card>
                 <Label>사건</Label>
-                <Text>상태 메시지 사건카드1</Text>
+                {!!caseId && <Text>{case_list.find(e => e.id === caseId).name} 사건카드{incidentId}</Text>}
             </Card>
 
             <Card>

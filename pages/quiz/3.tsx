@@ -7,11 +7,20 @@ import Stats from '../../components/Stats'
 import Switch from '../../components/Switch'
 import Collapse from '../../components/Collapse'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { setControlLaws } from '../../services/actions/controlActions'
+
 import { case_quiz3 } from '../../utils/assets'
 
 const cases = case_quiz3
 
 const IndexPage = () => {
+
+    const { laws } = useSelector((state: any) => ({
+        laws: state.control.laws
+    }))
+
+    const dispatch = useDispatch()
 
     const [collapses, setCollapses] = useState([])
     const [checks, setChecks] = useState([])

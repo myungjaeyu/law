@@ -7,14 +7,23 @@ import { animateScroll } from 'react-scroll'
 import Stats from '../../components/Stats'
 import Switch from '../../components/Switch'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { setControlIncident } from '../../services/actions/controlActions'
+
 import { case_quiz1 } from '../../utils/assets'
 
 const cases = case_quiz1
 
 const IndexPage = () => {
 
-    const [caseId, setCaseId] = useState(0)
-    const [incidentId, setIncidentId] = useState(0)
+    const { incidents, caseId, incidentId } = useSelector((state: any) => ({
+        incidents: state.control.data.caseId ? state.control.data.cases.find(e => e.id === state.control.data.caseId).incidents : [],
+        caseId: state.control.data.caseId,
+        incidentId: state.control.data.incidentId
+    }))
+
+    const dispatch = useDispatch()
+
     const [messages, setMessages]: any = useState([])
     const [plaintiff, setPlaintiff]: any = useState({})
     const [defendant, setDefendant]: any = useState({})
@@ -33,27 +42,36 @@ const IndexPage = () => {
 
         const incidentInfo = caseInfo.incidents.find(e => e.id === incidentId)
 
-        setIncidentId(incidentId)
         setDefendant(incidentInfo)
 
         animateScroll.scrollToTop()
+
+        dispatch(setControlIncident(incidentInfo.id))
+
     }
 
     const setCaseMessages = (caseId) => {
-        setCaseId(caseId)
         setCasePlaintiff(caseId)
         setMessages(cases.messages.find(e => e.id === caseId).data)
     }
 
     useEffect(() => {
 
-        const case_id = 1
+        if (caseId) {
+            setCaseMessages(caseId)
 
-        setCaseMessages(case_id)
+            animateScroll.scrollToBottom()
+        }
 
-        animateScroll.scrollToBottom()
+    }, [caseId])
 
-    }, [])
+    useEffect(() => {
+
+        if (incidentId) {
+            setCaseIncident(incidentId)
+        }
+
+    }, [incidentId])
 
     return (
         <div>
@@ -96,13 +114,13 @@ const IndexPage = () => {
                 {messages.map((e, i) => <Incident key={i}>
 
                     <IncidentContent>
-                        <IncidentTitle>{e.name}</IncidentTitle>
+                        <IncidentTitle>{e.name} {(incidents.find((y) => y.id === e.id).done) ? '(완료)' : ''}</IncidentTitle>
                         <IncidentDescription>{e.text}</IncidentDescription>
                     </IncidentContent>
 
                     <IncidentRadioBox>
 
-                        <Switch name='incidentId' type='radio' onClick={() => setCaseIncident(e.id)} />
+                        <Switch defaultChecked={e.id === incidentId} name='incidentId' type='radio' onClick={() => setCaseIncident(e.id)} />
 
                     </IncidentRadioBox>
 
@@ -136,7 +154,7 @@ font-weight: 500;
 const IncidentDescription = styled.div`
 color: #5E5B69;
 font-size: 15px;
-line-height: 150%;
+line-height: 170%;
 padding-top: 4px;
 `
 

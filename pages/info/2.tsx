@@ -3,7 +3,16 @@ import { useCallback, useState, useRef, useEffect } from 'react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { setControlName } from '../../services/actions/controlActions'
+
 const IndexPage = () => {
+
+  const { _name } = useSelector((state: any) => ({
+    _name: state.control.data.name
+  }))
+
+  const dispatch = useDispatch()
 
   const inputRef = useRef(null)
 
@@ -18,6 +27,14 @@ const IndexPage = () => {
 
   }, [name])
 
+  const goNextPage = (name) => {
+
+    dispatch(setControlName(name))
+
+    router.push('/info/3')
+
+  }
+
   const handleEnter = useCallback(({ key }) => {
 
     if (key === 'Enter') {
@@ -27,7 +44,7 @@ const IndexPage = () => {
         return
       }
 
-      router.push('/info/3')
+      goNextPage(name)
 
     }
 
@@ -40,15 +57,17 @@ const IndexPage = () => {
       return
     }
 
-    router.push('/info/3')
+    goNextPage(name)
 
   }, [router, name])
 
   useEffect(() => {
 
+    setName(_name)
+
     inputRef.current.focus()
 
-  }, [])
+  }, [_name])
 
   return (
     <div>

@@ -1,6 +1,8 @@
 import styled from '@emotion/styled'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
+
+import { useSelector } from 'react-redux'
 
 const descriptions = [
     '',
@@ -16,6 +18,11 @@ type Props = {
 }
 
 const IndexPage = ({ type }: Props) => {
+
+    const { caseId, incidentId } = useSelector((state: any) => ({
+        caseId: state.control.data.caseId,
+        incidentId: state.control.data.incidentId,
+    }))
 
     const router = useRouter()
 
@@ -33,6 +40,42 @@ const IndexPage = ({ type }: Props) => {
 
     }
 
+    useEffect(() => {
+
+        setStatus(status.reduce((acc, cur) => {
+
+            if (cur.id < type) {
+
+                switch (cur.id) {
+                    case 1:
+                        if (incidentId) {
+                            cur.text = `사건카드 ${incidentId}`
+                        }
+                        break
+                    case 2:
+                        cur.text = '사이버 언어폭력'
+                        break
+                    case 3:
+                        cur.text = '학교폭력예방 및 대책에 관한 법률'
+                        break
+                    case 4:
+                        cur.text = '판결'
+                        break
+                    default: break
+                }
+
+            }
+
+            cur.is_proceeding = cur.id === type
+
+            acc.push(cur)
+
+            return acc
+        }, []))
+
+
+    }, [type, caseId, incidentId])
+
     return (
         <Container>
 
@@ -47,7 +90,7 @@ const IndexPage = ({ type }: Props) => {
                         <CardContent>
                             <Card onClick={() => handleClick(e.id)}>
                                 <CardBadge disabled={!e.text && !e.is_proceeding}>{e.id}</CardBadge>
-                                <CardText proceed={e.is_proceeding} >{e.is_proceeding ? '진행중' : e.text}</CardText>
+                                <CardText proceed={e.is_proceeding} ><div>{e.is_proceeding ? '진행중' : e.text}</div></CardText>
                                 <CardImg src={`/images/E_기타_이미지/Box_${e.is_proceeding ? 'Proceeding' : e.text ? 'Activate' : 'Disabled'}.png`} />
                             </Card>
 
@@ -145,6 +188,13 @@ text-align: center;
 font-size: 12px;
 color: #fff;
 top: 35%;
+
+display: flex;
+justify-content: center;
+
+div {
+    width: 90%;
+}
 
 ${({ proceed }: CardTextProps) => proceed ? 'color: #4DA1CC;' : ''}
 `

@@ -10,5 +10,7 @@ export type Case = {
 
 export type Data = {
     name: string
+    caseId: number,
+    incidentId: number,
     cases: Case[]
 }

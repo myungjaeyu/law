@@ -1,4 +1,4 @@
-export const toon_images: any[] = [
+export const case_list: any[] = [
     { id: 3, name: '악성댓글', src: '악성댓글' },
     { id: 5, name: '익명', src: '익명' },
     { id: 2, name: '기프티콘', src: '기프티콘' },

@@ -4,39 +4,50 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { animateScroll } from 'react-scroll'
 
-import { toon_images } from '../../utils/assets'
+import { useDispatch, useSelector } from 'react-redux'
+import { setControlCase } from '../../services/actions/controlActions'
+
+import { case_list } from '../../utils/assets'
 
 const IndexPage = () => {
 
+  const { data } = useSelector((state: any) => ({
+    data: state.control.data
+  }))
+
+  const dispatch = useDispatch()
+
   const router = useRouter()
 
-  const [type, setType] = useState(0)
+  const [caseId, setCaseId] = useState(0)
 
   const [cases, setCases] = useState([])
 
   const handleSetType = useCallback((id) => {
 
-    setType(id)
+    setCaseId(id)
 
     animateScroll.scrollToBottom()
 
-  }, [type])
+  }, [caseId])
 
   const handleNextPage = useCallback(() => {
 
+    dispatch(setControlCase(caseId))
+
     router.push('/quiz/1')
 
-  }, [router, type])
+  }, [router, caseId])
 
   useEffect(() => {
 
-    setCases(toon_images.map(e => ({
-      ...e,
-      tick: 0,
+    setCases(case_list.map(x => ({
+      ...x,
+      tick: data.cases.find(y => y.id === x.id).incidents.filter(e => e.done).length,
       len: 5
     })))
 
-  }, [])
+  }, [data])
 
   return (
     <div>
@@ -66,7 +77,7 @@ const IndexPage = () => {
         {cases.map((e) =>
           <ButtonPadding key={e.id}>
             <Button
-              disabled={e.id !== type}
+              disabled={e.id !== caseId}
               onClick={() => handleSetType(e.id)}
             >
               {e.name}<small>[{e.tick}/{e.len}]</small>
@@ -76,12 +87,12 @@ const IndexPage = () => {
 
       </ButtonGroup>
 
-      {!!type && <Center>
-        <ToonImg src={`/images/A_사건_주제_이미지/${toon_images.find(e => e.id === type).src}.png`} alt='toon_image' />
+      {!!caseId && <Center>
+        <ToonImg src={`/images/A_사건_주제_이미지/${case_list.find(e => e.id === caseId).src}.png`} alt='toon_image' />
       </Center>}
 
       <Center>
-        {!!type && <Button onClick={handleNextPage}>다음</Button>}
+        {!!caseId && <Button onClick={handleNextPage}>다음</Button>}
       </Center>
 
       <Footer></Footer>

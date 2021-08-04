@@ -15,16 +15,12 @@ import { setLocalStorage, initialData } from '../../utils/control'
 
 type InitialState = {
     data: Data
-    caseId: number
-    incidentId: number
     laws: string[]
     penal: string
 }
 
 const initialState: InitialState = {
     data: initialData,
-    caseId: 0,
-    incidentId: 0,
     laws: [],
     penal: ''
 }
@@ -35,8 +31,8 @@ const controlReducer = (state = initialState, action: any) => {
             return { ...initialState, data: action.payload.data }
         case SAVE_STORAGE:
 
-            const caseId = state.caseId
-            const incidentId = state.incidentId
+            const caseId = state.data.caseId
+            const incidentId = state.data.incidentId
 
             const savedData = state.data.cases.reduce((acc, cur: Case) => {
 
@@ -56,24 +52,41 @@ const controlReducer = (state = initialState, action: any) => {
                 return acc
             }, [])
 
-            setLocalStorage(savedData)
+            const apply_data = {
+                ...state.data,
+                caseId: 0,
+                incidentId: 0,
+                data: savedData
+            }
 
-            return { ...state }
+            setLocalStorage(apply_data)
+
+            return { ...state, data: apply_data }
         case SET_NAME:
 
-            const data = { ...state.data, name: action.payload.name }
+            const apply_name_data = { ...state.data, name: action.payload.name }
 
-            setLocalStorage(data)
+            setLocalStorage(apply_name_data)
 
-            return { ...state, data }
+            return { ...state, data: apply_name_data }
         case SET_CASE:
-            return { ...state, caseId: action.payload.caseId }
+
+            const apply_case_data = { ...state.data, caseId: action.payload.caseId }
+
+            setLocalStorage(apply_case_data)
+
+            return { ...state, data: apply_case_data }
         case SET_INCIDENT:
-            return { ...state, incidentId: action.payload.incidentId }
+
+            const apply_incident_data = { ...state.data, incidentId: action.payload.incidentId }
+
+            setLocalStorage(apply_incident_data)
+
+            return { ...state, data: apply_incident_data }
         case SET_LAWS:
             return { ...state, laws: action.payload.laws }
         case SET_PENAL:
-            return { ...state, laws: action.payload.penal }
+            return { ...state, penal: action.payload.penal }
         case FAIL_CONTROL:
             return { ...state }
         default:

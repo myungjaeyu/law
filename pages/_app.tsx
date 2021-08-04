@@ -1,6 +1,7 @@
 import App from 'next/app'
 import { AppProps, AppContext } from 'next/app'
 import Layout from '../components/Layout'
+import ControlManager from '../components/ControlManager'
 
 import wrapper from '../services/store'
 
@@ -10,6 +11,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     return (
         <Layout>
+            <ControlManager />
             <Component {...pageProps} />
         </Layout>
     )

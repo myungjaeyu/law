@@ -1,18 +1,17 @@
-import { ReactNode } from 'react'
-
 import styled from '@emotion/styled'
 
 type Props = {
+    defaultChecked?: boolean
     name?: string
     type?: string
     onClick?: (e) => void
 }
 
-const IndexPage = ({ name, type, onClick }: Props) => {
+const IndexPage = ({ defaultChecked, name, type, onClick }: Props) => {
 
     return (
         <Switch>
-            <input name={name || ''} type={type || 'radio'} onClick={onClick ? onClick : null} />
+            <input defaultChecked={defaultChecked} name={name || ''} type={type || 'radio'} onClick={onClick ? onClick : null} />
             <span></span>
         </Switch>
     )

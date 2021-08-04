@@ -32,8 +32,6 @@ export const initControlStorage = () => async (dispatch: any) => {
 export const saveControlStorage = () => async (dispatch: any) => {
     try {
 
-        const data: Data = getLocalStorage()
-
         dispatch({
             type: SAVE_STORAGE
         })
@@ -93,7 +91,7 @@ export const setControlIncident = (incidentId: number) => async (dispatch: any) 
     }
 }
 
-export const setControlLaws = (laws: string) => async (dispatch: any) => {
+export const setControlLaws = (laws: string[]) => async (dispatch: any) => {
     try {
 
         dispatch({
