@@ -3,8 +3,8 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 
 import Stats from '../../components/Stats'
-import Switch from '../../components/Switch'
 import Collapse from '../../components/Collapse'
+import CollapseOption from '../../components/CollapseOption'
 import { Range } from 'react-range'
 
 import { defendant_names, young_penalty } from '../../utils/assets'
@@ -147,22 +147,15 @@ const IndexPage = () => {
                 opend={collapses.young.opend}
                 onOpen={() => handleOpend('young')}
             >
-                {young_penalty.map(e => <Panalty key={e.id}>
-
-                    <PenaltyOption>
-                        <PenaltyOptionText>
-                            <PenaltyOptionIcon src='/icons/check-circle-regular.svg' /> {e.name}
-                        </PenaltyOptionText>
-                        <PenaltyOptionSwitchBox>
-                            <Switch
-                                name='panalty'
-                                type='checkbox'
-                                onClick={({ target: { checked } }) => handleCheck(checked, e.id)}
-                            />
-                        </PenaltyOptionSwitchBox>
-                    </PenaltyOption>
-
-                </Panalty>)}
+                {young_penalty.map(e =>
+                    <CollapseOption
+                        key={e.id}
+                        title={e.name}
+                        name='panalty'
+                        type='checkbox'
+                        onClick={({ target: { checked } }) => handleCheck(checked, e.id)}
+                    />
+                )}
 
             </Collapse>
 
