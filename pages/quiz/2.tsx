@@ -85,6 +85,10 @@ const IndexPage = () => {
                     <div onClick={handleSlidePrev}></div>
                     <div onClick={handleSlideNext}></div>
                 </CarouselControl>
+                <CarouselIndicateBox>
+                    <CarouselIndicate src='/icons/arrow-alt-circle-left-regular.svg' />
+                    <CarouselIndicate src='/icons/arrow-alt-circle-right-regular.svg' />
+                </CarouselIndicateBox>
             </CarouselGroup>
 
             <CarouselStepGroup>
@@ -148,6 +152,22 @@ position: relative;
 overflow: hidden;
 `
 
+const CarouselIndicateBox = styled.div`
+position: absolute;
+top: 0;
+width: 100%;
+height: 100%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+z-index: 2;
+`
+
+const CarouselIndicate = styled.img`
+width: 24px;
+padding: 0 8px;
+`
+
 const CarouselTitle = styled.div`
 font-size: 16px;
 font-weight: 500;
@@ -168,7 +188,7 @@ position: absolute;
 width: 100%;
 height: 100%;
 top: 0;
-z-index: 2;
+z-index: 3;
 cursor: pointer;
 
 div{
