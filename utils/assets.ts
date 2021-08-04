@@ -367,3 +367,11 @@ export const to_plaintiff = [
     { id: 2, name: '2차 가해가 있다면 신고하세요' },
     { id: 3, name: '잘못은 상대방에게 있어요' }
 ]
+
+export const to_recovery = [
+    { id: 1, title: '개인 심리치료 지원', description: '같은 반 친구들이 저를 따돌렸다는 게 너무 속상해요.' },
+    { id: 2, title: '주변의 도움', description: '따돌림을 막으려 했던 친구들이 있었다는 걸 알고 ...' },
+    { id: 3, title: '법적 지원', description: '어디선가 나를 찍고 있을지도 모른다는 생각이 지워지지...' },
+    { id: 4, title: '경제적 지원', description: '소송 비용과 심리 치료 비용이 많이 들어서 부모님께 죄송한 마음이 들어요.' },
+    { id: 5, title: '사이버 폭력 흔적 삭제', description: '인터넷에 떠도는 제 사진을 지워주세요.' }
+]
