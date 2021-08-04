@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 
 import { useCallback, useEffect, useState } from 'react'
+import { animateScroll } from 'react-scroll'
 
 import Link from 'next/link'
 
@@ -11,9 +12,15 @@ import CollapseInput from '../../components/CollapseInput'
 
 import { useRouter } from 'next/router'
 
+import { useSelector } from 'react-redux'
+
 import { people_list, to_plaintiff } from '../../utils/assets'
 
 const IndexPage = () => {
+
+    const { caseId } = useSelector((state: any) => ({
+        caseId: state.control.data.caseId
+    }))
 
     const router = useRouter()
 
@@ -63,9 +70,15 @@ const IndexPage = () => {
 
     useEffect(() => {
 
-        handleCasePeopleImage(1)
+        if (caseId) {
 
-    }, [])
+            handleCasePeopleImage(caseId)
+
+            animateScroll.scrollToBottom()
+
+        }
+
+    }, [caseId])
 
     return (
         <div>
@@ -195,7 +208,7 @@ padding-bottom: 32px;
 const Button = styled.div`
 background: #9BC802;
 color: #fff;
-padding: 6px 12px;
+padding: 8px 12px;
 width: 120px;
 text-align: center;
 border-radius: 16px;

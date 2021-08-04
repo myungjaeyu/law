@@ -166,7 +166,7 @@ padding: 4px 0;
 const Button = styled.div`
 background: #F3A968;
 color: #fff;
-padding: 6px 12px;
+padding: 8px 12px;
 width: 120px;
 text-align: center;
 border-radius: 16px;

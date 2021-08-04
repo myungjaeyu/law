@@ -6,9 +6,9 @@ import { media } from '../config/styles'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { saveControlStorage } from '../services/actions/controlActions'
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 
-import { case_list } from '../utils/assets'
+import { case_list, people_list } from '../utils/assets'
 
 const IndexPage = () => {
 
@@ -24,8 +24,20 @@ const IndexPage = () => {
 
     const router = useRouter()
 
+    const [defendantName, setDefendantName] = useState('')
+
     const handleCapture = () => {
         alert('log')
+    }
+
+    const handleCaseDefendantName = (id, subId) => {
+
+        const caseInfo = people_list.find(e => e.id === id)
+
+        const defendant = caseInfo.data.find(e => e.id === subId)
+
+        setDefendantName(defendant.name)
+
     }
 
     const handleNextPage = () => {
@@ -35,6 +47,16 @@ const IndexPage = () => {
         dispatch(saveControlStorage())
 
     }
+
+    useEffect(() => {
+
+        if (caseId && incidentId) {
+
+            handleCaseDefendantName(caseId, incidentId)
+
+        }
+
+    }, [caseId, incidentId])
 
     return (
         <div>
@@ -79,7 +101,7 @@ const IndexPage = () => {
                 <Label>판결</Label>
                 <Text>
                     {
-                        `피고 B반 학생 3명에
+                        `피고 ${defendantName}에
 피해학생 및 신고고발 학생에 대한 접촉, 협박 및 보복 행위의 금지를 내린다
 `}
                 </Text>

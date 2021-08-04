@@ -16,8 +16,9 @@ import { setControlPenal } from '../../services/actions/controlActions'
 
 const IndexPage = () => {
 
-    const { _penal } = useSelector((state: any) => ({
-        _penal: state.control.penal
+    const { caseId, incidentId } = useSelector((state: any) => ({
+        caseId: state.control.data.caseId,
+        incidentId: state.control.data.incidentId
     }))
 
     const dispatch = useDispatch()
@@ -104,9 +105,9 @@ const IndexPage = () => {
 
     useEffect(() => {
 
-        handleCaseDefendantName(1, 1)
+        handleCaseDefendantName(caseId, incidentId)
 
-    }, [])
+    }, [caseId, incidentId])
 
     return (
         <div>
@@ -400,7 +401,7 @@ padding-bottom: 32px;
 const Button = styled.div`
 background: #9BC802;
 color: #fff;
-padding: 6px 12px;
+padding: 8px 12px;
 width: 120px;
 text-align: center;
 border-radius: 16px;
