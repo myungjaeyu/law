@@ -2,6 +2,8 @@ import App from 'next/app'
 import { AppProps, AppContext } from 'next/app'
 import Layout from '../components/Layout'
 
+import wrapper from '../services/store'
+
 import '../index.css'
 
 function MyApp({ Component, pageProps }: AppProps) {
@@ -20,4 +22,4 @@ MyApp.getInitialProps = async (appContext: AppContext) => {
     return { ...appProps }
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)
