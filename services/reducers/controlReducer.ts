@@ -71,7 +71,7 @@ const controlReducer = (state = initialState, action: any) => {
             return { ...state, data: apply_name_data }
         case SET_CASE:
 
-            const apply_case_data = { ...state.data, caseId: action.payload.caseId }
+            const apply_case_data = { ...state.data, caseId: action.payload.caseId, incidentId: 0 }
 
             setLocalStorage(apply_case_data)
 
