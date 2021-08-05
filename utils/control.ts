@@ -6,6 +6,9 @@ export const initialData: Data = {
     name: '',
     caseId: 0,
     incidentId: 0,
+    incidentTypeId: 0,
+    lawText: '',
+    penalText: '',
     cases: [
         { id: 1, incidents: [{ id: 1, done: false }, { id: 2, done: false }, { id: 3, done: false }, { id: 4, done: false }, { id: 5, done: false }] },
         { id: 2, incidents: [{ id: 1, done: false }, { id: 2, done: false }, { id: 3, done: false }, { id: 4, done: false }, { id: 5, done: false }] },

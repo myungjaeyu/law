@@ -6,8 +6,9 @@ export const SAVE_STORAGE = '[CONTROL] SAVE_STORAGE'
 export const SET_NAME = '[CONTROL] SET_NAME'
 export const SET_CASE = '[CONTROL] SET_CASE'
 export const SET_INCIDENT = '[CONTROL] SET_INCIDENT'
-export const SET_LAWS = '[CONTROL] SET_LAWS'
-export const SET_PENAL = '[CONTROL] SET_PENAL'
+export const SET_INCIDENT_TYPE = '[CONTROL] SET_INCIDENT_TYPE'
+export const SET_LAW_TEXT = '[CONTROL] SET_LAW_TEXT'
+export const SET_PENAL_TEXT = '[CONTROL] SET_PENAL_TEXT'
 
 export const FAIL_CONTROL = '[CONTROL] FAIL_CONTROL'
 
@@ -91,12 +92,12 @@ export const setControlIncident = (incidentId: number) => async (dispatch: any) 
     }
 }
 
-export const setControlLaws = (laws: string[]) => async (dispatch: any) => {
+export const setControlIncidentType = (incidentTypeId: number) => async (dispatch: any) => {
     try {
 
         dispatch({
-            type: SET_INCIDENT, payload: {
-                laws
+            type: SET_INCIDENT_TYPE, payload: {
+                incidentTypeId
             }
         })
 
@@ -107,12 +108,28 @@ export const setControlLaws = (laws: string[]) => async (dispatch: any) => {
     }
 }
 
-export const setControlPenal = (penal: string) => async (dispatch: any) => {
+export const setControlLawText = (lawText: string) => async (dispatch: any) => {
     try {
 
         dispatch({
-            type: SET_PENAL, payload: {
-                penal
+            type: SET_LAW_TEXT, payload: {
+                lawText
+            }
+        })
+
+    } catch (error) {
+
+        dispatch({ type: FAIL_CONTROL })
+
+    }
+}
+
+export const setControlPenalText = (penalText: string) => async (dispatch: any) => {
+    try {
+
+        dispatch({
+            type: SET_PENAL_TEXT, payload: {
+                penalText
             }
         })
 

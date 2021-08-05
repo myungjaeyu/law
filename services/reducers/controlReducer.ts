@@ -4,8 +4,9 @@ import {
     SET_NAME,
     SET_CASE,
     SET_INCIDENT,
-    SET_LAWS,
-    SET_PENAL,
+    SET_INCIDENT_TYPE,
+    SET_LAW_TEXT,
+    SET_PENAL_TEXT,
     FAIL_CONTROL
 } from '../actions/controlActions'
 
@@ -15,14 +16,10 @@ import { setLocalStorage, initialData } from '../../utils/control'
 
 type InitialState = {
     data: Data
-    laws: string[]
-    penal: string
 }
 
 const initialState: InitialState = {
-    data: initialData,
-    laws: [],
-    penal: ''
+    data: initialData
 }
 
 const controlReducer = (state = initialState, action: any) => {
@@ -56,6 +53,7 @@ const controlReducer = (state = initialState, action: any) => {
                 ...state.data,
                 caseId: 0,
                 incidentId: 0,
+                incidentTypeId: 0,
                 data: savedData
             }
 
@@ -78,15 +76,32 @@ const controlReducer = (state = initialState, action: any) => {
             return { ...state, data: apply_case_data }
         case SET_INCIDENT:
 
-            const apply_incident_data = { ...state.data, incidentId: action.payload.incidentId }
+            const apply_incident_data = { ...state.data, incidentId: action.payload.incidentId, incidentTypeId: 0 }
 
             setLocalStorage(apply_incident_data)
 
             return { ...state, data: apply_incident_data }
-        case SET_LAWS:
-            return { ...state, laws: action.payload.laws }
-        case SET_PENAL:
-            return { ...state, penal: action.payload.penal }
+        case SET_INCIDENT_TYPE:
+
+            const apply_incident_type_data = { ...state.data, incidentTypeId: action.payload.incidentTypeId, lawText: '' }
+
+            setLocalStorage(apply_incident_type_data)
+
+            return { ...state, data: apply_incident_type_data }
+        case SET_LAW_TEXT:
+
+            const apply_law_data = { ...state.data, lawText: action.payload.lawText, penalText: '' }
+
+            setLocalStorage(apply_law_data)
+
+            return { ...state, data: apply_law_data }
+        case SET_PENAL_TEXT:
+
+            const apply_penal_data = { ...state.data, penalText: action.payload.penalText }
+
+            setLocalStorage(apply_penal_data)
+
+            return { ...state, data: apply_penal_data }
         case FAIL_CONTROL:
             return { ...state }
         default:
