@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
+import { useRouter } from 'next/router'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 
 import Stats from '../../components/Stats'
 import Switch from '../../components/Switch'
@@ -15,6 +16,8 @@ import { case_quiz3 } from '../../utils/assets'
 const cases = case_quiz3
 
 const IndexPage = () => {
+
+    const router = useRouter()
 
     const { laws } = useSelector((state: any) => ({
         laws: state.control.laws
@@ -81,6 +84,12 @@ const IndexPage = () => {
         }
 
     }
+
+    const handleNextPage = useCallback(() => {
+
+        router.push('/quiz/4')
+
+    }, [router])
 
     useEffect(() => {
 
@@ -155,6 +164,10 @@ const IndexPage = () => {
                 </Collapse>)}
 
             </LawGroup>
+
+            <Center>
+                <Button onClick={handleNextPage}>다음</Button>
+            </Center>
 
         </div>
     )
@@ -261,6 +274,24 @@ margin-left: 6px;
 const ViewCheckIcon = styled.img`
 display: inline-block;
 width: 16px;
+`
+
+const Center = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+padding-top: 32px;
+padding-bottom: 32px;
+`
+
+const Button = styled.div`
+background: #9BC802;
+color: #fff;
+padding: 8px 12px;
+width: 120px;
+text-align: center;
+border-radius: 16px;
+cursor: pointer;
 `
 
 export default IndexPage

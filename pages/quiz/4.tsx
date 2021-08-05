@@ -169,8 +169,7 @@ const IndexPage = () => {
             <Collapse
                 title={'징역'}
                 checked={!!penal}
-                opend={collapses.penal.opend}
-                onOpen={() => handleOpend('penal')}
+                opend={true}
             >
 
                 <Panalty>
@@ -202,8 +201,7 @@ const IndexPage = () => {
             <Collapse
                 title={'벌금'}
                 checked={!!fine}
-                opend={collapses.fine.opend}
-                onOpen={() => handleOpend('fine')}
+                opend={true}
             >
 
                 <Panalty>

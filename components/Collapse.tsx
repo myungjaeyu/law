@@ -18,9 +18,9 @@ const IndexPage = ({ title, children, checked, opend, onOpen }: Props) => {
         <div>
             <Header checked={checked} onClick={onOpen}>
                 <Title>{title}</Title>
-                <IconBox>
+                {onOpen && <IconBox>
                     <Icon src={`/icons/angle-${opend ? 'down' : 'left'}-solid_${checked ? 'w' : 'g'}.svg`}></Icon>
-                </IconBox>
+                </IconBox>}
             </Header>
 
             <Collapse isOpened={opend}>

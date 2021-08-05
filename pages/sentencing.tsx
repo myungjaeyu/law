@@ -93,8 +93,8 @@ const IndexPage = () => {
             </Card>
 
             <Card>
-                <Label>법률근거1</Label>
-                <Text>학교폭력 예방법 제 17조</Text>
+                <Label>법률근거</Label>
+                <Text>{laws}</Text>
             </Card>
 
             <Card>
@@ -102,7 +102,7 @@ const IndexPage = () => {
                 <Text>
                     {
                         `피고 ${defendantName}에
-피해학생 및 신고고발 학생에 대한 접촉, 협박 및 보복 행위의 금지를 내린다
+${penal}를 구형한다
 `}
                 </Text>
             </Card>

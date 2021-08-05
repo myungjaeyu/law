@@ -56,7 +56,7 @@ const IndexPage = ({ type }: Props) => {
                         cur.text = '사이버 언어폭력'
                         break
                     case 3:
-                        cur.text = '학교폭력예방 및 대책에 관한 법률'
+                        cur.text = '법률'
                         break
                     case 4:
                         cur.text = '판결'
@@ -146,7 +146,6 @@ align-items: center;
 `
 
 const Card = styled.div`
-padding-left: 5%;
 width: 80%;
 position: relative;
 cursor: pointer;

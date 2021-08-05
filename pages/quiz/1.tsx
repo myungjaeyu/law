@@ -1,7 +1,8 @@
 import styled from '@emotion/styled'
+import { useRouter } from 'next/router'
 
 import Link from 'next/link'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useCallback } from 'react'
 import { animateScroll } from 'react-scroll'
 
 import Stats from '../../components/Stats'
@@ -15,6 +16,8 @@ import { case_quiz1 } from '../../utils/assets'
 const cases = case_quiz1
 
 const IndexPage = () => {
+
+    const router = useRouter()
 
     const { incidents, caseId, incidentId } = useSelector((state: any) => ({
         incidents: state.control.data.caseId ? state.control.data.cases.find(e => e.id === state.control.data.caseId).incidents : [],
@@ -44,7 +47,7 @@ const IndexPage = () => {
 
         setDefendant(incidentInfo)
 
-        animateScroll.scrollToTop()
+        animateScroll.scrollToBottom()
 
         dispatch(setControlIncident(incidentInfo.id))
 
@@ -55,12 +58,17 @@ const IndexPage = () => {
         setMessages(cases.messages.find(e => e.id === caseId).data)
     }
 
+    const handleNextPage = useCallback(() => {
+
+        router.push('/quiz/2')
+
+    }, [router])
+
     useEffect(() => {
 
         if (caseId) {
             setCaseMessages(caseId)
 
-            animateScroll.scrollToBottom()
         }
 
     }, [caseId])
@@ -93,6 +101,26 @@ const IndexPage = () => {
 
             <Stats type={1} />
 
+            <IncidentGroup>
+
+                {messages.map((e, i) => <Incident key={i}>
+
+                    <IncidentContent>
+                        <IncidentTitle>{e.name} {(incidents.find((y) => y.id === e.id).done) ? (<small>(완료)</small>) : ''}</IncidentTitle>
+                        <IncidentDescription>{e.text}</IncidentDescription>
+                    </IncidentContent>
+
+                    <IncidentRadioBox>
+
+                        <Switch defaultChecked={e.id === incidentId} name='incidentId' type='radio' onClick={() => setCaseIncident(e.id)} />
+
+                    </IncidentRadioBox>
+
+
+                </Incident>)}
+
+            </IncidentGroup>
+
             <View>
                 <ViewBox>
 
@@ -109,31 +137,18 @@ const IndexPage = () => {
                 </ViewBox>
             </View>
 
-            <IncidentGroup>
-
-                {messages.map((e, i) => <Incident key={i}>
-
-                    <IncidentContent>
-                        <IncidentTitle>{e.name} {(incidents.find((y) => y.id === e.id).done) ? '(완료)' : ''}</IncidentTitle>
-                        <IncidentDescription>{e.text}</IncidentDescription>
-                    </IncidentContent>
-
-                    <IncidentRadioBox>
-
-                        <Switch defaultChecked={e.id === incidentId} name='incidentId' type='radio' onClick={() => setCaseIncident(e.id)} />
-
-                    </IncidentRadioBox>
-
-
-                </Incident>)}
-
-            </IncidentGroup>
+            <Center>
+                <Button onClick={handleNextPage}>다음</Button>
+            </Center>
 
         </div>
     )
 }
 
-const IncidentGroup = styled.div``
+const IncidentGroup = styled.div`
+padding-top: 8px;
+padding-bottom: 8px;
+`
 
 const Incident = styled.div`
 display: flex;
@@ -207,8 +222,6 @@ const View = styled.div`
 background: #fff;
 margin-top: 8px;
 padding: 24px 0 6px;
-box-shadow: 0 3px 3px 0 rgba(0,0,0,0.1);
-min-height: 321px;
 `
 
 const ViewBox = styled.div`
@@ -236,6 +249,24 @@ const ViewLabel = styled.div`
 font-weight: 700;
 text-align: center;
 color: #5E5B69;
+`
+
+const Center = styled.div`
+width: 100%;
+display: flex;
+justify-content: center;
+padding-top: 32px;
+padding-bottom: 32px;
+`
+
+const Button = styled.div`
+background: #9BC802;
+color: #fff;
+padding: 8px 12px;
+width: 120px;
+text-align: center;
+border-radius: 16px;
+cursor: pointer;
 `
 
 export default IndexPage
