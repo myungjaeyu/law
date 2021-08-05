@@ -6,6 +6,9 @@ import dynamic from 'next/dynamic'
 import Stats from '../../components/Stats'
 import { useCallback, useEffect, useState } from 'react'
 
+import { useDispatch, useSelector } from 'react-redux'
+import { setControlIncidentType } from '../../services/actions/controlActions'
+
 import { case_quiz2 } from '../../utils/assets'
 
 const DynamicCarousel: any = dynamic(
@@ -18,6 +21,13 @@ const cases = case_quiz2
 const IndexPage = () => {
 
     const router = useRouter()
+
+    const { caseId, incidentId } = useSelector((state: any) => ({
+        caseId: state.control.data.caseId,
+        incidentId: state.control.data.incidentId
+    }))
+
+    const dispatch = useDispatch()
 
     const [slideId, setSlideId] = useState(0)
     const [slides, setSlides] = useState([])
@@ -40,9 +50,11 @@ const IndexPage = () => {
 
     const handleNextPage = useCallback(() => {
 
+        dispatch(setControlIncidentType(slideId))
+
         router.push('/quiz/3')
 
-    }, [router, slideId])
+    }, [router, dispatch, slideId])
 
     useEffect(() => {
 

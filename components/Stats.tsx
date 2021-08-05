@@ -4,6 +4,8 @@ import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
 
+import { case_quiz2 } from '../utils/assets'
+
 const descriptions = [
     '',
     '해결하고 싶은 사건카드를 선택하세요',
@@ -19,9 +21,10 @@ type Props = {
 
 const IndexPage = ({ type }: Props) => {
 
-    const { caseId, incidentId } = useSelector((state: any) => ({
+    const { caseId, incidentId, incidentTypeId } = useSelector((state: any) => ({
         caseId: state.control.data.caseId,
         incidentId: state.control.data.incidentId,
+        incidentTypeId: state.control.data.incidentTypeId
     }))
 
     const router = useRouter()
@@ -53,7 +56,9 @@ const IndexPage = ({ type }: Props) => {
                         }
                         break
                     case 2:
-                        cur.text = '사이버 언어폭력'
+                        if (incidentTypeId) {
+                            cur.text = case_quiz2.find(e => e.id === incidentTypeId).name
+                        }
                         break
                     case 3:
                         cur.text = '법률'
