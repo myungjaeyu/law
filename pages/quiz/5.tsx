@@ -24,7 +24,6 @@ const IndexPage = () => {
 
     const router = useRouter()
 
-    const [opend, setOpend] = useState(true)
     const [checked, setChecked] = useState(false)
     const [people, setPeople] = useState('')
 
@@ -37,12 +36,6 @@ const IndexPage = () => {
         setPeople(defendant.src)
 
     }
-
-    const handleOpend = useCallback(() => {
-
-        setOpend(!opend)
-
-    }, [opend])
 
     const handleCheck = ({ target: { checked } }) => {
 
@@ -111,8 +104,7 @@ const IndexPage = () => {
             <Collapse
                 title={'피고에게 하고 싶은 말이 있나요?'}
                 checked={checked}
-                opend={opend}
-                onOpen={handleOpend}
+                opend={true}
             >
 
                 {to_defendant.map(e => <CollapseOption

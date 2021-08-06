@@ -16,14 +16,7 @@ const IndexPage = () => {
 
     const router = useRouter()
 
-    const [opend, setOpend] = useState(true)
     const [checked, setChecked] = useState(false)
-
-    const handleOpend = useCallback(() => {
-
-        setOpend(!opend)
-
-    }, [opend])
 
     const handleCheck = () => {
 
@@ -62,8 +55,7 @@ const IndexPage = () => {
             <Collapse
                 title={'원고가 일상을 회복할 수 있는 방법을 선택'}
                 checked={checked}
-                opend={opend}
-                onOpen={handleOpend}
+                opend={true}
             >
 
                 {to_recovery.map((e) =>
