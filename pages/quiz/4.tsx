@@ -7,7 +7,7 @@ import Collapse from '../../components/Collapse'
 import CollapseOption from '../../components/CollapseOption'
 import { Range } from 'react-range'
 
-import { people_list, young_penalty } from '../../utils/assets'
+import { people_list, young_penalty, law_right } from '../../utils/assets'
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -25,9 +25,16 @@ const IndexPage = () => {
     const router = useRouter()
 
     const [defendantName, setDefendantName] = useState('')
-    const [panaltys, setPanaltys] = useState([])
-    const [penal, setPenal] = useState(0)
+    const [penalty, setPanalty]: any = useState({})
+    const [isFine, setIsFine] = useState(false)
+
+    const [prison, setPrison] = useState(0)
     const [fine, setFine] = useState(0)
+
+    const [isSchoolLaw, setIsSchoolLaw] = useState(false)
+    const [isPenalLaw, setIsPenalLaw] = useState(false)
+
+    const [isHighlightBorder, setIsHighlightBorder] = useState(true)
 
     const [collapses, setCollapses] = useState({
         young: {
@@ -55,22 +62,15 @@ const IndexPage = () => {
 
         if (checked) {
 
-            setPanaltys([
-                ...panaltys,
-                {
-                    ...young_penalty.find(e => e.id === id)
-                }
-            ])
+            setPanalty(young_penalty.find(e => e.id === id))
 
-        } else {
-
-            setPanaltys(panaltys.filter(e => e.id !== id))
+            setIsHighlightBorder(false)
 
         }
 
         young_penalty.find(e => e.id === id)
 
-    }, [panaltys])
+    }, [penalty])
 
     const handleOpend = useCallback((key) => {
 
@@ -83,18 +83,44 @@ const IndexPage = () => {
 
     }, [collapses])
 
-    const handlePenal = useCallback((values) => {
+    const handlePrison = useCallback((values) => {
 
-        setPenal(values[0])
+        setPrison(values[0])
 
-    }, [penal])
+        if (isFine) {
+            setIsFine(false)
+            setFine(0)
+        }
+
+        if (!penalty.name) {
+
+            if (isHighlightBorder && values[0] > 0) setIsHighlightBorder(false)
+
+            if (values[0] === 0 && !isHighlightBorder) setIsHighlightBorder(true)
+
+        }
+
+    }, [prison, isFine, penalty, isHighlightBorder])
 
 
     const handleFine = useCallback((values) => {
 
         setFine(values[0])
 
-    }, [fine])
+        if (!isFine) {
+            setIsFine(true)
+            setPrison(0)
+        }
+
+        if (!penalty.name) {
+
+            if (isHighlightBorder && values[0] > 0) setIsHighlightBorder(false)
+
+            if (values[0] === 0 && !isHighlightBorder) setIsHighlightBorder(true)
+
+        }
+
+    }, [fine, isFine, penalty, isHighlightBorder])
 
     const handleNextPage = useCallback(() => {
 
@@ -104,7 +130,19 @@ const IndexPage = () => {
 
     useEffect(() => {
 
-        handleCaseDefendantName(caseId, incidentId)
+        if (caseId && incidentId) {
+
+            handleCaseDefendantName(caseId, incidentId)
+
+            const caseInfo = law_right.find((e) => e.id === caseId)
+
+            const _raw = caseInfo.data.find((e) => e.id === incidentId)
+
+            setIsSchoolLaw(!!_raw.right.find(e => e === '학교폭력예방법 제 17조'))
+
+            setIsPenalLaw(!!_raw.right.filter(e => e != '학교폭력예방법 제 17조').length)
+
+        }
 
     }, [caseId, incidentId])
 
@@ -137,19 +175,19 @@ const IndexPage = () => {
                     <PenaltyText>
                         피고 [<PenaltyHighlight>{defendantName}</PenaltyHighlight>] 에게
                     </PenaltyText>
-                    <PenaltyText>[<PenaltyHighlight bordered={!panaltys.length}>
-                        {!!penal && `징역 ${penal}개월`}
-                        {(!!penal && !!fine) && ', '}
+                    <PenaltyText>[<PenaltyHighlight bordered={isHighlightBorder}>
+                        {penalty.name && penalty.name}
+                        {!!(penalty.name && (prison || fine)) && ', '}
+                        {!!prison && `징역 ${prison}개월`}
                         {!!fine && `벌금 ${fine}만원`}
-                        {panaltys.map(e => e.name).join(', ')}
                     </PenaltyHighlight>]를 선고한다.</PenaltyText>
 
                 </ViewBox>
             </View>
 
-            <Collapse
+            {isSchoolLaw && <Collapse
                 title={'학교폭력'}
-                checked={!!panaltys.length}
+                checked={!!penalty.name}
                 opend={collapses.young.opend}
                 onOpen={() => handleOpend('young')}
             >
@@ -157,17 +195,17 @@ const IndexPage = () => {
                     <CollapseOption
                         key={e.id}
                         title={e.name}
-                        name='panalty'
-                        type='checkbox'
+                        name='penalty'
+                        type='radio'
                         onClick={({ target: { checked } }) => handleCheck(checked, e.id)}
                     />
                 )}
 
-            </Collapse>
+            </Collapse>}
 
-            <Collapse
+            {isPenalLaw && <Collapse
                 title={'징역'}
-                checked={!!penal}
+                checked={!!prison}
                 opend={true}
             >
 
@@ -175,7 +213,7 @@ const IndexPage = () => {
                     <PanaltyRange>
 
                         <PanaltyRangeLabel>
-                            {penal} 개월
+                            {prison} 개월
                         </PanaltyRangeLabel>
 
                         <PanaltyRangeBox>
@@ -184,9 +222,9 @@ const IndexPage = () => {
                                 step={1}
                                 min={0}
                                 max={100}
-                                values={[penal]}
-                                onChange={handlePenal}
-                                renderTrack={({ props, children }) => <RangeTrack selected={!!penal} {...props} style={{ ...props.style }}>{children}</RangeTrack>}
+                                values={[prison]}
+                                onChange={handlePrison}
+                                renderTrack={({ props, children }) => <RangeTrack selected={!!prison} {...props} style={{ ...props.style }}>{children}</RangeTrack>}
                                 renderThumb={({ props }) => <RangeThumb {...props} style={{ ...props.style }} />}
                             />
 
@@ -195,9 +233,9 @@ const IndexPage = () => {
                     </PanaltyRange>
                 </Panalty>
 
-            </Collapse>
+            </Collapse>}
 
-            <Collapse
+            {isPenalLaw && <Collapse
                 title={'벌금'}
                 checked={!!fine}
                 opend={true}
@@ -227,7 +265,7 @@ const IndexPage = () => {
                     </PanaltyRange>
                 </Panalty>
 
-            </Collapse>
+            </Collapse>}
 
             <Center>
                 <Button onClick={handleNextPage}>다음</Button>
