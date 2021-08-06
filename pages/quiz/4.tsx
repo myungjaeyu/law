@@ -7,7 +7,7 @@ import Collapse from '../../components/Collapse'
 import CollapseOption from '../../components/CollapseOption'
 import { Range } from 'react-range'
 
-import { people_list, young_penalty, law_right } from '../../utils/assets'
+import { people_list, young_penalty } from '../../utils/assets'
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -16,9 +16,10 @@ import { setControlPenal } from '../../services/actions/controlActions'
 
 const IndexPage = () => {
 
-    const { caseId, incidentId } = useSelector((state: any) => ({
+    const { caseId, incidentId, laws } = useSelector((state: any) => ({
         caseId: state.control.data.caseId,
-        incidentId: state.control.data.incidentId
+        incidentId: state.control.data.incidentId,
+        laws: state.control.data.laws
     }))
 
     const dispatch = useDispatch()
@@ -36,18 +37,6 @@ const IndexPage = () => {
     const [isPenalLaw, setIsPenalLaw] = useState(false)
 
     const [isHighlightBorder, setIsHighlightBorder] = useState(true)
-
-    const [collapses, setCollapses] = useState({
-        young: {
-            opend: false
-        },
-        penal: {
-            opend: true
-        },
-        fine: {
-            opend: true
-        }
-    })
 
     const handleCaseDefendantName = (id, subId) => {
 
@@ -130,17 +119,13 @@ const IndexPage = () => {
 
             handleCaseDefendantName(caseId, incidentId)
 
-            const caseInfo = law_right.find((e) => e.id === caseId)
+            setIsSchoolLaw(!!laws.find(e => e === '학교폭력예방법 제 17조'))
 
-            const _raw = caseInfo.data.find((e) => e.id === incidentId)
-
-            setIsSchoolLaw(!!_raw.right.find(e => e === '학교폭력예방법 제 17조'))
-
-            setIsPenalLaw(!!_raw.right.filter(e => e != '학교폭력예방법 제 17조').length)
+            setIsPenalLaw(!!laws.filter(e => e != '학교폭력예방법 제 17조').length)
 
         }
 
-    }, [caseId, incidentId])
+    }, [caseId, incidentId, laws])
 
     return (
         <div>
