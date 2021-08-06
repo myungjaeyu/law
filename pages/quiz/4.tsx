@@ -275,7 +275,7 @@ const IndexPage = () => {
             </Collapse>}
 
             <Center>
-                <Button onClick={handleNextPage}>다음</Button>
+                <Button disabled={isHighlightBorder} onClick={handleNextPage}>다음</Button>
             </Center>
 
         </div>
@@ -440,6 +440,10 @@ padding-top: 24px;
 padding-bottom: 32px;
 `
 
+type ButtonProps = {
+    disabled?: boolean
+}
+
 const Button = styled.div`
 background: #9BC802;
 color: #fff;
@@ -448,5 +452,7 @@ width: 120px;
 text-align: center;
 border-radius: 16px;
 cursor: pointer;
+
+${({ disabled }: ButtonProps) => `${disabled && 'background: #BABABA;' || ''}`}
 `
 export default IndexPage
