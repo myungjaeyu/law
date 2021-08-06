@@ -95,7 +95,7 @@ const IndexPage = () => {
                 <HeaderItemPadding>
                     <TitleBox>
                         <Title>상태 메시지</Title>
-                        <Timer>남은시간 [02:25] 판결 [5]</Timer>
+
                     </TitleBox>
                 </HeaderItemPadding>
                 <HeaderItemPadding />
@@ -208,11 +208,6 @@ text-align: center;
 const Title = styled.div`
 font-size: 22px;
 font-weight: 700;
-`
-
-const Timer = styled.div`
-color: #77757F;
-font-size: 14px;
 `
 
 const BackIcon = styled.img`

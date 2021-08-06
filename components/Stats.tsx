@@ -50,11 +50,19 @@ const IndexPage = ({ type }: Props) => {
                 switch (cur.id) {
                     case 1:
                         if (incidentId) {
-                            cur.text = `${case_list.find((e) => e.id === caseId).name} ${incidentId}`
+                            let _name = case_list.find((e) => e.id === caseId).name
+
+                            if (_name === '상태메세지') {
+                                _name = '상태\n메세지'
+                            }
+
+                            cur.text = `${_name} ${_name.length === 4 ? '\n' : ''}${incidentId}`
+
                         }
                         break
                     case 2:
                         cur.text = case_quiz2.find(e => e.id === incidentTypeId).name
+                        cur.text = cur.text.replace('사이버', '사이버\n')
                         break
                     case 3:
                         cur.text = '법률'
@@ -149,7 +157,6 @@ align-items: center;
 const Card = styled.div`
 width: 80%;
 position: relative;
-// cursor: pointer;
 `
 
 const CardImg = styled.img`
@@ -188,6 +195,9 @@ text-align: center;
 font-size: 12px;
 color: #fff;
 top: 35%;
+white-space: pre-wrap;
+word-wrap: break-word;
+line-height: 130%;
 
 display: flex;
 justify-content: center;

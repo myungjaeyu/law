@@ -73,17 +73,6 @@ const IndexPage = () => {
 
     }, [penalty])
 
-    const handleOpend = useCallback((key) => {
-
-        setCollapses({
-            ...collapses,
-            [key]: {
-                opend: !collapses[key].opend
-            }
-        })
-
-    }, [collapses])
-
     const handlePrison = useCallback((values) => {
 
         setPrison(values[0])
@@ -164,7 +153,7 @@ const IndexPage = () => {
                 <HeaderItemPadding>
                     <TitleBox>
                         <Title>상태 메시지</Title>
-                        <Timer>남은시간 [02:25] 판결 [5]</Timer>
+
                     </TitleBox>
                 </HeaderItemPadding>
                 <HeaderItemPadding />
@@ -187,7 +176,7 @@ const IndexPage = () => {
                         {!!(penalty.name && (prison || fine)) && ', '}
                         {!!prison && `징역 ${prison}개월`}
                         {!!fine && `벌금 ${fine}만원`}
-                    </PenaltyHighlight>]를 선고한다.</PenaltyText>
+                    </PenaltyHighlight>]을 선고한다.</PenaltyText>
 
                 </ViewBox>
             </View>
@@ -195,8 +184,7 @@ const IndexPage = () => {
             {isSchoolLaw && <Collapse
                 title={'학교폭력'}
                 checked={!!penalty.name}
-                opend={collapses.young.opend}
-                onOpen={() => handleOpend('young')}
+                opend={true}
             >
                 {young_penalty.map(e =>
                     <CollapseOption
@@ -403,11 +391,6 @@ text-align: center;
 const Title = styled.div`
 font-size: 22px;
 font-weight: 700;
-`
-
-const Timer = styled.div`
-color: #77757F;
-font-size: 14px;
 `
 
 const BackIcon = styled.img`
