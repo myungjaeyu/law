@@ -19,7 +19,8 @@ const IndexPage = ({ opend, text, onOk }: Props) => {
             transform: 'translate(-50%, -50%)',
             borderRadius: '18px',
             width: '80%',
-            maxWidth: '250px'
+            maxWidth: '250px',
+            paddingBottom: '0'
         },
         overlay: {
             backgroundColor: 'rgba(0,0,0,0.5)',
@@ -61,14 +62,15 @@ const ButtonGroup = styled.div`
 display: flex;
 justify-content: center;
 margin-top: 16px;
-padding-top: 8px;
 border-top: 1px solid rgba(0,0,0,.1)
 `
 
 const ModalButton = styled.div`
 text-align: center;
-width: 50%;
+width: 100%;
 cursor: pointer;
+padding-top: 8px;
+padding-bottom: 14px;
 `
 
 export default IndexPage
