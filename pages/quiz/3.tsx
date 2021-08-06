@@ -9,7 +9,6 @@ import Switch from '../../components/Switch'
 import Collapse from '../../components/Collapse'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { setControlLaws } from '../../services/actions/controlActions'
 
 import { case_quiz3 } from '../../utils/assets'
 
