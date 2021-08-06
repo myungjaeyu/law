@@ -56,9 +56,7 @@ const IndexPage = ({ type }: Props) => {
                         }
                         break
                     case 2:
-                        if (incidentTypeId) {
-                            cur.text = case_quiz2.find(e => e.id === incidentTypeId).name
-                        }
+                        cur.text = case_quiz2.find(e => e.id === incidentTypeId).name
                         break
                     case 3:
                         cur.text = '법률'

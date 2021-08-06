@@ -204,8 +204,6 @@ const IndexPage = () => {
 
             const _raw = caseInfo.data.find((e) => e.id === incidentId)
 
-            console.log(_raw)
-
             setHints(_raw.right)
 
         }
