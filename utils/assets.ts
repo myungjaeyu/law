@@ -375,3 +375,146 @@ export const to_recovery = [
     { id: 4, title: '경제적 지원', description: '소송 비용과 심리 치료 비용이 많이 들어서 부모님께 죄송한 마음이 들어요.' },
     { id: 5, title: '사이버 폭력 흔적 삭제', description: '인터넷에 떠도는 제 사진을 지워주세요.' }
 ]
+
+const INCIDENT_TYPE_LIST = [
+    '사이버 언어폭력',   // 0
+    '사이버 명예훼손',   // 1
+    '사이버 스토킹',     // 2
+    '사이버 성폭력',     // 3
+    '신상정보 유출',     // 4
+    '사이버 따돌림',     // 5
+    '사이버 갈취',      // 6
+    '사이버 강요'       // 7
+]
+
+export const incident_type_right = [
+    {
+        id: 1, data: [
+            { id: 1, type: INCIDENT_TYPE_LIST[5] },
+            { id: 2, type: INCIDENT_TYPE_LIST[0] },
+            { id: 3, type: INCIDENT_TYPE_LIST[7] },
+            { id: 4, type: INCIDENT_TYPE_LIST[2] },
+            { id: 5, type: INCIDENT_TYPE_LIST[4] }
+        ]
+    },
+    {
+        id: 2, data: [
+            { id: 1, type: INCIDENT_TYPE_LIST[6] },
+            { id: 2, type: INCIDENT_TYPE_LIST[6] },
+            { id: 3, type: INCIDENT_TYPE_LIST[0] },
+            { id: 4, type: INCIDENT_TYPE_LIST[5] },
+            { id: 5, type: INCIDENT_TYPE_LIST[1] }
+        ]
+    },
+    {
+        id: 3, data: [
+            { id: 1, type: INCIDENT_TYPE_LIST[1] },
+            { id: 2, type: INCIDENT_TYPE_LIST[4] },
+            { id: 3, type: INCIDENT_TYPE_LIST[4] },
+            { id: 4, type: INCIDENT_TYPE_LIST[5] },
+            { id: 5, type: INCIDENT_TYPE_LIST[0] }
+        ]
+    },
+    {
+        id: 4, data: [
+            { id: 1, type: INCIDENT_TYPE_LIST[3] },
+            { id: 2, type: INCIDENT_TYPE_LIST[3] },
+            { id: 3, type: INCIDENT_TYPE_LIST[3] },
+            { id: 4, type: INCIDENT_TYPE_LIST[2] },
+            { id: 5, type: INCIDENT_TYPE_LIST[4] }
+        ]
+    },
+    {
+        id: 5, data: [
+            { id: 1, type: INCIDENT_TYPE_LIST[4] },
+            { id: 2, type: INCIDENT_TYPE_LIST[2] },
+            { id: 3, type: INCIDENT_TYPE_LIST[1] },
+            { id: 4, type: INCIDENT_TYPE_LIST[1] },
+            { id: 5, type: INCIDENT_TYPE_LIST[0] }
+        ]
+    },
+    {
+        id: 6, data: [
+            { id: 1, type: INCIDENT_TYPE_LIST[2] },
+            { id: 2, type: INCIDENT_TYPE_LIST[4] },
+            { id: 3, type: INCIDENT_TYPE_LIST[0] },
+            { id: 4, type: INCIDENT_TYPE_LIST[4] },
+            { id: 5, type: INCIDENT_TYPE_LIST[7] }
+        ]
+    }
+]
+
+const LAW_LIST = [
+    '학교폭력예방법 제 17조',                   // 0
+    '권리행사를 방해하는 죄 | 형법 제324조 1항',   // 1
+    '명예에 관한 죄 | 형법 제307조 1항',         // 2
+    '명예에 관한 죄 | 형법 제307조 2항',         // 3
+    '명예에 관한 죄 | 형법 제311조',            // 4
+    '절도와 강도의 죄 | 형법 제329조',           // 5
+    '정보통신망법 제70조 1항',                  // 6
+    '정보통신망법 제70조 2항',                  // 7
+    '정보통신망법 제74조',                     // 8
+    '경범죄 처벌법 제3조 1항',                  // 9
+    '개인정보 보호법 제71조',                   // 10
+    '성폭력처벌법 제13조',                     // 11 
+    '성폭력처벌법 제14조 1항',                 // 12
+    '성폭력처벌법 제14조의 2 1항'               // 13
+]
+
+
+export const law_right = [
+    {//상태메세지
+        id: 1, data: [
+            { id: 1, right: [LAW_LIST[0],], similar: [LAW_LIST[4], LAW_LIST[8], LAW_LIST[10],] },
+            { id: 2, right: [LAW_LIST[0], LAW_LIST[4],], similar: [LAW_LIST[3], LAW_LIST[7], LAW_LIST[8],] },
+            { id: 3, right: [LAW_LIST[0], LAW_LIST[1],], similar: [LAW_LIST[3], LAW_LIST[7], LAW_LIST[8],] },
+            { id: 4, right: [LAW_LIST[0], LAW_LIST[8], LAW_LIST[9],], similar: [LAW_LIST[3], LAW_LIST[7], LAW_LIST[10],] },
+            { id: 5, right: [LAW_LIST[0], LAW_LIST[10],], similar: [LAW_LIST[9],] }
+        ]
+    },
+    {//기프티콘
+        id: 2, data: [
+            { id: 1, right: [LAW_LIST[0], LAW_LIST[5],], similar: [LAW_LIST[1],] },
+            { id: 2, right: [LAW_LIST[0], LAW_LIST[5],], similar: [LAW_LIST[1],] },
+            { id: 3, right: [LAW_LIST[0], LAW_LIST[4],], similar: [LAW_LIST[2], LAW_LIST[6], LAW_LIST[8],] },
+            { id: 4, right: [LAW_LIST[0],], similar: [LAW_LIST[8], LAW_LIST[9],] },
+            { id: 5, right: [LAW_LIST[0], LAW_LIST[2], LAW_LIST[6],], similar: [LAW_LIST[3], LAW_LIST[4],] }
+        ]
+    },
+    {//악성댓글
+        id: 3, data: [
+            { id: 1, right: [LAW_LIST[0], LAW_LIST[3], LAW_LIST[7],], similar: [LAW_LIST[2], LAW_LIST[4], LAW_LIST[6], LAW_LIST[8], LAW_LIST[11],] },
+            { id: 2, right: [LAW_LIST[0], LAW_LIST[10],], similar: [LAW_LIST[1], LAW_LIST[8], LAW_LIST[9],] },
+            { id: 3, right: [LAW_LIST[0], LAW_LIST[10],], similar: [LAW_LIST[1], LAW_LIST[8], LAW_LIST[9],] },
+            { id: 4, right: [LAW_LIST[0],], similar: [LAW_LIST[10],] },
+            { id: 5, right: [LAW_LIST[4],], similar: [LAW_LIST[0], LAW_LIST[3], LAW_LIST[7], LAW_LIST[7], LAW_LIST[8],] }
+        ]
+    },
+    {//사진
+        id: 4, data: [
+            { id: 1, right: [LAW_LIST[8], LAW_LIST[11], LAW_LIST[12],], similar: [LAW_LIST[0], LAW_LIST[2], LAW_LIST[3], LAW_LIST[4], LAW_LIST[6], LAW_LIST[7], LAW_LIST[10],] },
+            { id: 2, right: [LAW_LIST[8], LAW_LIST[11],], similar: [LAW_LIST[2], LAW_LIST[3], LAW_LIST[4], LAW_LIST[6], LAW_LIST[7],] },
+            { id: 3, right: [LAW_LIST[8], LAW_LIST[11], LAW_LIST[13],], similar: [LAW_LIST[2], LAW_LIST[3], LAW_LIST[4], LAW_LIST[6], LAW_LIST[7],] },
+            { id: 4, right: [LAW_LIST[8], LAW_LIST[9],], similar: [LAW_LIST[1], LAW_LIST[10],] },
+            { id: 5, right: [LAW_LIST[0], LAW_LIST[10],], similar: [LAW_LIST[8],] }
+        ]
+    },
+    {//익명
+        id: 5, data: [
+            { id: 1, right: [LAW_LIST[0], LAW_LIST[10],], similar: [LAW_LIST[3], LAW_LIST[4],] },
+            { id: 2, right: [LAW_LIST[0], LAW_LIST[8], LAW_LIST[9],], similar: [LAW_LIST[1],] },
+            { id: 3, right: [LAW_LIST[0], LAW_LIST[3],], similar: [LAW_LIST[2], LAW_LIST[4], LAW_LIST[6], LAW_LIST[10],] },
+            { id: 4, right: [LAW_LIST[0], LAW_LIST[3],], similar: [LAW_LIST[2], LAW_LIST[4], LAW_LIST[6], LAW_LIST[10],] },
+            { id: 5, right: [LAW_LIST[0], LAW_LIST[4],], similar: [LAW_LIST[2], LAW_LIST[3], LAW_LIST[6],] }
+        ]
+    },
+    {//주작
+        id: 6, data: [
+            { id: 1, right: [LAW_LIST[8], LAW_LIST[9],], similar: [LAW_LIST[7], LAW_LIST[10],] },
+            { id: 2, right: [LAW_LIST[10],], similar: [LAW_LIST[2], LAW_LIST[6],] },
+            { id: 3, right: [LAW_LIST[4], LAW_LIST[7], LAW_LIST[8],], similar: [LAW_LIST[2], LAW_LIST[6],] },
+            { id: 4, right: [LAW_LIST[7], LAW_LIST[10],], similar: [LAW_LIST[9],] },
+            { id: 5, right: [LAW_LIST[8],], similar: [LAW_LIST[1], LAW_LIST[7],] }
+        ]
+    }
+]
