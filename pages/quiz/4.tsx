@@ -133,7 +133,7 @@ const IndexPage = () => {
 
         }
 
-    }, [dispatch, router, isHighlightBorder])
+    }, [dispatch, router, penalty, prison, fine, isHighlightBorder])
 
     useEffect(() => {
 

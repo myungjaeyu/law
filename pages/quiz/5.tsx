@@ -1,7 +1,6 @@
 import styled from '@emotion/styled'
 
 import { useCallback, useEffect, useState } from 'react'
-import { animateScroll } from 'react-scroll'
 
 import Link from 'next/link'
 
@@ -76,8 +75,6 @@ const IndexPage = () => {
         if (caseId && incidentId) {
 
             handleCasePeopleImage(caseId, incidentId)
-
-            animateScroll.scrollToBottom()
 
         }
 
