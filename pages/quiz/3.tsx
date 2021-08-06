@@ -82,6 +82,8 @@ const IndexPage = () => {
 
             const _raw = caseInfo.data.find((e) => e.id === incidentId)
 
+            console.log(targetName, _raw, _raw.right.find((e) => e === targetName))
+
             if (_raw.right.find((e) => e === targetName)) {
 
                 verifyType = 1
@@ -216,6 +218,8 @@ const IndexPage = () => {
             const caseInfo = law_right.find((e) => e.id === caseId)
 
             const _raw = caseInfo.data.find((e) => e.id === incidentId)
+
+            console.log(_raw)
 
             setHints(_raw.right)
 
