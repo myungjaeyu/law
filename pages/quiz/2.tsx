@@ -4,12 +4,14 @@ import Link from 'next/link'
 import dynamic from 'next/dynamic'
 
 import Stats from '../../components/Stats'
+import Alert from '../../components/Alert'
+
 import { useCallback, useEffect, useState } from 'react'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setControlIncidentType } from '../../services/actions/controlActions'
 
-import { case_quiz2 } from '../../utils/assets'
+import { case_quiz2, incident_type_right } from '../../utils/assets'
 
 const DynamicCarousel: any = dynamic(
     () => import('react-spring-3d-carousel'),
@@ -31,6 +33,8 @@ const IndexPage = () => {
 
     const [slideId, setSlideId] = useState(0)
     const [slides, setSlides] = useState([])
+    const [opendModal, setOpendModal] = useState(false)
+    const [isRight, setIsRight] = useState(false)
 
     const handleSlideNext = useCallback(() => {
 
@@ -50,11 +54,30 @@ const IndexPage = () => {
 
     const handleNextPage = useCallback(() => {
 
-        dispatch(setControlIncidentType(slideId))
+        const caseInfo = incident_type_right.find((e) => e.id === caseId)
 
-        router.push('/quiz/3')
+        const incident_right = caseInfo.data.find((e) => e.id == incidentId)
 
-    }, [router, dispatch, slideId])
+        const slideName = case_quiz2[slideId].name
+
+        setOpendModal(true)
+        setIsRight(incident_right.type === slideName)
+
+    }, [router, slideId, caseId, incidentId, opendModal])
+
+    const handleOk = useCallback(() => {
+
+        setOpendModal(false)
+
+        if (isRight) {
+
+            dispatch(setControlIncidentType(slideId))
+
+            router.push('/quiz/3')
+
+        }
+
+    }, [router, dispatch, isRight])
 
     useEffect(() => {
 
@@ -114,6 +137,8 @@ const IndexPage = () => {
             <Center>
                 <Button onClick={handleNextPage}>다음</Button>
             </Center>
+
+            <Alert opend={opendModal} text={isRight ? '정확한 사건 유형을 찾았습니다.' : '사건유형을 다시 고르세요.'} onOk={handleOk} />
 
         </div>
     )
