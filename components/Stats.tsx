@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
 
-import { case_quiz2 } from '../utils/assets'
+import { case_list, case_quiz2 } from '../utils/assets'
 
 const descriptions = [
     '',
@@ -39,8 +39,6 @@ const IndexPage = ({ type }: Props) => {
 
     const handleClick = (id) => {
 
-        router.push(`/quiz/${id}`)
-
     }
 
     useEffect(() => {
@@ -52,7 +50,7 @@ const IndexPage = ({ type }: Props) => {
                 switch (cur.id) {
                     case 1:
                         if (incidentId) {
-                            cur.text = `사건카드 ${incidentId}`
+                            cur.text = `${case_list.find((e) => e.id === caseId).name} ${incidentId}`
                         }
                         break
                     case 2:
@@ -151,7 +149,7 @@ align-items: center;
 const Card = styled.div`
 width: 80%;
 position: relative;
-cursor: pointer;
+// cursor: pointer;
 `
 
 const CardImg = styled.img`

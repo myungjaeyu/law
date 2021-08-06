@@ -70,7 +70,7 @@ const IndexPage = () => {
                     <CollapseCard
                         key={e.id}
                         name={'recovery'}
-                        type={'checkbox'}
+                        type={'radio'}
                         title={e.title}
                         description={`"${e.description}"`}
                         onClick={handleCheck}

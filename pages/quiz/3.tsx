@@ -176,7 +176,11 @@ const IndexPage = () => {
 
         } else {
 
-            setOpendConfirmModal(true)
+            if (checks.length) {
+
+                setOpendConfirmModal(true)
+
+            }
 
         }
 
