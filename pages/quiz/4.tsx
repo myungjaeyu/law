@@ -12,6 +12,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
 import { useDispatch, useSelector } from 'react-redux'
+import { setControlPenal } from '../../services/actions/controlActions'
 
 const IndexPage = () => {
 
@@ -124,9 +125,15 @@ const IndexPage = () => {
 
     const handleNextPage = useCallback(() => {
 
-        router.push('/quiz/5')
+        if (!isHighlightBorder) {
 
-    }, [router])
+            router.push('/quiz/5')
+
+            dispatch(setControlPenal(`${penalty.name ? penalty.name : ''}${!!(penalty.name && (prison || fine)) ? ', ' : ''}${!!prison ? `징역 ${prison}개월` : ''}${!!fine ? `벌금 ${fine}만원` : ''}`))
+
+        }
+
+    }, [dispatch, router, isHighlightBorder])
 
     useEffect(() => {
 

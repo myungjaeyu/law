@@ -5,8 +5,8 @@ import {
     SET_CASE,
     SET_INCIDENT,
     SET_INCIDENT_TYPE,
-    SET_LAW_TEXT,
-    SET_PENAL_TEXT,
+    SET_LAWS,
+    SET_PENAL,
     FAIL_CONTROL
 } from '../actions/controlActions'
 
@@ -54,6 +54,8 @@ const controlReducer = (state = initialState, action: any) => {
                 caseId: 0,
                 incidentId: 0,
                 incidentTypeId: 0,
+                laws: [],
+                penal: '',
                 data: savedData
             }
 
@@ -83,21 +85,21 @@ const controlReducer = (state = initialState, action: any) => {
             return { ...state, data: apply_incident_data }
         case SET_INCIDENT_TYPE:
 
-            const apply_incident_type_data = { ...state.data, incidentTypeId: action.payload.incidentTypeId, lawText: '' }
+            const apply_incident_type_data = { ...state.data, incidentTypeId: action.payload.incidentTypeId, laws: [] }
 
             setLocalStorage(apply_incident_type_data)
 
             return { ...state, data: apply_incident_type_data }
-        case SET_LAW_TEXT:
+        case SET_LAWS:
 
-            const apply_law_data = { ...state.data, lawText: action.payload.lawText, penalText: '' }
+            const apply_law_data = { ...state.data, laws: action.payload.laws, penal: '' }
 
             setLocalStorage(apply_law_data)
 
             return { ...state, data: apply_law_data }
-        case SET_PENAL_TEXT:
+        case SET_PENAL:
 
-            const apply_penal_data = { ...state.data, penalText: action.payload.penalText }
+            const apply_penal_data = { ...state.data, penal: action.payload.penal }
 
             setLocalStorage(apply_penal_data)
 

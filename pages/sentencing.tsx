@@ -16,8 +16,8 @@ const IndexPage = () => {
         name: state.control.data.name,
         caseId: state.control.data.caseId,
         incidentId: state.control.data.incidentId,
-        laws: state.control.laws,
-        penal: state.control.penal
+        laws: state.control.data.laws,
+        penal: state.control.data.penal
     }))
 
     const dispatch = useDispatch()
@@ -92,17 +92,17 @@ const IndexPage = () => {
                 <Text>사이버 따돌림</Text>
             </Card>
 
-            <Card>
-                <Label>법률근거</Label>
-                <Text>{laws}</Text>
-            </Card>
+            {laws.map((law, i) => <Card key={i}>
+                <Label>법률근거 {i + 1}</Label>
+                <Text>{law}</Text>
+            </Card>)}
 
             <Card>
                 <Label>판결</Label>
                 <Text>
                     {
                         `피고 ${defendantName}에
-${penal}를 구형한다
+${penal}을 구형한다
 `}
                 </Text>
             </Card>
@@ -175,7 +175,7 @@ display: flex;
 width: 95%;
 max-width: 550px;
 margin: auto;
-padding: 16px 0;
+padding: 14px 0;
 font-size: 18px;
 `
 const Label = styled.div`

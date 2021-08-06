@@ -13,6 +13,7 @@ import Confirm from '../../components/Confirm'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { case_quiz3, law_right } from '../../utils/assets'
+import { setControlLaws } from '../../services/actions/controlActions'
 
 const cases = case_quiz3
 
@@ -167,6 +168,10 @@ const IndexPage = () => {
 
         if (hints.length <= checks.length) {
 
+            const laws = checks.map((e) => cases.find(x => x.id === e.id).data.find(x => x.id === e.subId).name)
+
+            dispatch(setControlLaws(laws))
+
             router.push('/quiz/4')
 
         } else {
@@ -175,7 +180,7 @@ const IndexPage = () => {
 
         }
 
-    }, [hints, checks])
+    }, [dispatch, router, hints, checks])
 
     const handleConfirmOk = useCallback(() => {
 
@@ -187,9 +192,13 @@ const IndexPage = () => {
 
         setOpendConfirmModal(false)
 
+        const laws = checks.map((e) => cases.find(x => x.id === e.id).data.find(x => x.id === e.subId).name)
+
+        dispatch(setControlLaws(laws))
+
         router.push('/quiz/4')
 
-    }, [])
+    }, [dispatch, router, checks])
 
     useEffect(() => {
 

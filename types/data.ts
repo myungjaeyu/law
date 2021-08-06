@@ -13,7 +13,7 @@ export type Data = {
     caseId: number
     incidentId: number
     incidentTypeId: number
-    lawText: string
-    penalText: string
+    laws: string[]
+    penal: string
     cases: Case[]
 }

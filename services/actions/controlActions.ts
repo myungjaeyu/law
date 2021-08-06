@@ -7,8 +7,8 @@ export const SET_NAME = '[CONTROL] SET_NAME'
 export const SET_CASE = '[CONTROL] SET_CASE'
 export const SET_INCIDENT = '[CONTROL] SET_INCIDENT'
 export const SET_INCIDENT_TYPE = '[CONTROL] SET_INCIDENT_TYPE'
-export const SET_LAW_TEXT = '[CONTROL] SET_LAW_TEXT'
-export const SET_PENAL_TEXT = '[CONTROL] SET_PENAL_TEXT'
+export const SET_LAWS = '[CONTROL] SET_LAWS'
+export const SET_PENAL = '[CONTROL] SET_PENAL'
 
 export const FAIL_CONTROL = '[CONTROL] FAIL_CONTROL'
 
@@ -108,12 +108,12 @@ export const setControlIncidentType = (incidentTypeId: number) => async (dispatc
     }
 }
 
-export const setControlLawText = (lawText: string) => async (dispatch: any) => {
+export const setControlLaws = (laws: string[]) => async (dispatch: any) => {
     try {
 
         dispatch({
-            type: SET_LAW_TEXT, payload: {
-                lawText
+            type: SET_LAWS, payload: {
+                laws
             }
         })
 
@@ -124,12 +124,12 @@ export const setControlLawText = (lawText: string) => async (dispatch: any) => {
     }
 }
 
-export const setControlPenalText = (penalText: string) => async (dispatch: any) => {
+export const setControlPenal = (penal: string) => async (dispatch: any) => {
     try {
 
         dispatch({
-            type: SET_PENAL_TEXT, payload: {
-                penalText
+            type: SET_PENAL, payload: {
+                penal
             }
         })
 
