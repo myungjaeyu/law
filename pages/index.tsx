@@ -1,6 +1,6 @@
 import { useState, useCallback } from 'react'
 import styled from '@emotion/styled'
-import Modal from 'react-modal'
+import Confirm from '../components/Confirm'
 import { useRouter } from 'next/dist/client/router'
 
 const customStyles = {
@@ -24,19 +24,27 @@ const IndexPage = () => {
 
   const router = useRouter()
 
-  const [modalIsOpen, setIsOpen] = useState(false);
+  const [opendModal, setOpendModal] = useState(false);
 
-  const openModal = useCallback(() => {
-    setIsOpen(true)
-  }, [modalIsOpen])
+  const handleOk = useCallback(() => {
 
-  const closeModal = useCallback(() => {
-    setIsOpen(false)
-  }, [modalIsOpen])
+    setOpendModal(false)
+
+    router.push('/info/2')
+
+  }, [router, opendModal])
+
+  const handleCancel = useCallback(() => {
+
+    setOpendModal(false)
+
+  }, [opendModal])
 
   const handleNextPage = useCallback(() => {
-    router.push('/info/2')
-  }, [router])
+
+    setOpendModal(true)
+
+  }, [])
 
   return (
     <div>
@@ -46,28 +54,15 @@ const IndexPage = () => {
       </Center>
 
       <Center>
-        <Button onClick={openModal}>시작하기</Button>
+        <Button onClick={handleNextPage}>시작하기</Button>
       </Center>
 
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={closeModal}
-        style={customStyles}
-        contentLabel="Example Modal"
-      >
-        <Description>
-          지금부터 당신을 디지털 시민법정 판사로 임명합니다. 다양한 디지털 범죄를 판결해보세요
-        </Description>
-
-        <ButtonGroup>
-          <ModalButton onClick={closeModal}>
-            취소
-          </ModalButton>
-          <ModalButton onClick={handleNextPage}>
-            확인
-          </ModalButton>
-        </ButtonGroup>
-      </Modal>
+      <Confirm
+        opend={opendModal}
+        text='지금부터 당신을 디지털 시민법정 판사로 임명합니다. 다양한 디지털 범죄를 판결해보세요'
+        onOk={handleOk}
+        onCancel={handleCancel}
+      />
 
       <Footer>
         <ImgPadding>
