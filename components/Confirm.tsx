@@ -6,9 +6,11 @@ type Props = {
     text: string
     onOk: (e) => void
     onCancel: (e) => void
+    okText?: string
+    cancelText?: string
 }
 
-const IndexPage = ({ opend, text, onOk, onCancel }: Props) => {
+const IndexPage = ({ opend, text, onOk, onCancel, okText, cancelText }: Props) => {
 
     const customStyles = {
         content: {
@@ -40,10 +42,10 @@ const IndexPage = ({ opend, text, onOk, onCancel }: Props) => {
 
             <ButtonGroup>
                 <ModalButton onClick={onCancel}>
-                    취소
+                    {cancelText || '취소'}
                 </ModalButton>
                 <ModalButton onClick={onOk}>
-                    확인
+                    {okText || '확인'}
                 </ModalButton>
             </ButtonGroup>
         </Modal>

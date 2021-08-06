@@ -7,10 +7,12 @@ import { useEffect, useState, useCallback } from 'react'
 import Stats from '../../components/Stats'
 import Switch from '../../components/Switch'
 import Collapse from '../../components/Collapse'
+import Alert from '../../components/Alert'
+import Confirm from '../../components/Confirm'
 
 import { useDispatch, useSelector } from 'react-redux'
 
-import { case_quiz3 } from '../../utils/assets'
+import { case_quiz3, law_right } from '../../utils/assets'
 
 const cases = case_quiz3
 
@@ -18,8 +20,9 @@ const IndexPage = () => {
 
     const router = useRouter()
 
-    const { laws } = useSelector((state: any) => ({
-        laws: state.control.laws
+    const { caseId, incidentId } = useSelector((state: any) => ({
+        caseId: state.control.data.caseId,
+        incidentId: state.control.data.incidentId
     }))
 
     const dispatch = useDispatch()
@@ -27,6 +30,12 @@ const IndexPage = () => {
     const [collapses, setCollapses] = useState([])
     const [checks, setChecks] = useState([])
     const [hints, setHints] = useState([])
+    const [opendVerifyModal, setOpendVerifyModal] = useState(false)
+    const [opendConfirmModal, setOpendConfirmModal] = useState(false)
+    const [isRight, setIsRight] = useState(false)
+    const [isSimilar, setIsSimilar] = useState(false)
+    const [selectedSimilarLaw, setSelectedSimilarLaw] = useState({})
+    const [selectedSimilarLawTarget, setSelectedSimilarLawTarget] = useState(null)
 
     const getOpend = (id) => {
 
@@ -61,20 +70,62 @@ const IndexPage = () => {
 
     }
 
-    const handleCheck = (checked, id, subId) => {
+    const handleCheck = (target, targetName, id, subId) => {
 
+        let verifyType = 0
         const key = `${id}-${subId}`
 
-        if (checked) {
+        if (target.checked) {
 
-            setChecks([
-                ...checks,
-                {
+            const caseInfo = law_right.find((e) => e.id === caseId)
+
+            const _raw = caseInfo.data.find((e) => e.id === incidentId)
+
+            if (_raw.right.find((e) => e === targetName)) {
+
+                verifyType = 1
+                setIsRight(true)
+
+            } else if (_raw.similar.find((e) => e === targetName)) {
+
+                verifyType = 2
+                setIsSimilar(true)
+
+            } else {
+
+                setIsRight(false)
+                setIsSimilar(false)
+
+            }
+
+            if (verifyType === 0) {
+
+                target.checked = false
+
+            } else {
+
+                const currentLaw = {
                     key,
                     id,
                     subId
                 }
-            ])
+
+
+
+                if (verifyType === 1) {
+                    setChecks([...checks, { ...currentLaw }])
+                } else {
+
+                    setSelectedSimilarLaw(currentLaw)
+                    setSelectedSimilarLawTarget(target)
+
+                    target.checked = false
+
+                }
+
+            }
+
+            setOpendVerifyModal(true)
 
         } else {
 
@@ -84,11 +135,61 @@ const IndexPage = () => {
 
     }
 
+    const handleVerifyOk = useCallback(() => {
+
+        setOpendVerifyModal(false)
+
+    }, [])
+
+    const handleVerifySimilarOk = useCallback(() => {
+
+        if (selectedSimilarLaw) {
+
+            setChecks([
+                ...checks,
+                { ...selectedSimilarLaw }
+            ])
+
+            selectedSimilarLawTarget.checked = true
+            setOpendVerifyModal(false)
+
+        }
+
+    }, [checks, selectedSimilarLaw, selectedSimilarLawTarget])
+
+    const handleVerifySimilarCancel = useCallback(() => {
+
+        setOpendVerifyModal(false)
+
+    }, [])
+
     const handleNextPage = useCallback(() => {
+
+        if (hints.length <= checks.length) {
+
+            router.push('/quiz/4')
+
+        } else {
+
+            setOpendConfirmModal(true)
+
+        }
+
+    }, [hints, checks])
+
+    const handleConfirmOk = useCallback(() => {
+
+        setOpendConfirmModal(false)
+
+    }, [router, dispatch])
+
+    const handleConfirmCancel = useCallback(() => {
+
+        setOpendConfirmModal(false)
 
         router.push('/quiz/4')
 
-    }, [router])
+    }, [])
 
     useEffect(() => {
 
@@ -97,9 +198,19 @@ const IndexPage = () => {
             opend: false
         })))
 
-        setHints([0, 1, 2])
+        if (caseId && incidentId) {
 
-    }, [])
+            const caseInfo = law_right.find((e) => e.id === caseId)
+
+            const _raw = caseInfo.data.find((e) => e.id === incidentId)
+
+            console.log(_raw)
+
+            setHints(_raw.right)
+
+        }
+
+    }, [caseId, incidentId])
 
     return (
         <div>
@@ -152,7 +263,7 @@ const IndexPage = () => {
                             <LawSubTitle>{y.name}</LawSubTitle>
                             <LawToggleBox>
 
-                                <Switch name='incidentId' type='checkbox' onClick={({ target: { checked } }) => handleCheck(checked, x.id, y.id)} />
+                                <Switch name='incidentId' type='checkbox' onClick={({ target }) => handleCheck(target, y.name, x.id, y.id)} />
 
                             </LawToggleBox>
                         </LawSubHeader>
@@ -167,6 +278,29 @@ const IndexPage = () => {
             <Center>
                 <Button onClick={handleNextPage}>다음</Button>
             </Center>
+
+            {!isSimilar ? <Alert
+                opend={opendVerifyModal}
+                text={isRight ? '정확한 법률 근거를 찾았습니다.' : '부적절한 법률 근거입니다. 다시 선택하십시오.'}
+                onOk={handleVerifyOk}
+            /> :
+                <Confirm
+                    opend={opendVerifyModal}
+                    text='보다 정확한 법률로 처벌할 수 있습니다. 다시 검토하시겠습니까?'
+                    onOk={handleVerifySimilarOk}
+                    onCancel={handleVerifySimilarCancel}
+                    okText='아니요'
+                    cancelText='예'
+                />}
+
+            <Confirm
+                opend={opendConfirmModal}
+                text={'피고를 처벌할 법륜 근거가 더 있습니다. 이대로 판결 하시겠습니까?'}
+                onOk={handleConfirmOk}
+                onCancel={handleConfirmCancel}
+                okText='아니요'
+                cancelText='예'
+            />
 
         </div>
     )
