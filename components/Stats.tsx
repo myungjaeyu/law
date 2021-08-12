@@ -133,7 +133,9 @@ justify-content: center;
 
 const Description = styled.div`
 font-weight: 700;
+font-size: 18px;
 margin-top: 16px;
+color: #4DA1CC;
 `
 
 const CardGroup = styled.div`

@@ -60,6 +60,7 @@ justify-content: center;
 align-items: center;
 color: #868686;
 font-size: 14px;
+text-align: center;
 letter-spacing: .2px;
 min-height: 45px;
 `

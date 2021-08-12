@@ -53,6 +53,7 @@ display: flex;
 justify-content: center;
 align-items: center;
 color: #868686;
+text-align: center;
 font-size: 14px;
 letter-spacing: .2px;
 min-height: 45px;

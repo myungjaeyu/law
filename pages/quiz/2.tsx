@@ -196,7 +196,7 @@ z-index: 2;
 `
 
 const CarouselIndicate = styled.img`
-width: 24px;
+width: 32px;
 padding: 0 8px;
 `
 
