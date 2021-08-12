@@ -10,9 +10,23 @@ import CollapseCard from '../../components/CollapseCard'
 
 import { useRouter } from 'next/router'
 
+import { useSelector } from 'react-redux'
+
 import { to_recovery } from '../../utils/assets'
 
+const recovery_titles = [
+    '개인 심리치료 지원',
+    '주변의 도움',
+    '법적 지원',
+    '경제적 지원',
+    '사이버 폭력 흔적 삭제'
+]
+
 const IndexPage = () => {
+
+    const { caseId } = useSelector((state: any) => ({
+        caseId: state.control.data.caseId
+    }))
 
     const router = useRouter()
 
@@ -58,13 +72,13 @@ const IndexPage = () => {
                 opend={true}
             >
 
-                {to_recovery.map((e) =>
+                {caseId && to_recovery.find(e => e.id === caseId).data.map((e, i) =>
                     <CollapseCard
                         key={e.id}
                         name={'recovery'}
                         type={'radio'}
-                        title={e.title}
-                        description={`"${e.description}"`}
+                        title={recovery_titles[i]}
+                        description={`"${e.name}"`}
                         onClick={handleCheck}
                     />)}
             </Collapse>
