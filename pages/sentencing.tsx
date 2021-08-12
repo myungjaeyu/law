@@ -150,6 +150,15 @@ const IndexPage = () => {
                 </Button>
             </Center>
 
+            <Center>
+                <ShareTitle>공유하기</ShareTitle>
+                <ShareCenter>
+                    <ShareIcon src='icons/free-icon-kakao-talk.svg' />
+                    <ShareIcon src='/icons/facebook-square-brands.svg' />
+                    <ShareIcon src='icons/twitter-square-brands.svg' />
+                </ShareCenter>
+            </Center>
+
         </div>
     )
 }
@@ -241,7 +250,6 @@ align-items: center;
 justify-content: center;
 flex-direction: column;
 margin-top: 24px;
-padding-bottom: 16px;
 `
 
 type ButtonProps = {
@@ -267,6 +275,24 @@ border: none;
 outline: none;
 width: 70%;
 padding: 0;
+`
+
+const ShareCenter = styled(Center)`
+flex-direction: row;
+justify-content: space-around;
+width: 30%;
+margin: auto;
+`
+
+const ShareTitle = styled.div`
+color: #818181;
+margin-bottom: 8px;
+font-size: 14px;
+`
+
+const ShareIcon = styled.img`
+width: 25px;
+cursor: pointer;
 `
 
 export default IndexPage
