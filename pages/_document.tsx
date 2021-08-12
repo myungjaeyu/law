@@ -11,17 +11,17 @@ class MyDocument extends Document {
                         <meta name="robots" content="index,follow" />
                         <meta name="googlebot" content="index,follow" />
 
-                        <title>law title</title>
-                        <meta name="description" content="law description" />
+                        <title>"디지털 시민법정"</title>
+                        <meta name="description" content="디지털 시민법정의 판사가 되어 사이버폭력 사건을 직접 판결해보세요!" />
                         <meta name="keywords" content="law, 디지털시민법정" />
 
-                        <meta property="twitter:title" content="law title" />
+                        <meta property="twitter:title" content='""디지털 시민법정"' />
                         <meta name="twitter:card" content="summary" />
-                        <meta name="twitter:description" content="law description" />
+                        <meta name="twitter:description" content="디지털 시민법정의 판사가 되어 사이버폭력 사건을 직접 판결해보세요!" />
                         {/* <meta property="twitter:image:src" content="" /> */}
 
-                        <meta property="og:title" content="law title" />
-                        <meta property="og:description" content="law description" />
+                        <meta property="og:title" content='""디지털 시민법정"' />
+                        <meta property="og:description" content="디지털 시민법정의 판사가 되어 사이버폭력 사건을 직접 판결해보세요!" />
                         {/* <meta property="og:image" content="" /> */}
                         <meta property="og:image:alt" content="image_logo" />
                         <meta property="og:image:width" content="800" />

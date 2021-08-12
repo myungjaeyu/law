@@ -9,7 +9,7 @@ import Alert from '../components/Alert'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { saveControlStorage } from '../services/actions/controlActions'
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useState, useRef } from 'react'
 
 import { case_list, people_list } from '../utils/assets'
 import { isEndWithConsonant } from '../utils/text'
@@ -29,6 +29,8 @@ const IndexPage = () => {
 
     const dispatch = useDispatch()
 
+    const inputRef = useRef(null)
+
     const router = useRouter()
 
     const [defendantName, setDefendantName] = useState('')
@@ -41,12 +43,14 @@ const IndexPage = () => {
 
             setAlertText('소감문을 작성해주세요')
 
+            inputRef.current.focus()
+
             return
         }
 
         setAlertText('log')
 
-    }, [review])
+    }, [review, inputRef])
 
     const handleReview = useCallback(({ target: { value } }) => {
 
@@ -97,11 +101,13 @@ const IndexPage = () => {
                     requestUrl: shareLink,
                 })
 
+                inputRef.current.focus()
+
             }, 500)
 
         }
 
-    }, [])
+    }, [inputRef])
 
     return (
         <div>
@@ -150,8 +156,8 @@ const IndexPage = () => {
             </Card>
 
             <Card>
-                <Label style={{ paddingRight: '4px' }}>소감</Label>
-                <ReviewInput onChange={handleReview} placeholder='소감문을 작성해주세요' spellCheck={false} />
+                <Label style={{ paddingRight: '4px' }}>소감 한마디</Label>
+                <ReviewInput ref={inputRef} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
             </Card>
 
             <Center>
@@ -299,6 +305,10 @@ border: none;
 outline: none;
 width: 70%;
 padding: 0;
+
+&::placeholder {
+    color: #f54563;
+}
 `
 
 const ShareCenter = styled(Center)`
