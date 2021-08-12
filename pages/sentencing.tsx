@@ -205,7 +205,7 @@ const IndexPage = () => {
                     <Card>
                         <Label>소감 한마디</Label>
                         <Text>
-                            {review}
+                            {review.split('\n').map((e, i) => <span key={i}>{e}<br /></span>)}
                         </Text>
                     </Card>
                 }
@@ -324,8 +324,6 @@ const Text = styled.div`
 color: #5167A3;
 padding-right: 8px;
 width: 70%;
-white-space: pre-wrap;
-word-wrap: break-word;
 
 ${media.phone} {
     width: 80%
