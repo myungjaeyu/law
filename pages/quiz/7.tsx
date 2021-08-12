@@ -1,6 +1,6 @@
 import styled from '@emotion/styled'
 
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 
 import Link from 'next/link'
 
@@ -14,6 +14,7 @@ import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import { to_recovery } from '../../utils/assets'
+import { media } from '../../config/styles'
 
 const recovery_titles = [
     '개인 심리치료 지원',
@@ -47,8 +48,19 @@ const IndexPage = () => {
 
     }, [router])
 
+    useEffect(() => {
+
+        window.document.body.style.overflow = 'hidden'
+
+        return () => {
+
+            window.document.body.style.overflow = 'visible'
+
+        }
+    })
+
     return (
-        <div>
+        <Container>
             <FixedCard>
                 <Header>
                     <HeaderItemPadding>
@@ -90,9 +102,14 @@ const IndexPage = () => {
                 <Button onClick={handleNextPage}>다음</Button>
             </Center>
 
-        </div>
+        </Container>
     )
 }
+
+const Container = styled.div`
+height: 100vh;
+overflow-x: hidden;
+`
 
 const Header = styled.div`
 display: flex;
@@ -134,7 +151,11 @@ width: 100%;
 display: flex;
 justify-content: center;
 padding-top: 24px;
-padding-bottom: 32px;
+padding-bottom: 92px;
+
+${media.phone} {
+    padding-bottom: 32px;
+}
 `
 
 const Button = styled.div`

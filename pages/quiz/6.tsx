@@ -15,6 +15,7 @@ import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import { people_list, to_plaintiff } from '../../utils/assets'
+import { media } from '../../config/styles'
 
 const IndexPage = () => {
 
@@ -71,8 +72,19 @@ const IndexPage = () => {
 
     }, [caseId])
 
+    useEffect(() => {
+
+        window.document.body.style.overflow = 'hidden'
+
+        return () => {
+
+            window.document.body.style.overflow = 'visible'
+
+        }
+    })
+
     return (
-        <div>
+        <Container>
             <FixedCard>
                 <Header>
                     <HeaderItemPadding>
@@ -125,9 +137,14 @@ const IndexPage = () => {
                 <Button onClick={handleNextPage}>다음</Button>
             </Center>
 
-        </div>
+        </Container>
     )
 }
+
+const Container = styled.div`
+height: 100vh;
+overflow-x: hidden;
+`
 
 const Header = styled.div`
 display: flex;
@@ -189,7 +206,11 @@ width: 100%;
 display: flex;
 justify-content: center;
 padding-top: 24px;
-padding-bottom: 32px;
+padding-bottom: 92px;
+
+${media.phone} {
+    padding-bottom: 32px;
+}
 `
 
 const Button = styled.div`

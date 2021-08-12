@@ -15,6 +15,7 @@ import { useRouter } from 'next/router'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setControlPenal } from '../../services/actions/controlActions'
+import { media } from '../../config/styles'
 
 const IndexPage = () => {
 
@@ -137,8 +138,19 @@ const IndexPage = () => {
 
     }, [caseId, incidentId, laws])
 
+    useEffect(() => {
+
+        window.document.body.style.overflow = 'hidden'
+
+        return () => {
+
+            window.document.body.style.overflow = 'visible'
+
+        }
+    })
+
     return (
-        <div>
+        <Container>
             <FixedCard>
                 <Header>
                     <HeaderItemPadding>
@@ -260,9 +272,14 @@ const IndexPage = () => {
                 <Button disabled={isHighlightBorder} onClick={handleNextPage}>다음</Button>
             </Center>
 
-        </div>
+        </Container>
     )
 }
+
+const Container = styled.div`
+height: 100vh;
+overflow-x: hidden;
+`
 
 const PanaltyRange = styled.div`
 min-height: 100px;
@@ -340,24 +357,6 @@ padding: 8px 16px;
 border-top: 1px solid rgba(0,0,0,0.08);
 `
 
-const PenaltyOption = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-`
-
-const PenaltyOptionIcon = styled.img`
-display: inline-block;
-width: 18px;
-`
-
-const PenaltyOptionText = styled.div`
-color: #565656;
-font-size: 18px;
-`
-
-const PenaltyOptionSwitchBox = styled.div``
-
 const Header = styled.div`
 display: flex;
 justify-content: space-between;
@@ -413,7 +412,12 @@ width: 100%;
 display: flex;
 justify-content: center;
 padding-top: 24px;
-padding-bottom: 32px;
+
+padding-bottom: 92px;
+
+${media.phone} {
+    padding-bottom: 32px;
+}
 `
 
 type ButtonProps = {

@@ -15,6 +15,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { case_quiz3, law_right } from '../../utils/assets'
 import { setControlLaws } from '../../services/actions/controlActions'
+import { media } from '../../config/styles'
 
 const cases = case_quiz3
 
@@ -228,8 +229,19 @@ const IndexPage = () => {
 
     }, [caseId, incidentId])
 
+    useEffect(() => {
+
+        window.document.body.style.overflow = 'hidden'
+
+        return () => {
+
+            window.document.body.style.overflow = 'visible'
+
+        }
+    })
+
     return (
-        <div>
+        <Container>
             <FixedCard>
                 <Header>
                     <HeaderItemPadding>
@@ -330,9 +342,14 @@ const IndexPage = () => {
                 cancelText='예'
             />
 
-        </div>
+        </Container>
     )
 }
+
+const Container = styled.div`
+height: 100vh;
+overflow-x: hidden;
+`
 
 const LawGroup = styled.div``
 
@@ -448,7 +465,12 @@ width: 100%;
 display: flex;
 justify-content: center;
 padding-top: 32px;
-padding-bottom: 32px;
+
+padding-bottom: 92px;
+
+${media.phone} {
+    padding-bottom: 32px;
+}
 `
 
 type ButtonProps = {
