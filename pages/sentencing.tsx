@@ -43,6 +43,12 @@ const IndexPage = () => {
     const [review, setReview] = useState('')
     const [alertText, setAlertText] = useState('')
 
+    const [pendingCapture, setPendingCaputre] = useState(false)
+
+    const sleep = (time) => {
+        return new Promise((resolve) => setTimeout(resolve, time));
+    }
+
     const handleCapture = useCallback(async () => {
 
         if (!review) {
@@ -54,12 +60,18 @@ const IndexPage = () => {
             return
         }
 
+        setPendingCaputre(true)
+
+        await sleep(500)
+
         const base64 = await takeScreenshot(captureRef.current)
 
         imageRef.current.href = base64
         imageRef.current.download = `디지털시민법정_${new Date().valueOf()}.jpg`
 
         imageRef.current.click()
+
+        setPendingCaputre(false)
 
     }, [review, inputRef, captureRef, imageRef, image])
 
@@ -179,10 +191,19 @@ const IndexPage = () => {
                     </Text>
                 </Card>
 
-                <Card>
-                    <Label style={{ paddingRight: '4px' }}>소감 한마디</Label>
-                    <ReviewInput ref={inputRef} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
-                </Card>
+                {!pendingCapture ?
+                    <Card>
+                        <Label style={{ paddingRight: '4px' }}>소감 한마디</Label>
+                        <ReviewInput ref={inputRef} value={review} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
+                    </Card>
+                    :
+                    <Card>
+                        <Label>소감 한마디</Label>
+                        <Text>
+                            {review}
+                        </Text>
+                    </Card>
+                }
 
             </Capture>
 
