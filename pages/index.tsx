@@ -3,22 +3,7 @@ import styled from '@emotion/styled'
 import Confirm from '../components/Confirm'
 import { useRouter } from 'next/dist/client/router'
 
-const customStyles = {
-  content: {
-    top: '50%',
-    left: '50%',
-    right: 'auto',
-    bottom: 'auto',
-    marginRight: '-50%',
-    transform: 'translate(-50%, -50%)',
-    borderRadius: '18px',
-    width: '80%',
-    maxWidth: '250px'
-  },
-  overlay: {
-    backgroundColor: 'rgba(0,0,0,0.5)'
-  }
-}
+import LoadImage from '../components/LoadImage'
 
 const IndexPage = () => {
 
@@ -73,6 +58,14 @@ const IndexPage = () => {
           <img src='/images/E/d.png' />
         </ImgPadding>
       </Footer>
+
+      <LoadImage src='/icons/angle-left-solid.svg' />
+      <LoadImage src='/images/E/Logo2.png' />
+      <LoadImage src='/images/E/b.png' />
+      <LoadImage src='/images/E/c.png' />
+      <LoadImage src='/icons/arrow-alt-circle-left-regular.svg' />
+      <LoadImage src='/icons/arrow-alt-circle-right-regular.svg' />
+      <LoadImage src='/icons/check-circle-regular.svg' />
 
     </div>
   )

@@ -7,7 +7,8 @@ import { animateScroll } from 'react-scroll'
 import { useDispatch, useSelector } from 'react-redux'
 import { setControlCase } from '../../services/actions/controlActions'
 
-import { case_list } from '../../utils/assets'
+import LoadImage from '../../components/LoadImage'
+import { case_list, case_quiz1, people_list } from '../../utils/assets'
 
 const IndexPage = () => {
 
@@ -96,6 +97,16 @@ const IndexPage = () => {
       </Center>
 
       <Footer></Footer>
+
+      {!!caseId && <>
+
+        {<LoadImage src={`/images/B/${case_quiz1.plaintiff.find(e => e.id === caseId).src}.png`} />}
+
+        {case_quiz1.defendant.find(e => e.id === caseId).incidents.map((e, i) => <LoadImage key={i} src={`/images/C/${e.src}.png`} />)}
+
+        {people_list.find(e => e.id === caseId).data.map((e, i) => <LoadImage key={i} src={`/images/F/${e.src}.png`} />)}
+
+      </>}
 
     </div>
   )

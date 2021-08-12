@@ -6,6 +6,9 @@ import { useRouter } from 'next/router'
 import { useDispatch, useSelector } from 'react-redux'
 import { setControlName } from '../../services/actions/controlActions'
 
+import LoadImage from '../../components/LoadImage'
+import { case_list, case_quiz2, people_list } from '../../utils/assets'
+
 const IndexPage = () => {
 
   const { _name } = useSelector((state: any) => ({
@@ -118,6 +121,10 @@ const IndexPage = () => {
           <img src='/images/E/d.png' />
         </ImgPadding>
       </Footer>
+
+      {case_list.map((e, i) => <LoadImage key={i} src={`/images/A/${e.src}.png`} />)}
+      {case_quiz2.map((e, i) => <LoadImage key={i} src={`/images/D/${e.src}.png`} />)}
+      {people_list.map((e, i) => <LoadImage key={i} src={`/images/F/${e.src}.png`} />)}
 
     </div>
   )

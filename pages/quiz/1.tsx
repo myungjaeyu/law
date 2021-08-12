@@ -12,6 +12,7 @@ import FixedCard from '../../components/FixedCard'
 import { useDispatch, useSelector } from 'react-redux'
 import { setControlIncident } from '../../services/actions/controlActions'
 
+import LoadImage from '../../components/LoadImage'
 import { case_quiz1 } from '../../utils/assets'
 
 const cases = case_quiz1
@@ -146,6 +147,8 @@ const IndexPage = () => {
             <Center>
                 <Button disabled={!defendant.id} onClick={handleNextPage}>다음</Button>
             </Center>
+
+            <LoadImage src='' />
 
         </div>
     )
