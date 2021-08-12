@@ -397,7 +397,6 @@ const View = styled.div`
 background: #fff;
 margin-top: 8px;
 padding: 24px 0 26px;
-min-height: 110px;
 `
 
 const ViewBox = styled.div`
