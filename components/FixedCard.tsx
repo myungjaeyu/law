@@ -48,6 +48,7 @@ height: ${({ height }: ContainerProps) => height}px;
 const Content = styled.div`
 position: fixed;
 width: 100%;
+background: #F2F2F2;
 max-width: 640px;
 z-index: 3;
 `

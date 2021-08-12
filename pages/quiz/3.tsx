@@ -9,6 +9,7 @@ import Switch from '../../components/Switch'
 import Collapse from '../../components/Collapse'
 import Alert from '../../components/Alert'
 import Confirm from '../../components/Confirm'
+import FixedCard from '../../components/FixedCard'
 
 import { useDispatch, useSelector } from 'react-redux'
 
@@ -229,49 +230,51 @@ const IndexPage = () => {
 
     return (
         <div>
-            <Header>
-                <HeaderItemPadding>
-                    <Link passHref href='/quiz/2'>
-                        <BackIcon src='/icons/angle-left-solid_w.svg' />
-                    </Link>
-                </HeaderItemPadding>
-                <HeaderItemPadding>
-                    <TitleBox>
-                        <Title>상태 메시지</Title>
+            <FixedCard>
+                <Header>
+                    <HeaderItemPadding>
+                        <Link passHref href='/quiz/2'>
+                            <BackIcon src='/icons/angle-left-solid_w.svg' />
+                        </Link>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding>
+                        <TitleBox>
+                            <Title>상태 메시지</Title>
 
-                    </TitleBox>
-                </HeaderItemPadding>
-                <HeaderItemPadding />
+                        </TitleBox>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding />
 
-            </Header>
+                </Header>
 
-            <Stats type={3} />
+                <Stats type={3} />
 
-            <View>
-                <ViewBox>
-                    <ViewTitle>- 선택한 법률 -</ViewTitle>
+                <View>
+                    <ViewBox>
+                        <ViewTitle>- 선택한 법률 -</ViewTitle>
 
-                    <ViewCheckCard>
+                        <ViewCheckCard>
 
-                        <ViewCheckPaddingCard />
+                            <ViewCheckPaddingCard />
 
-                        <ViewCheckContentCard>
+                            <ViewCheckContentCard>
 
-                            {checks.map((e, i) => <ViewCheckText key={i}>
-                                <ViewCheckIcon src='/icons/check-circle-regular.svg' /> {cases.find(x => x.id === e.id).data.find(x => x.id === e.subId).name}
-                            </ViewCheckText>)}
+                                {checks.map((e, i) => <ViewCheckText key={i}>
+                                    <ViewCheckIcon src='/icons/check-circle-regular.svg' /> {cases.find(x => x.id === e.id).data.find(x => x.id === e.subId).name}
+                                </ViewCheckText>)}
 
-                            {hints.slice(checks.length).map((e) => <ViewCheckText key={e}>
-                                <ViewCheckIcon src='/icons/check-circle-regular.svg' />
-                                <ViewCheckHint />
-                            </ViewCheckText>)}
+                                {hints.slice(checks.length).map((e) => <ViewCheckText key={e}>
+                                    <ViewCheckIcon src='/icons/check-circle-regular.svg' />
+                                    <ViewCheckHint />
+                                </ViewCheckText>)}
 
-                        </ViewCheckContentCard>
+                            </ViewCheckContentCard>
 
-                    </ViewCheckCard>
+                        </ViewCheckCard>
 
-                </ViewBox>
-            </View>
+                    </ViewBox>
+                </View>
+            </FixedCard>
 
             <LawGroup>
 

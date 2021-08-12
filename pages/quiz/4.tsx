@@ -5,6 +5,7 @@ import Link from 'next/link'
 import Stats from '../../components/Stats'
 import Collapse from '../../components/Collapse'
 import CollapseOption from '../../components/CollapseOption'
+import FixedCard from '../../components/FixedCard'
 import { Range } from 'react-range'
 
 import { people_list, young_penalty } from '../../utils/assets'
@@ -129,42 +130,44 @@ const IndexPage = () => {
 
     return (
         <div>
-            <Header>
-                <HeaderItemPadding>
-                    <Link passHref href='/quiz/3'>
-                        <BackIcon src='/icons/angle-left-solid_w.svg' />
-                    </Link>
-                </HeaderItemPadding>
-                <HeaderItemPadding>
-                    <TitleBox>
-                        <Title>상태 메시지</Title>
+            <FixedCard>
+                <Header>
+                    <HeaderItemPadding>
+                        <Link passHref href='/quiz/3'>
+                            <BackIcon src='/icons/angle-left-solid_w.svg' />
+                        </Link>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding>
+                        <TitleBox>
+                            <Title>상태 메시지</Title>
 
-                    </TitleBox>
-                </HeaderItemPadding>
-                <HeaderItemPadding />
+                        </TitleBox>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding />
 
-            </Header>
+                </Header>
 
-            <Stats type={4} />
+                <Stats type={4} />
 
-            <View>
-                <ViewBox>
+                <View>
+                    <ViewBox>
 
-                    <PenaltyTitle>
-                        <PenaltyIcon src='/images/E_기타_이미지/판결_아이콘.png' /> 판결!
-                    </PenaltyTitle>
-                    <PenaltyText>
-                        피고 [<PenaltyHighlight>{defendantName}</PenaltyHighlight>] 에게
-                    </PenaltyText>
-                    <PenaltyText>[<PenaltyHighlight bordered={isHighlightBorder}>
-                        {penalty.name && penalty.name}
-                        {!!(penalty.name && (prison || fine)) && ', '}
-                        {!!prison && `징역 ${prison}개월`}
-                        {!!fine && `벌금 ${fine}만원`}
-                    </PenaltyHighlight>]을 선고한다.</PenaltyText>
+                        <PenaltyTitle>
+                            <PenaltyIcon src='/images/E_기타_이미지/판결_아이콘.png' /> 판결!
+                        </PenaltyTitle>
+                        <PenaltyText>
+                            피고 [<PenaltyHighlight>{defendantName}</PenaltyHighlight>] 에게
+                        </PenaltyText>
+                        <PenaltyText>[<PenaltyHighlight bordered={isHighlightBorder}>
+                            {penalty.name && penalty.name}
+                            {!!(penalty.name && (prison || fine)) && ', '}
+                            {!!prison && `징역 ${prison}개월`}
+                            {!!fine && `벌금 ${fine}만원`}
+                        </PenaltyHighlight>]을 선고한다.</PenaltyText>
 
-                </ViewBox>
-            </View>
+                    </ViewBox>
+                </View>
+            </FixedCard>
 
             {isSchoolLaw && <Collapse
                 title={'학교폭력'}

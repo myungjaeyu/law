@@ -8,6 +8,7 @@ import Stats from '../../components/Stats'
 import Collapse from '../../components/Collapse'
 import CollapseOption from '../../components/CollapseOption'
 import CollapseInput from '../../components/CollapseInput'
+import FixedCard from '../../components/FixedCard'
 
 import { useRouter } from 'next/router'
 
@@ -75,23 +76,25 @@ const IndexPage = () => {
 
     return (
         <div>
-            <Header>
-                <HeaderItemPadding>
-                    <Link passHref href='/quiz/4'>
-                        <BackIcon src='/icons/angle-left-solid_w.svg' />
-                    </Link>
-                </HeaderItemPadding>
-                <HeaderItemPadding>
-                    <TitleBox>
-                        <Title>상태 메시지</Title>
+            <FixedCard>
+                <Header>
+                    <HeaderItemPadding>
+                        <Link passHref href='/quiz/4'>
+                            <BackIcon src='/icons/angle-left-solid_w.svg' />
+                        </Link>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding>
+                        <TitleBox>
+                            <Title>상태 메시지</Title>
 
-                    </TitleBox>
-                </HeaderItemPadding>
-                <HeaderItemPadding />
+                        </TitleBox>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding />
 
-            </Header>
+                </Header>
 
-            <Stats type={5} />
+                <Stats type={5} />
+            </FixedCard>
 
             <View>
                 <ViewBox>

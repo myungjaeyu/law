@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Stats from '../../components/Stats'
 import Collapse from '../../components/Collapse'
 import CollapseCard from '../../components/CollapseCard'
+import FixedCard from '../../components/FixedCard'
 
 import { useRouter } from 'next/router'
 
@@ -48,23 +49,25 @@ const IndexPage = () => {
 
     return (
         <div>
-            <Header>
-                <HeaderItemPadding>
-                    <Link passHref href='/quiz/4'>
-                        <BackIcon src='/icons/angle-left-solid_w.svg' />
-                    </Link>
-                </HeaderItemPadding>
-                <HeaderItemPadding>
-                    <TitleBox>
-                        <Title>상태 메시지</Title>
+            <FixedCard>
+                <Header>
+                    <HeaderItemPadding>
+                        <Link passHref href='/quiz/4'>
+                            <BackIcon src='/icons/angle-left-solid_w.svg' />
+                        </Link>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding>
+                        <TitleBox>
+                            <Title>상태 메시지</Title>
 
-                    </TitleBox>
-                </HeaderItemPadding>
-                <HeaderItemPadding />
+                        </TitleBox>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding />
 
-            </Header>
+                </Header>
 
-            <Stats type={5} />
+                <Stats type={5} />
+            </FixedCard>
 
             <Collapse
                 title={'원고가 일상을 회복할 수 있는 방법을 선택'}
