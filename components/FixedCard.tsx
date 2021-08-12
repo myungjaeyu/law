@@ -15,7 +15,9 @@ const IndexPage = ({ children }: Props) => {
 
         const handleResize = () => {
 
-            setHeight(contentEl.current.clientHeight)
+            setTimeout(() => {
+                setHeight(contentEl.current.clientHeight)
+            }, 200)
 
         }
 
