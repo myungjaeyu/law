@@ -5,9 +5,11 @@ import TextareaAutosize from 'react-textarea-autosize'
 
 import { media } from '../config/styles'
 
+import Alert from '../components/Alert'
+
 import { useDispatch, useSelector } from 'react-redux'
 import { saveControlStorage } from '../services/actions/controlActions'
-import { useEffect, useState } from 'react'
+import { useCallback, useEffect, useState } from 'react'
 
 import { case_list, people_list } from '../utils/assets'
 import { isEndWithConsonant } from '../utils/text'
@@ -27,10 +29,27 @@ const IndexPage = () => {
     const router = useRouter()
 
     const [defendantName, setDefendantName] = useState('')
+    const [review, setReview] = useState('')
+    const [alertText, setAlertText] = useState('')
 
-    const handleCapture = () => {
-        alert('log')
-    }
+    const handleCapture = useCallback(() => {
+
+        if (!review) {
+
+            setAlertText('소감문을 작성해주세요')
+
+            return
+        }
+
+        setAlertText('log')
+
+    }, [review])
+
+    const handleReview = useCallback(({ target: { value } }) => {
+
+        setReview(value)
+
+    }, [review])
 
     const handleCaseDefendantName = (id, subId) => {
 
@@ -108,7 +127,7 @@ const IndexPage = () => {
 
             <Card>
                 <Label style={{ paddingRight: '4px' }}>소감</Label>
-                <ReviewInput placeholder='소감문을 작성해주세요' spellCheck={false} />
+                <ReviewInput onChange={handleReview} placeholder='소감문을 작성해주세요' spellCheck={false} />
             </Card>
 
             <Center>
@@ -117,6 +136,12 @@ const IndexPage = () => {
                 >
                     판결문 저장
                 </Button>
+                <Alert
+                    opend={!!alertText}
+                    text={alertText}
+                    onOk={() => { setAlertText('') }}
+                />
+
                 <Button
                     background={'#5B9BF9'}
                     onClick={handleNextPage}
