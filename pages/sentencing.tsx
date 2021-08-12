@@ -193,8 +193,10 @@ const IndexPage = () => {
 
                 {!pendingCapture ?
                     <Card>
-                        <Label style={{ paddingRight: '4px' }}>소감 한마디</Label>
-                        <ReviewInput ref={inputRef} value={review} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
+                        <Label>소감 한마디</Label>
+                        <Text>
+                            <ReviewInput ref={inputRef} value={review} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
+                        </Text>
                     </Card>
                     :
                     <Card>
@@ -359,7 +361,7 @@ color: #5167A3;
 font-size: 18px;
 border: none;
 outline: none;
-width: 70%;
+width: 100%;
 padding: 0;
 
 &::placeholder {
