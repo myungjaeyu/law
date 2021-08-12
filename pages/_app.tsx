@@ -6,8 +6,15 @@ import ControlManager from '../components/ControlManager'
 import wrapper from '../services/store'
 
 import '../index.css'
+import { useEffect } from 'react'
 
 function MyApp({ Component, pageProps }: AppProps) {
+
+    useEffect(() => {
+
+        (window as any).Kakao.init('67b62f0b4973e69f308c9374eeec7d23')
+
+    }, [])
 
     return (
         <Layout>

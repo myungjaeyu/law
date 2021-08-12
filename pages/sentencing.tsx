@@ -14,6 +14,9 @@ import { useCallback, useEffect, useState } from 'react'
 import { case_list, people_list } from '../utils/assets'
 import { isEndWithConsonant } from '../utils/text'
 
+const shareLink = 'https://law.vercel.app'
+const popupOptions = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no'
+
 const IndexPage = () => {
 
     const { name, caseId, incidentId, laws, penal } = useSelector((state: any) => ({
@@ -69,6 +72,10 @@ const IndexPage = () => {
 
     }
 
+    const handleShare = (url) => {
+        window.open(url, '', popupOptions)
+    }
+
     useEffect(() => {
 
         if (caseId && incidentId) {
@@ -78,6 +85,23 @@ const IndexPage = () => {
         }
 
     }, [caseId, incidentId])
+
+    useEffect(() => {
+
+        if ((window as any).Kakao) {
+
+            setTimeout(() => {
+
+                (window as any).Kakao.Link.createScrapButton({
+                    container: '#kakao-share',
+                    requestUrl: shareLink,
+                })
+
+            }, 500)
+
+        }
+
+    }, [])
 
     return (
         <div>
@@ -153,9 +177,9 @@ const IndexPage = () => {
             <Center>
                 <ShareTitle>공유하기</ShareTitle>
                 <ShareCenter>
-                    <ShareIcon src='icons/free-icon-kakao-talk.svg' />
-                    <ShareIcon src='/icons/facebook-square-brands.svg' />
-                    <ShareIcon src='icons/twitter-square-brands.svg' />
+                    <ShareIcon id='kakao-share' src='icons/free-icon-kakao-talk.svg' />
+                    <ShareIcon onClick={() => handleShare(`http://www.facebook.com/sharer.php?u=${shareLink}`)} src='/icons/facebook-square-brands.svg' />
+                    <ShareIcon onClick={() => handleShare(`https://twitter.com/intent/tweet?url=${shareLink}`)} src='icons/twitter-square-brands.svg' />
                 </ShareCenter>
             </Center>
 

@@ -29,6 +29,8 @@ class MyDocument extends Document {
 
                         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/moonspam/NanumSquare@1.0/nanumsquare.css" />
 
+                        <script src="https://developers.kakao.com/sdk/js/kakao.min.js"></script>
+
                     </head>
                     <Main />
                     <NextScript />
