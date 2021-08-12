@@ -61,6 +61,8 @@ const IndexPage = () => {
             return
         }
 
+        setAlertText('판결문을 이미지화합니다\n(이미지를 꾹 눌러 저장해주세요)')
+
         setPendingCapture(true)
 
         await sleep(500)
@@ -322,6 +324,8 @@ const Text = styled.div`
 color: #5167A3;
 padding-right: 8px;
 width: 70%;
+white-space: pre-wrap;
+word-wrap: break-word;
 
 ${media.phone} {
     width: 80%

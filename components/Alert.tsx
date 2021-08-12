@@ -57,6 +57,8 @@ text-align: center;
 font-size: 14px;
 letter-spacing: .2px;
 min-height: 45px;
+white-space: pre-wrap;
+word-wrap: break-word;
 `
 
 const ButtonGroup = styled.div`
