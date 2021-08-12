@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import TextareaAutosize from 'react-textarea-autosize'
+import { useScreenshot } from 'use-react-screenshot'
 
 import { media } from '../config/styles'
 
@@ -31,13 +32,17 @@ const IndexPage = () => {
 
     const inputRef = useRef(null)
 
+    const captureRef = useRef(null)
+    const imageRef = useRef(null)
+    const [image, takeScreenshot] = useScreenshot()
+
     const router = useRouter()
 
     const [defendantName, setDefendantName] = useState('')
     const [review, setReview] = useState('')
     const [alertText, setAlertText] = useState('')
 
-    const handleCapture = useCallback(() => {
+    const handleCapture = useCallback(async () => {
 
         if (!review) {
 
@@ -48,9 +53,14 @@ const IndexPage = () => {
             return
         }
 
-        setAlertText('log')
+        const base64 = await takeScreenshot(captureRef.current)
 
-    }, [review, inputRef])
+        imageRef.current.href = base64
+        imageRef.current.download = `디지털시민법정_${new Date().valueOf()}.jpg`
+
+        imageRef.current.click()
+
+    }, [review, inputRef, captureRef, imageRef, image])
 
     const handleReview = useCallback(({ target: { value } }) => {
 
@@ -68,13 +78,21 @@ const IndexPage = () => {
 
     }
 
-    const handleNextPage = () => {
+    const handleNextPage = useCallback(() => {
+
+        if (!image) {
+            setAlertText('판결문을 저장해주세요')
+
+            inputRef.current.focus()
+
+            return
+        }
 
         router.push('/info/3')
 
         dispatch(saveControlStorage())
 
-    }
+    }, [image])
 
     const handleShare = (url) => {
         window.open(url, '', popupOptions)
@@ -111,54 +129,57 @@ const IndexPage = () => {
 
     return (
         <div>
+            <Capture ref={captureRef}>
 
-            <Header>
-                <HeaderItemPadding>
-                    <Link passHref href='/'>
-                        <BackIcon src='/icons/angle-left-solid.svg' />
-                    </Link>
-                </HeaderItemPadding>
-                <HeaderItemPadding>
-                    <Title>판결문</Title>
-                </HeaderItemPadding>
-                <HeaderItemPadding />
-            </Header>
+                <Header>
+                    <HeaderItemPadding>
+                        <Link passHref href='/'>
+                            <BackIcon src='/icons/angle-left-solid.svg' />
+                        </Link>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding>
+                        <Title>판결문</Title>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding />
+                </Header>
 
-            <Main>
-                <MainLogo src='/images/E_기타_이미지/판결_이미지.png' />
-            </Main>
+                <Main>
+                    <MainLogo src='/images/E_기타_이미지/판결_이미지.png' />
+                </Main>
 
-            <Card>
-                <Label>판사</Label>
-                <Text>{name}</Text>
-            </Card>
+                <Card>
+                    <Label>판사</Label>
+                    <Text>{name}</Text>
+                </Card>
 
-            <Card>
-                <Label>사건</Label>
-                {!!caseId && <Text>{case_list.find(e => e.id === caseId).name} 사건카드{incidentId}</Text>}
-            </Card>
+                <Card>
+                    <Label>사건</Label>
+                    {!!caseId && <Text>{case_list.find(e => e.id === caseId).name} 사건카드{incidentId}</Text>}
+                </Card>
 
-            <Card>
-                <Label>사건유형</Label>
-                <Text>사이버 따돌림</Text>
-            </Card>
+                <Card>
+                    <Label>사건유형</Label>
+                    <Text>사이버 따돌림</Text>
+                </Card>
 
-            {laws.map((law, i) => <Card key={i}>
-                <Label>법률근거 {i + 1}</Label>
-                <Text>{law}</Text>
-            </Card>)}
+                {laws.map((law, i) => <Card key={i}>
+                    <Label>법률근거 {i + 1}</Label>
+                    <Text>{law}</Text>
+                </Card>)}
 
-            <Card>
-                <Label>판결</Label>
-                <Text>
-                    {`피고 ${defendantName}에 ${penal}${isEndWithConsonant(penal) ? '을' : '를'} 구형한다`}
-                </Text>
-            </Card>
+                <Card>
+                    <Label>판결</Label>
+                    <Text>
+                        {`피고 ${defendantName}에 ${penal}${isEndWithConsonant(penal) ? '을' : '를'} 구형한다`}
+                    </Text>
+                </Card>
 
-            <Card>
-                <Label style={{ paddingRight: '4px' }}>소감 한마디</Label>
-                <ReviewInput ref={inputRef} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
-            </Card>
+                <Card>
+                    <Label style={{ paddingRight: '4px' }}>소감 한마디</Label>
+                    <ReviewInput ref={inputRef} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
+                </Card>
+
+            </Capture>
 
             <Center>
                 <Button
@@ -166,6 +187,9 @@ const IndexPage = () => {
                 >
                     판결문 저장
                 </Button>
+
+                <a ref={imageRef} download="filename.jpg" href={image} title="imagename" />
+
                 <Alert
                     opend={!!alertText}
                     text={alertText}
@@ -173,6 +197,7 @@ const IndexPage = () => {
                 />
 
                 <Button
+                    disabled={!image}
                     background={'#5B9BF9'}
                     onClick={handleNextPage}
                 >
@@ -180,14 +205,14 @@ const IndexPage = () => {
                 </Button>
             </Center>
 
-            <Center>
+            <ShareCener>
                 <ShareTitle>공유하기</ShareTitle>
-                <ShareCenter>
+                <ShareContent>
                     <ShareIcon id='kakao-share' src='icons/free-icon-kakao-talk.svg' />
                     <ShareIcon onClick={() => handleShare(`http://www.facebook.com/sharer.php?u=${shareLink}`)} src='/icons/facebook-square-brands.svg' />
                     <ShareIcon onClick={() => handleShare(`https://twitter.com/intent/tweet?url=${shareLink}`)} src='icons/twitter-square-brands.svg' />
-                </ShareCenter>
-            </Center>
+                </ShareContent>
+            </ShareCener>
 
         </div>
     )
@@ -279,11 +304,11 @@ display: flex;
 align-items: center;
 justify-content: center;
 flex-direction: column;
-margin-top: 24px;
 `
 
 type ButtonProps = {
     background?: string
+    disabled?: boolean
 }
 
 const Button = styled.div`
@@ -296,6 +321,8 @@ text-align: center;
 border-radius: 16px;
 cursor: pointer;
 margin-bottom: 12px;
+
+${({ disabled }: ButtonProps) => `${disabled && 'background: #BABABA;' || ''}`}
 `
 
 const ReviewInput = styled(TextareaAutosize)`
@@ -311,7 +338,11 @@ padding: 0;
 }
 `
 
-const ShareCenter = styled(Center)`
+const ShareCener = styled(Center)`
+margin-top: 24px;
+`
+
+const ShareContent = styled(Center)`
 flex-direction: row;
 justify-content: space-around;
 width: 30%;
@@ -327,6 +358,11 @@ font-size: 14px;
 const ShareIcon = styled.img`
 width: 25px;
 cursor: pointer;
+`
+
+const Capture = styled.div`
+background: #F2F2F2;
+padding-bottom: 24px;
 `
 
 export default IndexPage
