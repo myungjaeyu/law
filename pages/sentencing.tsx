@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import TextareaAutosize from 'react-textarea-autosize'
 import { useScreenshot } from 'use-react-screenshot'
+import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import { media } from '../config/styles'
 
@@ -96,6 +97,10 @@ const IndexPage = () => {
 
     const handleShare = (url) => {
         window.open(url, '', popupOptions)
+    }
+
+    const handleCopy = () => {
+        setAlertText('링크를 복사하였습니다')
     }
 
     useEffect(() => {
@@ -212,6 +217,9 @@ const IndexPage = () => {
                     <ShareIcon onClick={() => handleShare(`http://www.facebook.com/sharer.php?u=${shareLink}`)} src='/icons/facebook-square-brands.svg' />
                     <ShareIcon onClick={() => handleShare(`https://twitter.com/intent/tweet?url=${shareLink}`)} src='icons/twitter-square-brands.svg' />
                 </ShareContent>
+                <CopyToClipboard text={shareLink}>
+                    <ShareButton onClick={handleCopy}>링크 복사하기</ShareButton>
+                </CopyToClipboard>
             </ShareCener>
 
         </div>
@@ -340,6 +348,7 @@ padding: 0;
 
 const ShareCener = styled(Center)`
 margin-top: 24px;
+padding-bottom: 26px;
 `
 
 const ShareContent = styled(Center)`
@@ -358,6 +367,17 @@ font-size: 14px;
 const ShareIcon = styled.img`
 width: 25px;
 cursor: pointer;
+`
+
+const ShareButton = styled.div`
+border: 1px solid #818181;
+color: #818181;
+padding: .25rem .5rem;
+line-height: 1.5;
+border-radius: .2rem;
+margin-top: 16px;
+cursor: pointer;
+font-size: 14px;
 `
 
 const Capture = styled.div`
