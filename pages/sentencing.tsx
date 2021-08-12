@@ -10,6 +10,7 @@ import { saveControlStorage } from '../services/actions/controlActions'
 import { useEffect, useState } from 'react'
 
 import { case_list, people_list } from '../utils/assets'
+import { isEndWithConsonant } from '../utils/text'
 
 const IndexPage = () => {
 
@@ -101,7 +102,7 @@ const IndexPage = () => {
             <Card>
                 <Label>판결</Label>
                 <Text>
-                    {`피고 ${defendantName}에 ${penal}을 구형한다`}
+                    {`피고 ${defendantName}에 ${penal}${isEndWithConsonant(penal) ? '을' : '를'} 구형한다`}
                 </Text>
             </Card>
 

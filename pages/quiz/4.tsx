@@ -9,6 +9,7 @@ import FixedCard from '../../components/FixedCard'
 import { Range } from 'react-range'
 
 import { people_list, young_penalty } from '../../utils/assets'
+import { isEndWithConsonant } from '../../utils/text'
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 
@@ -33,6 +34,8 @@ const IndexPage = () => {
 
     const [prison, setPrison] = useState(0)
     const [fine, setFine] = useState(0)
+
+    const [penal, setPenal] = useState('')
 
     const [isSchoolLaw, setIsSchoolLaw] = useState(false)
     const [isPenalLaw, setIsPenalLaw] = useState(false)
@@ -108,11 +111,17 @@ const IndexPage = () => {
 
             router.push('/quiz/5')
 
-            dispatch(setControlPenal(`${penalty.name ? penalty.name : ''}${!!(penalty.name && (prison || fine)) ? ', ' : ''}${!!prison ? `징역 ${prison}개월` : ''}${!!fine ? `벌금 ${fine}만원` : ''}`))
+            dispatch(setControlPenal(penal))
 
         }
 
-    }, [dispatch, router, penalty, prison, fine, isHighlightBorder])
+    }, [dispatch, router, penalty, prison, fine, isHighlightBorder, penal])
+
+    useEffect(() => {
+
+        setPenal(`${penalty.name ? penalty.name : ''}${!!(penalty.name && (prison || fine)) ? ', ' : ''}${!!prison ? `징역 ${prison}개월` : ''}${!!fine ? `벌금 ${fine}만원` : ''}`)
+
+    }, [penalty, prison, fine])
 
     useEffect(() => {
 
@@ -159,11 +168,8 @@ const IndexPage = () => {
                             피고 [<PenaltyHighlight>{defendantName}</PenaltyHighlight>] 에게
                         </PenaltyText>
                         <PenaltyText>[<PenaltyHighlight bordered={isHighlightBorder}>
-                            {penalty.name && penalty.name}
-                            {!!(penalty.name && (prison || fine)) && ', '}
-                            {!!prison && `징역 ${prison}개월`}
-                            {!!fine && `벌금 ${fine}만원`}
-                        </PenaltyHighlight>]을 선고한다.</PenaltyText>
+                            {penal}
+                        </PenaltyHighlight>]{isEndWithConsonant(penal) ? '을' : '를'} 선고한다.</PenaltyText>
 
                     </ViewBox>
                 </View>
