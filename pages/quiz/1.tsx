@@ -7,6 +7,7 @@ import { animateScroll } from 'react-scroll'
 
 import Stats from '../../components/Stats'
 import Switch from '../../components/Switch'
+import FixedCard from '../../components/FixedCard'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setControlIncident } from '../../services/actions/controlActions'
@@ -86,23 +87,25 @@ const IndexPage = () => {
 
     return (
         <div>
-            <Header>
-                <HeaderItemPadding>
-                    <Link passHref href='/info/3'>
-                        <BackIcon src='/icons/angle-left-solid_w.svg' />
-                    </Link>
-                </HeaderItemPadding>
-                <HeaderItemPadding>
-                    <TitleBox>
-                        <Title>상태 메시지</Title>
+            <FixedCard>
+                <Header>
+                    <HeaderItemPadding>
+                        <Link passHref href='/info/3'>
+                            <BackIcon src='/icons/angle-left-solid_w.svg' />
+                        </Link>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding>
+                        <TitleBox>
+                            <Title>상태 메시지</Title>
 
-                    </TitleBox>
-                </HeaderItemPadding>
-                <HeaderItemPadding />
+                        </TitleBox>
+                    </HeaderItemPadding>
+                    <HeaderItemPadding />
 
-            </Header>
+                </Header>
 
-            <Stats type={1} />
+                <Stats type={1} />
+            </FixedCard>
 
             <IncidentGroup>
 
