@@ -248,33 +248,33 @@ const IndexPage = () => {
                 </Header>
 
                 <Stats type={3} />
-
-                <View>
-                    <ViewBox>
-                        <ViewTitle>- 선택한 법률 -</ViewTitle>
-
-                        <ViewCheckCard>
-
-                            <ViewCheckPaddingCard />
-
-                            <ViewCheckContentCard>
-
-                                {checks.map((e, i) => <ViewCheckText key={i}>
-                                    <ViewCheckIcon src='/icons/check-circle-regular.svg' /> {cases.find(x => x.id === e.id).data.find(x => x.id === e.subId).name}
-                                </ViewCheckText>)}
-
-                                {hints.slice(checks.length).map((e) => <ViewCheckText key={e}>
-                                    <ViewCheckIcon src='/icons/check-circle-regular.svg' />
-                                    <ViewCheckHint />
-                                </ViewCheckText>)}
-
-                            </ViewCheckContentCard>
-
-                        </ViewCheckCard>
-
-                    </ViewBox>
-                </View>
             </FixedCard>
+
+            <View>
+                <ViewBox>
+                    <ViewTitle>- 선택한 법률 -</ViewTitle>
+
+                    <ViewCheckCard>
+
+                        <ViewCheckPaddingCard />
+
+                        <ViewCheckContentCard>
+
+                            {checks.map((e, i) => <ViewCheckText key={i}>
+                                <ViewCheckIcon src='/icons/check-circle-regular.svg' /> {cases.find(x => x.id === e.id).data.find(x => x.id === e.subId).name}
+                            </ViewCheckText>)}
+
+                            {hints.slice(checks.length).map((e) => <ViewCheckText key={e}>
+                                <ViewCheckIcon src='/icons/check-circle-regular.svg' />
+                                <ViewCheckHint />
+                            </ViewCheckText>)}
+
+                        </ViewCheckContentCard>
+
+                    </ViewCheckCard>
+
+                </ViewBox>
+            </View>
 
             <LawGroup>
 

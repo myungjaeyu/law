@@ -63,6 +63,10 @@ const IndexPage = () => {
       <LoadImage src='/images/E/Logo2.png' />
       <LoadImage src='/images/E/b.png' />
       <LoadImage src='/images/E/c.png' />
+      <LoadImage src='/images/E/Arrow.png' />
+      <LoadImage src='/images/E/BOX_Activate.png' />
+      <LoadImage src='/images/E/BOX_Disabled.png' />
+      <LoadImage src='/images/E/BOX_Proceeding.png' />
       <LoadImage src='/icons/arrow-alt-circle-left-regular.svg' />
       <LoadImage src='/icons/arrow-alt-circle-right-regular.svg' />
       <LoadImage src='/icons/check-circle-regular.svg' />

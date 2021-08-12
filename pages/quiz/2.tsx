@@ -2,6 +2,7 @@ import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 import Link from 'next/link'
 import dynamic from 'next/dynamic'
+import { animateScroll } from 'react-scroll'
 
 import Stats from '../../components/Stats'
 import Alert from '../../components/Alert'
@@ -85,6 +86,8 @@ const IndexPage = () => {
             key: `${e.id}`,
             content: <img src={`/images/D/${e.src}.png`} alt={`type_${e.id}`} />
         })))
+
+        animateScroll.scrollToBottom()
 
     }, [])
 

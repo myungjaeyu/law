@@ -189,9 +189,7 @@ const IndexPage = () => {
 
                 <Card>
                     <Label>판결</Label>
-                    <Text>
-                        {`피고 ${defendantName}에 ${penal}${isEndWithConsonant(penal) ? '을' : '를'} 구형한다`}
-                    </Text>
+                    <Text>피고 {defendantName}에 {penal}{isEndWithConsonant(penal) ? '을' : '를'} 구형한다</Text>
                 </Card>
 
                 {!pendingCapture ?
@@ -323,8 +321,6 @@ ${media.phone} {
 const Text = styled.div`
 color: #5167A3;
 padding-right: 8px;
-white-space: pre-wrap;
-word-wrap: break-word;
 width: 70%;
 
 ${media.phone} {

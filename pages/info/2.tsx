@@ -191,6 +191,7 @@ font-size: 18px;
 color: #E8BC75;
 padding: 6px;
 outline: 0;
+-webkit-appearance: none;
 
 &::placeholder {
   color: #E8BC75;

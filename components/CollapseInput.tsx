@@ -58,6 +58,7 @@ background: #D8D8D8;
 border-radius: 12px;
 border: 1px solid #D8D8D8;
 outline: none;
+-webkit-appearance: none;
 font-size: 16px;
 
 &::placeholder {
