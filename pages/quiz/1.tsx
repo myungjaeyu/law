@@ -1,13 +1,13 @@
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
 
-import Link from 'next/link'
 import { useEffect, useState, useCallback } from 'react'
 import { animateScroll } from 'react-scroll'
 
 import Stats from '../../components/Stats'
 import Switch from '../../components/Switch'
 import FixedCard from '../../components/FixedCard'
+import Header from '../../components/Header'
 
 import { useDispatch, useSelector } from 'react-redux'
 import { setControlIncident } from '../../services/actions/controlActions'
@@ -89,21 +89,7 @@ const IndexPage = () => {
     return (
         <div>
             <FixedCard>
-                <Header>
-                    <HeaderItemPadding>
-                        <Link passHref href='/info/3'>
-                            <BackIcon src='/icons/angle-left-solid_w.svg' />
-                        </Link>
-                    </HeaderItemPadding>
-                    <HeaderItemPadding>
-                        <TitleBox>
-                            <Title>상태 메시지</Title>
-
-                        </TitleBox>
-                    </HeaderItemPadding>
-                    <HeaderItemPadding />
-
-                </Header>
+                <Header link={'/info/3'} />
 
                 <Stats type={1} />
             </FixedCard>
@@ -185,41 +171,6 @@ padding-top: 4px;
 const IncidentRadioBox = styled.div`
 text-align: right;
 padding-right: 12px;
-`
-
-const Header = styled.div`
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 100%;
-height: 65px;
-margin-bottom: 16px;
-margin: auto;
-background: #504D5D;
-color: #fff;
-`
-
-const HeaderItemPadding = styled.div`
-width: 25%;
-
-&:nth-child(2) {
-  width: 50%;
-}
-`
-
-const TitleBox = styled.div`
-text-align: center;
-`
-
-const Title = styled.div`
-font-size: 22px;
-font-weight: 700;
-`
-
-const BackIcon = styled.img`
-width: 16px;
-cursor: pointer;
-padding-left: 16px;
 `
 
 const View = styled.div`
