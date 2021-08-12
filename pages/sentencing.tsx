@@ -1,6 +1,7 @@
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import TextareaAutosize from 'react-textarea-autosize'
 
 import { media } from '../config/styles'
 
@@ -100,11 +101,13 @@ const IndexPage = () => {
             <Card>
                 <Label>판결</Label>
                 <Text>
-                    {
-                        `피고 ${defendantName}에
-${penal}을 구형한다
-`}
+                    {`피고 ${defendantName}에 ${penal}을 구형한다`}
                 </Text>
+            </Card>
+
+            <Card>
+                <Label style={{ paddingRight: '4px' }}>소감</Label>
+                <ReviewInput placeholder='소감문을 작성해주세요' spellCheck={false} />
             </Card>
 
             <Center>
@@ -229,6 +232,15 @@ text-align: center;
 border-radius: 16px;
 cursor: pointer;
 margin-bottom: 12px;
+`
+
+const ReviewInput = styled(TextareaAutosize)`
+color: #5167A3;
+font-size: 18px;
+border: none;
+outline: none;
+width: 70%;
+padding: 0;
 `
 
 export default IndexPage
