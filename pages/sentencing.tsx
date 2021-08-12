@@ -43,7 +43,8 @@ const IndexPage = () => {
     const [review, setReview] = useState('')
     const [alertText, setAlertText] = useState('')
 
-    const [pendingCapture, setPendingCaputre] = useState(false)
+    const [pendingCapture, setPendingCapture] = useState(false)
+    const [isCapture, setIsCapture] = useState(false)
 
     const sleep = (time) => {
         return new Promise((resolve) => setTimeout(resolve, time));
@@ -60,7 +61,7 @@ const IndexPage = () => {
             return
         }
 
-        setPendingCaputre(true)
+        setPendingCapture(true)
 
         await sleep(500)
 
@@ -71,7 +72,9 @@ const IndexPage = () => {
 
         imageRef.current.click()
 
-        setPendingCaputre(false)
+        setPendingCapture(false)
+
+        setIsCapture(true)
 
     }, [review, inputRef, captureRef, imageRef, image])
 
@@ -146,7 +149,7 @@ const IndexPage = () => {
 
     return (
         <div>
-            <Capture ref={captureRef}>
+            {isCapture ? <CaptureImage src={image} alt='디지털시민법정' /> : <Capture ref={captureRef}>
 
                 <Header>
                     <HeaderItemPadding>
@@ -207,7 +210,7 @@ const IndexPage = () => {
                     </Card>
                 }
 
-            </Capture>
+            </Capture>}
 
             <Center>
                 <Button
@@ -406,6 +409,10 @@ font-size: 14px;
 const Capture = styled.div`
 background: #F2F2F2;
 padding-bottom: 24px;
+`
+
+const CaptureImage = styled.img`
+width: 100%;
 `
 
 export default IndexPage
