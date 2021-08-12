@@ -162,7 +162,7 @@ const IndexPage = () => {
                     <ViewBox>
 
                         <PenaltyTitle>
-                            <PenaltyIcon src='/images/E_기타_이미지/판결_아이콘.png' /> 판결!
+                            <PenaltyIcon src='/images/E/b.png' /> 판결!
                         </PenaltyTitle>
                         <PenaltyText>
                             피고 [<PenaltyHighlight>{defendantName}</PenaltyHighlight>] 에게

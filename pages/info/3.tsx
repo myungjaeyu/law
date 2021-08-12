@@ -65,7 +65,7 @@ const IndexPage = () => {
       </Header>
 
       <Center>
-        <MainLogo src='/images/E_기타_이미지/Logo2.png' />
+        <MainLogo src='/images/E/Logo2.png' />
       </Center>
 
       <Center>
@@ -88,7 +88,7 @@ const IndexPage = () => {
       </ButtonGroup>
 
       {!!caseId && <Center>
-        <ToonImg src={`/images/A_사건_주제_이미지/${case_list.find(e => e.id === caseId).src}.png`} alt='toon_image' />
+        <ToonImg src={`/images/A/${case_list.find(e => e.id === caseId).src}.png`} alt='toon_image' />
       </Center>}
 
       <Center>

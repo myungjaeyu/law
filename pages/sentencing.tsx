@@ -161,7 +161,7 @@ const IndexPage = () => {
                 </Header>
 
                 <Main>
-                    <MainLogo src='/images/E_기타_이미지/판결_이미지.png' />
+                    <MainLogo src='/images/E/c.png' />
                 </Main>
 
                 <Card>

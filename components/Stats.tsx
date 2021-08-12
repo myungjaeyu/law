@@ -100,11 +100,11 @@ const IndexPage = ({ type }: Props) => {
                             <Card onClick={() => handleClick(e.id)}>
                                 <CardBadge disabled={!e.text && !e.is_proceeding}>{e.id}</CardBadge>
                                 <CardText proceed={e.is_proceeding} ><div>{e.is_proceeding ? '진행중' : e.text}</div></CardText>
-                                <CardImg src={`/images/E_기타_이미지/Box_${e.is_proceeding ? 'Proceeding' : e.text ? 'Activate' : 'Disabled'}.png`} />
+                                <CardImg src={`/images/E/Box_${e.is_proceeding ? 'Proceeding' : e.text ? 'Activate' : 'Disabled'}.png`} />
                             </Card>
 
                             <CardArrowBox>
-                                <CardArrow src='/images/E_기타_이미지/Arrow.png' />
+                                <CardArrow src='/images/E/Arrow.png' />
                             </CardArrowBox>
 
                         </CardContent>

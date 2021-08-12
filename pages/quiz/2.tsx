@@ -83,7 +83,7 @@ const IndexPage = () => {
 
         setSlides(cases.map((e, i) => ({
             key: `${e.id}`,
-            content: <img src={`/images/D_사건_유형_이미지/${e.src}.png`} alt={`type_${e.id}`} />
+            content: <img src={`/images/D/${e.src}.png`} alt={`type_${e.id}`} />
         })))
 
     }, [])

@@ -50,7 +50,7 @@ const IndexPage = () => {
     <div>
 
       <Center>
-        <MainLogo src='/images/E_기타_이미지/Logo.png' />
+        <MainLogo src='/images/E/Logo.png' />
       </Center>
 
       <Center>
@@ -66,11 +66,11 @@ const IndexPage = () => {
 
       <Footer>
         <ImgPadding>
-          <img src='/images/E_기타_이미지/방송통신위원회.png' />
+          <img src='/images/E/a.png' />
         </ImgPadding>
 
         <ImgPadding>
-          <img src='/images/E_기타_이미지/한국정보화진흥원.png' />
+          <img src='/images/E/d.png' />
         </ImgPadding>
       </Footer>
 

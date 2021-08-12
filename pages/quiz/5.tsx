@@ -99,7 +99,7 @@ const IndexPage = () => {
             <View>
                 <ViewBox>
 
-                    <DefendantImg src={`/images/F_사람_이미지/${people}.png`} />
+                    <DefendantImg src={`/images/F/${people}.png`} />
 
                 </ViewBox>
             </View>

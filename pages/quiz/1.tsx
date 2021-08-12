@@ -131,12 +131,12 @@ const IndexPage = () => {
                 <ViewBox>
 
                     <ViewContent>
-                        {!!caseId && <ViewImg src={`/images/B_원고_이미지/${plaintiff.src}.png`} />}
+                        {!!caseId && <ViewImg src={`/images/B/${plaintiff.src}.png`} />}
                         <ViewLabel>원고</ViewLabel>
                     </ViewContent>
 
                     <ViewContent>
-                        {!!incidentId && <ViewImg src={`/images/C_피고_이미지/${defendant.src}.png`} />}
+                        {!!incidentId && <ViewImg src={`/images/C/${defendant.src}.png`} />}
                         <ViewLabel>피고</ViewLabel>
                     </ViewContent>
 
