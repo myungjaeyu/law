@@ -4,14 +4,12 @@ import Link from 'next/link'
 import { useRouter } from 'next/router'
 import TextareaAutosize from 'react-textarea-autosize'
 import { useScreenshot } from 'use-react-screenshot'
-import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import { media } from '../../config/styles'
 
 import Alert from '../../components/Alert'
 
-import { useDispatch, useSelector } from 'react-redux'
-import { saveControlStorage } from '../../services/actions/controlActions'
+import { useSelector } from 'react-redux'
 import { useCallback, useEffect, useState, useRef } from 'react'
 
 import { case_list, people_list, case_quiz2 } from '../../utils/assets'

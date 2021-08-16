@@ -7,7 +7,7 @@ import { CopyToClipboard } from 'react-copy-to-clipboard'
 
 import Alert from '../../components/Alert'
 
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { saveControlStorage } from '../../services/actions/controlActions'
 import { useCallback, useEffect, useState } from 'react'
 
@@ -39,6 +39,10 @@ type IndexProps = {
 
 const IndexPage = ({ data }: IndexProps) => {
 
+    const { name } = useSelector((state: any) => ({
+        name: state.control.data.name
+    }))
+
     const dispatch = useDispatch()
 
     const router = useRouter()
@@ -53,11 +57,11 @@ const IndexPage = ({ data }: IndexProps) => {
 
     const handleNextPage = useCallback(() => {
 
-        router.push('/info/3')
+        router.push(name ? '/info/3' : '/')
 
         dispatch(saveControlStorage())
 
-    }, [])
+    }, [name])
 
     const handleShare = (url) => {
         window.open(url, '', popupOptions)
