@@ -4,6 +4,8 @@
     "dev": "next",
     "build": "next build",
     "start": "NODE_ENV=production next start",
+    "pm2": "pm2 start ecosystem.config.js",
+    "pm2:k": "pm2 kill",
     "type-check": "tsc"
   },
   "dependencies": {
@@ -37,6 +39,7 @@
     "@types/react": "^17.0.2",
     "@types/react-dom": "^17.0.1",
     "@types/react-redux": "7.1.18",
+    "pm2": "5.1.0",
     "typescript": "4.0"
   },
   "license": "MIT"
