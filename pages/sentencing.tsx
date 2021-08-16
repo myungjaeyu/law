@@ -1,3 +1,4 @@
+import axios from 'axios'
 import styled from '@emotion/styled'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -15,6 +16,7 @@ import { useCallback, useEffect, useState, useRef } from 'react'
 
 import { case_list, people_list } from '../utils/assets'
 import { isEndWithConsonant } from '../utils/text'
+import { dataURLtoFile } from '../utils/dataURLtoFile'
 
 const shareLink = 'https://law.vercel.app'
 const popupOptions = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no'
@@ -68,6 +70,14 @@ const IndexPage = () => {
         await sleep(500)
 
         const base64 = await takeScreenshot(captureRef.current)
+
+        const formData = new FormData()
+
+        formData.append('theFiles', dataURLtoFile(base64, `디지털시민법정_${new Date().valueOf()}.jpg`))
+
+        await axios.post('/api/uploads', formData, {
+            headers: { 'content-type': 'multipart/form-data' }
+        })
 
         imageRef.current.href = base64
         imageRef.current.download = `디지털시민법정_${new Date().valueOf()}.jpg`
