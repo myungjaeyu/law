@@ -4,8 +4,8 @@ import sentencing from './sentencing'
 
 const sequelize = new Sequelize(process.env.DB_NAME || 'test_db', process.env.DB_USER || 'testuser', process.env.DB_PASSWORD || 'Test1234@', {
     host: process.env.DB_HOST || 'localhost',
-    dialect: 'mysql',
-    dialectModule: require('mysql2'),
+    dialect: 'sqlite',
+    storage: './law.db',
     operatorAliases: false,
     logging: false
 })
