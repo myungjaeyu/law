@@ -84,11 +84,6 @@ const IndexPage = ({ data }: IndexProps) => {
                             mobileWebUrl: shareLink(data.id)
                         },
                     },
-                    social: {
-                        likeCount: 10,
-                        commentCount: 20,
-                        sharedCount: 30,
-                    },
                     buttons: [
                         {
                             title: '결과보기',
