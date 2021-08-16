@@ -1,3 +1,4 @@
+import Head from 'next/head'
 import axios from 'axios'
 import styled from '@emotion/styled'
 import { useRouter } from 'next/router'
@@ -84,6 +85,26 @@ const IndexPage = ({ data }: IndexProps) => {
 
     return (
         <div>
+            <Head>
+                <meta name="robots" content="index,follow" />
+                <meta name="googlebot" content="index,follow" />
+
+                <title>"디지털 시민법정"</title>
+                <meta name="description" content="디지털 시민법정의 판사가 되어 사이버폭력 사건을 직접 판결해보세요!" />
+                <meta name="keywords" content="law, 디지털시민법정" />
+
+                <meta property="twitter:title" content='"디지털 시민법정"' />
+                <meta name="twitter:card" content="summary" />
+                <meta name="twitter:description" content="디지털 시민법정의 판사가 되어 사이버폭력 사건을 직접 판결해보세요!" />
+                <meta property="twitter:image:src" content={host + '/uploads/' + data.thumbnail} />
+
+                <meta property="og:title" content='"디지털 시민법정"' />
+                <meta property="og:description" content="디지털 시민법정의 판사가 되어 사이버폭력 사건을 직접 판결해보세요!" />
+                <meta property="og:image" content={host + '/uploads/' + data.thumbnail} />
+                <meta property="og:image:alt" content="image_logo" />
+                <meta property="og:image:width" content="800" />
+                <meta property="og:image:height" content="600" />
+            </Head>
             <CaptureImage src={'/uploads/' + data.thumbnail} alt='디지털시민법정' />
 
             <Center>
