@@ -15,7 +15,7 @@ import urls from '../../config/apis'
 
 const host = 'http://localhost:3000'
 
-const shareLink = (id) => `https://law.vercel.app/sentencing/${id}`
+const shareLink = (id) => `${host}/sentencing/${id}`
 
 const popupOptions = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no'
 
@@ -72,9 +72,36 @@ const IndexPage = ({ data }: IndexProps) => {
 
             setTimeout(() => {
 
-                (window as any).Kakao.Link.createScrapButton({
+                (window as any).Kakao.Link.createDefaultButton({
                     container: '#kakao-share',
-                    requestUrl: shareLink(data.id),
+                    objectType: 'feed',
+                    content: {
+                        title: '디지털 시민법정',
+                        description: '디지털 시민법정의 판사가 되어 사이버폭력 사건을 직접 판결해보세요!',
+                        imageUrl: host + '/uploads/' + data.thumbnail,
+                        link: {
+                            mobileWebUrl: shareLink(data.id)
+                        },
+                    },
+                    social: {
+                        likeCount: 10,
+                        commentCount: 20,
+                        sharedCount: 30,
+                    },
+                    buttons: [
+                        {
+                            title: '결과보기',
+                            link: {
+                                mobileWebUrl: shareLink(data.id),
+                            },
+                        },
+                        {
+                            title: '나도하러가기',
+                            link: {
+                                mobileWebUrl: host,
+                            },
+                        },
+                    ]
                 })
 
             }, 500)
