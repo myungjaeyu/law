@@ -77,7 +77,7 @@ const IndexPage = ({ data }: IndexProps) => {
                     container: '#kakao-share',
                     objectType: 'feed',
                     content: {
-                        title: '디지털 시민법정',
+                        title: '"디지털 시민법정"',
                         description: '디지털 시민법정의 판사가 되어 사이버폭력 사건을 직접 판결해보세요!',
                         imageUrl: host + '/uploads/' + data.thumbnail,
                         link: {
