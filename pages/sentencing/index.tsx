@@ -6,37 +6,34 @@ import TextareaAutosize from 'react-textarea-autosize'
 import { useScreenshot } from 'use-react-screenshot'
 import { CopyToClipboard } from 'react-copy-to-clipboard'
 
-import { media } from '../config/styles'
+import { media } from '../../config/styles'
 
-import Alert from '../components/Alert'
+import Alert from '../../components/Alert'
 
 import { useDispatch, useSelector } from 'react-redux'
-import { saveControlStorage } from '../services/actions/controlActions'
+import { saveControlStorage } from '../../services/actions/controlActions'
 import { useCallback, useEffect, useState, useRef } from 'react'
 
-import { case_list, people_list } from '../utils/assets'
-import { isEndWithConsonant } from '../utils/text'
-import { dataURLtoFile } from '../utils/dataURLtoFile'
+import { case_list, people_list, case_quiz2 } from '../../utils/assets'
+import { isEndWithConsonant } from '../../utils/text'
+import { dataURLtoFile } from '../../utils/dataURLtoFile'
 
-const shareLink = 'https://law.vercel.app'
-const popupOptions = 'top=10, left=10, width=500, height=600, status=no, menubar=no, toolbar=no, resizable=no'
+import urls from '../../config/apis'
 
 const IndexPage = () => {
 
-    const { name, caseId, incidentId, laws, penal } = useSelector((state: any) => ({
+    const { name, caseId, incidentId, incidentTypeId, laws, penal } = useSelector((state: any) => ({
         name: state.control.data.name,
         caseId: state.control.data.caseId,
         incidentId: state.control.data.incidentId,
+        incidentTypeId: state.control.data.incidentTypeId,
         laws: state.control.data.laws,
         penal: state.control.data.penal
     }))
 
-    const dispatch = useDispatch()
-
     const inputRef = useRef(null)
 
     const captureRef = useRef(null)
-    const imageRef = useRef(null)
     const [image, takeScreenshot] = useScreenshot()
 
     const router = useRouter()
@@ -44,9 +41,6 @@ const IndexPage = () => {
     const [defendantName, setDefendantName] = useState('')
     const [review, setReview] = useState('')
     const [alertText, setAlertText] = useState('')
-
-    const [pendingCapture, setPendingCapture] = useState(false)
-    const [isCapture, setIsCapture] = useState(false)
 
     const sleep = (time) => {
         return new Promise((resolve) => setTimeout(resolve, time));
@@ -65,30 +59,37 @@ const IndexPage = () => {
 
         setAlertText('판결문을 이미지화합니다\n(이미지를 꾹 눌러 저장해주세요)')
 
-        setPendingCapture(true)
-
         await sleep(500)
 
         const base64 = await takeScreenshot(captureRef.current)
 
         const formData = new FormData()
 
-        formData.append('theFiles', dataURLtoFile(base64, `디지털시민법정_${new Date().valueOf()}.jpg`))
+        const filename = `sentencing_${new Date().valueOf()}.jpg`
 
-        await axios.post('/api/uploads', formData, {
+        formData.append('theFiles', dataURLtoFile(base64, filename))
+
+        const { data: { done } } = await axios.post(urls.uploadFile(), formData, {
             headers: { 'content-type': 'multipart/form-data' }
         })
 
-        imageRef.current.href = base64
-        imageRef.current.download = `디지털시민법정_${new Date().valueOf()}.jpg`
+        if (done) {
 
-        imageRef.current.click()
+            const { data: { id } } = await axios.post(urls.createSentencing(), {
+                name: name,
+                incident: !!caseId ? `${case_list.find(e => e.id === caseId).name} 사건카드 ${incidentId}` : '',
+                incident_type: case_quiz2.find(e => e.id === incidentTypeId).name,
+                basis: laws.join(','),
+                judgement: `피고 ${defendantName}에 ${penal}${isEndWithConsonant(penal) ? '을' : '를'} 구형한다`,
+                review: review,
+                thumbnail: filename
+            })
 
-        setPendingCapture(false)
+            router.push(`/sentencing/${id}`)
 
-        setIsCapture(true)
+        }
 
-    }, [review, inputRef, captureRef, imageRef, image])
+    }, [review, inputRef, captureRef, image, name, caseId, incidentId, incidentTypeId, laws, defendantName, penal])
 
     const handleReview = useCallback(({ target: { value } }) => {
 
@@ -106,29 +107,9 @@ const IndexPage = () => {
 
     }
 
-    const handleNextPage = useCallback(() => {
-
-        if (!image) {
-            setAlertText('판결문을 저장해주세요')
-
-            inputRef.current.focus()
-
-            return
-        }
-
-        router.push('/info/3')
-
-        dispatch(saveControlStorage())
-
-    }, [image])
-
-    const handleShare = (url) => {
-        window.open(url, '', popupOptions)
-    }
-
-    const handleCopy = () => {
-        setAlertText('링크를 복사하였습니다')
-    }
+    const handleSaveAlert = useCallback(() => {
+        setAlertText('판결문을 저장해주세요')
+    }, [])
 
     useEffect(() => {
 
@@ -140,28 +121,9 @@ const IndexPage = () => {
 
     }, [caseId, incidentId])
 
-    useEffect(() => {
-
-        if ((window as any).Kakao) {
-
-            setTimeout(() => {
-
-                (window as any).Kakao.Link.createScrapButton({
-                    container: '#kakao-share',
-                    requestUrl: shareLink,
-                })
-
-                inputRef.current.focus()
-
-            }, 500)
-
-        }
-
-    }, [inputRef])
-
     return (
         <div>
-            {isCapture ? <CaptureImage src={image} alt='디지털시민법정' /> : <Capture ref={captureRef}>
+            <Capture ref={captureRef}>
 
                 <Header>
                     <HeaderItemPadding>
@@ -191,7 +153,7 @@ const IndexPage = () => {
 
                 <Card>
                     <Label>사건유형</Label>
-                    <Text>사이버 따돌림</Text>
+                    <Text>{case_quiz2.find(e => e.id === incidentTypeId).name}</Text>
                 </Card>
 
                 {laws.map((law, i) => <Card key={i}>
@@ -204,23 +166,14 @@ const IndexPage = () => {
                     <Text>피고 {defendantName}에 {penal}{isEndWithConsonant(penal) ? '을' : '를'} 구형한다</Text>
                 </Card>
 
-                {!pendingCapture ?
-                    <Card>
-                        <Label>소감 한마디</Label>
-                        <Text>
-                            <ReviewInput ref={inputRef} value={review} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
-                        </Text>
-                    </Card>
-                    :
-                    <Card>
-                        <Label>소감 한마디</Label>
-                        <Text>
-                            {review.split('\n').map((e, i) => <span key={i}>{e}<br /></span>)}
-                        </Text>
-                    </Card>
-                }
+                <Card>
+                    <Label>소감 한마디</Label>
+                    <Text>
+                        <ReviewInput ref={inputRef} value={review} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
+                    </Text>
+                </Card>
 
-            </Capture>}
+            </Capture>
 
             <Center>
                 <Button
@@ -229,8 +182,6 @@ const IndexPage = () => {
                     판결문 저장
                 </Button>
 
-                <a ref={imageRef} download="filename.jpg" href={image} title="imagename" />
-
                 <Alert
                     opend={!!alertText}
                     text={alertText}
@@ -238,9 +189,9 @@ const IndexPage = () => {
                 />
 
                 <Button
-                    disabled={!image}
+                    disabled={true}
                     background={'#5B9BF9'}
-                    onClick={handleNextPage}
+                    onClick={handleSaveAlert}
                 >
                     새로운 사건 판결
                 </Button>
@@ -249,13 +200,11 @@ const IndexPage = () => {
             <ShareCener>
                 <ShareTitle>공유하기</ShareTitle>
                 <ShareContent>
-                    <ShareIcon id='kakao-share' src='icons/free-icon-kakao-talk.svg' />
-                    <ShareIcon onClick={() => handleShare(`http://www.facebook.com/sharer.php?u=${shareLink}`)} src='/icons/facebook-square-brands.svg' />
-                    <ShareIcon onClick={() => handleShare(`https://twitter.com/intent/tweet?url=${shareLink}`)} src='icons/twitter-square-brands.svg' />
+                    <ShareIcon onClick={handleSaveAlert} src='/icons/free-icon-kakao-talk.svg' />
+                    <ShareIcon onClick={handleSaveAlert} src='/icons/facebook-square-brands.svg' />
+                    <ShareIcon onClick={handleSaveAlert} src='/icons/twitter-square-brands.svg' />
                 </ShareContent>
-                <CopyToClipboard text={shareLink}>
-                    <ShareButton onClick={handleCopy}>링크 복사하기</ShareButton>
-                </CopyToClipboard>
+                <ShareButton onClick={handleSaveAlert}>링크 복사하기</ShareButton>
             </ShareCener>
 
         </div>

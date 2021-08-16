@@ -14,7 +14,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         const sentencing = await Sentencings.findOne({ where: { id } })
 
         res.json({
-            sentencing
+            ...sentencing.dataValues
         })
 
     } catch (err) {

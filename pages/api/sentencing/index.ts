@@ -30,7 +30,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         })
 
         res.json({
-            sentencing
+            ...sentencing.dataValues
         })
 
     } catch (err) {
