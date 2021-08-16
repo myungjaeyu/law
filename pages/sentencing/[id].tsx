@@ -13,7 +13,8 @@ import { useCallback, useEffect, useState } from 'react'
 
 import urls from '../../config/apis'
 
-const host = 'http://localhost:3000'
+const prod_host = 'http://dccainse.kr'
+const host = process.env.NODE_ENV === 'production' ? prod_host : 'http://localhost:3000'
 
 const shareLink = (id) => `${host}/sentencing/${id}`
 
