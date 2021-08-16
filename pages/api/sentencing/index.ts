@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from 'next'
+import { nanoid } from 'nanoid'
 
 import db from '../../../models'
 
@@ -20,6 +21,7 @@ const handler = async (_req: NextApiRequest, res: NextApiResponse) => {
         } = _req.body
 
         const sentencing = await Sentencings.create({
+            id: nanoid(10),
             name,
             incident,
             incident_type,

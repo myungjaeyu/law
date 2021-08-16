@@ -1,10 +1,8 @@
-import { nanoid } from 'nanoid'
-
 const sentencing = (sequelize, Sequelize) => {
     const Sentencing = sequelize.define('sentencing', {
         id: {
             type: Sequelize.STRING,
-            defaultValue: nanoid(10),
+            allowNull: false,
             primaryKey: true
         },
         name: {
