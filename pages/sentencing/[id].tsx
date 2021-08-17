@@ -159,17 +159,20 @@ const IndexPage = ({ data }: IndexProps) => {
                 </Button>
             </Center>
 
-            {(name === data.name) && <ShareCener>
-                <ShareTitle>공유하기</ShareTitle>
-                <ShareContent>
-                    <ShareIcon id='kakao-share' src='/icons/free-icon-kakao-talk.svg' />
-                    <ShareIcon onClick={() => handleShare(`http://www.facebook.com/sharer.php?u=${shareLink(data.id)}`)} src='/icons/facebook-square-brands.svg' />
-                    <ShareIcon onClick={() => handleShare(`https://twitter.com/intent/tweet?url=${shareLink(data.id)}`)} src='/icons/twitter-square-brands.svg' />
-                </ShareContent>
-                <CopyToClipboard text={shareLink(data.id)}>
-                    <ShareButton onClick={handleCopy}>링크 복사하기</ShareButton>
-                </CopyToClipboard>
-            </ShareCener>}
+            <ShareCener>
+                {(name === data.name) &&
+                    <>
+                        <ShareTitle>공유하기</ShareTitle>
+                        <ShareContent>
+                            <ShareIcon id='kakao-share' src='/icons/free-icon-kakao-talk.svg' />
+                            <ShareIcon onClick={() => handleShare(`http://www.facebook.com/sharer.php?u=${shareLink(data.id)}`)} src='/icons/facebook-square-brands.svg' />
+                            <ShareIcon onClick={() => handleShare(`https://twitter.com/intent/tweet?url=${shareLink(data.id)}`)} src='/icons/twitter-square-brands.svg' />
+                        </ShareContent>
+                        <CopyToClipboard text={shareLink(data.id)}>
+                            <ShareButton onClick={handleCopy}>링크 복사하기</ShareButton>
+                        </CopyToClipboard>
+                    </>}
+            </ShareCener>
 
         </div>
     )
