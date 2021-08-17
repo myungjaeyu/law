@@ -207,6 +207,7 @@ ${({ disabled }: ButtonProps) => `${disabled && 'background: #BABABA;' || ''}`}
 
 const ShareCener = styled(Center)`
 margin-top: 24px;
+min-height: 120px;
 padding-bottom: 26px;
 `
 
