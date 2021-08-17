@@ -63,6 +63,8 @@ font-size: 14px;
 text-align: center;
 letter-spacing: .2px;
 min-height: 45px;
+white-space: pre-wrap;
+word-wrap: break-word;
 `
 
 const ButtonGroup = styled.div`

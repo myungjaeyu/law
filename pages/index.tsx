@@ -44,7 +44,7 @@ const IndexPage = () => {
 
       <Confirm
         opend={opendModal}
-        text='지금부터 당신을 디지털 시민법정 판사로 임명합니다. 다양한 디지털 범죄를 판결해보세요'
+        text={`지금부터 당신을\n디지털 시민법정 판사로 임명합니다.\n다양한 디지털 범죄를 판결해보세요.`}
         onOk={handleOk}
         onCancel={handleCancel}
       />
