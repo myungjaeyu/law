@@ -40,6 +40,8 @@ const IndexPage = () => {
     const [review, setReview] = useState('')
     const [alertText, setAlertText] = useState('')
 
+    const [pendingCapture, setPendingCapture] = useState(false)
+
     const sleep = (time) => {
         return new Promise((resolve) => setTimeout(resolve, time));
     }
@@ -56,6 +58,8 @@ const IndexPage = () => {
         }
 
         setAlertText('판결문을 이미지화합니다\n(이미지를 꾹 눌러 저장해주세요)')
+
+        setPendingCapture(true)
 
         await sleep(500)
 
@@ -82,6 +86,8 @@ const IndexPage = () => {
                 review: review,
                 thumbnail: filename
             })
+
+            setPendingCapture(false)
 
             router.push(`/sentencing/${id}`)
 
@@ -164,12 +170,20 @@ const IndexPage = () => {
                     <Text>피고 {defendantName}에 {penal}{isEndWithConsonant(penal) ? '을' : '를'} 구형한다</Text>
                 </Card>
 
-                <Card>
-                    <Label>소감 한마디</Label>
-                    <Text>
-                        <ReviewInput ref={inputRef} value={review} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
-                    </Text>
-                </Card>
+                {!pendingCapture ?
+                    <Card>
+                        <Label>소감 한마디</Label>
+                        <Text>
+                            <ReviewInput ref={inputRef} value={review} onChange={handleReview} placeholder='느낀점을 작성해주세요' spellCheck={false} />
+                        </Text>
+                    </Card>
+                    :
+                    <Card>
+                        <Label>소감 한마디</Label>
+                        <Text>
+                            {review.split('\n').map((e, i) => <span key={i}>{e}<br /></span>)}
+                        </Text>
+                    </Card>}
 
             </Capture>
 
