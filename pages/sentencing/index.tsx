@@ -214,7 +214,7 @@ const IndexPage = () => {
                 <ShareContent>
                     <ShareIcon onClick={handleSaveAlert} src='/icons/free-icon-kakao-talk.svg' />
                     <ShareIcon onClick={handleSaveAlert} src='/icons/facebook-square-brands.svg' />
-                    <ShareIcon onClick={handleSaveAlert} src='/icons/twitter-square-brands.svg' />
+                    <ShareIcon onClick={handleSaveAlert} src='/icons/naver_icon-icons.svg' />
                 </ShareContent>
                 <ShareButton onClick={handleSaveAlert}>링크 복사하기</ShareButton>
             </ShareCener>
@@ -317,72 +317,72 @@ type ButtonProps = {
 
 const Button = styled.div`
 background: ${({ background }: ButtonProps) => background ? background : '#F3A968'};
-color: #fff;
-font-size: 18px;
-padding: 8px 12px;
-width: 160px;
-text-align: center;
-border-radius: 16px;
-cursor: pointer;
-margin-bottom: 12px;
+                    color: #fff;
+                    font-size: 18px;
+                    padding: 8px 12px;
+                    width: 160px;
+                    text-align: center;
+                    border-radius: 16px;
+                    cursor: pointer;
+                    margin-bottom: 12px;
 
-${({ disabled }: ButtonProps) => `${disabled && 'background: #BABABA;' || ''}`}
-`
+                    ${({ disabled }: ButtonProps) => `${disabled && 'background: #BABABA;' || ''}`}
+                    `
 
 const ReviewInput = styled(TextareaAutosize)`
-color: #5167A3;
-font-size: 18px;
-border: none;
-outline: none;
-width: 100%;
-padding: 0;
+                    color: #5167A3;
+                    font-size: 18px;
+                    border: none;
+                    outline: none;
+                    width: 100%;
+                    padding: 0;
 
-&::placeholder {
-    color: #f54563;
+                    &::placeholder {
+                        color: #f54563;
 }
-`
+                    `
 
 const ShareCener = styled(Center)`
-margin-top: 24px;
-padding-bottom: 26px;
-`
+                    margin-top: 24px;
+                    padding-bottom: 26px;
+                    `
 
 const ShareContent = styled(Center)`
-flex-direction: row;
-justify-content: space-around;
-width: 30%;
-margin: auto;
-`
+                    flex-direction: row;
+                    justify-content: space-around;
+                    width: 30%;
+                    margin: auto;
+                    `
 
 const ShareTitle = styled.div`
-color: #818181;
-margin-bottom: 8px;
-font-size: 14px;
-`
+                    color: #818181;
+                    margin-bottom: 8px;
+                    font-size: 14px;
+                    `
 
 const ShareIcon = styled.img`
-width: 25px;
-cursor: pointer;
-`
+                    width: 25px;
+                    cursor: pointer;
+                    `
 
 const ShareButton = styled.div`
-border: 1px solid #818181;
-color: #818181;
-padding: .25rem .5rem;
-line-height: 1.5;
-border-radius: .2rem;
-margin-top: 16px;
-cursor: pointer;
-font-size: 14px;
-`
+                    border: 1px solid #818181;
+                    color: #818181;
+                    padding: .25rem .5rem;
+                    line-height: 1.5;
+                    border-radius: .2rem;
+                    margin-top: 16px;
+                    cursor: pointer;
+                    font-size: 14px;
+                    `
 
 const Capture = styled.div`
-background: #F2F2F2;
-padding-bottom: 24px;
-`
+                    background: #F2F2F2;
+                    padding-bottom: 24px;
+                    `
 
 const CaptureImage = styled.img`
-width: 100%;
-`
+                    width: 100%;
+                    `
 
 export default IndexPage

@@ -166,7 +166,7 @@ const IndexPage = ({ data }: IndexProps) => {
                         <ShareContent>
                             <ShareIcon id='kakao-share' src='/icons/free-icon-kakao-talk.svg' />
                             <ShareIcon onClick={() => handleShare(`http://www.facebook.com/sharer.php?u=${shareLink(data.id)}`)} src='/icons/facebook-square-brands.svg' />
-                            <ShareIcon onClick={() => handleShare(`https://twitter.com/intent/tweet?url=${shareLink(data.id)}`)} src='/icons/twitter-square-brands.svg' />
+                            <ShareIcon onClick={() => handleShare(`http://blog.naver.com/openapi/share?url=${shareLink(data.id)}`)} src='/icons/naver_icon-icons.svg' />
                         </ShareContent>
                         <CopyToClipboard text={shareLink(data.id)}>
                             <ShareButton onClick={handleCopy}>링크 복사하기</ShareButton>
