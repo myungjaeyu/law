@@ -85,6 +85,7 @@ const IndexPage = ({ data }: IndexProps) => {
                         description: '디지털 시민법정의 판사가 되어 사이버폭력 사건을 직접 판결해보세요!',
                         imageUrl: host + '/uploads/' + data.thumbnail,
                         link: {
+                            webUrl: shareLink(data.id),
                             mobileWebUrl: shareLink(data.id)
                         },
                     },
@@ -92,12 +93,14 @@ const IndexPage = ({ data }: IndexProps) => {
                         {
                             title: '결과보기',
                             link: {
+                                webUrl: shareLink(data.id),
                                 mobileWebUrl: shareLink(data.id),
                             },
                         },
                         {
                             title: '나도하러가기',
                             link: {
+                                webUrl: host,
                                 mobileWebUrl: host,
                             },
                         },
