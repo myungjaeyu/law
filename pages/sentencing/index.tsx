@@ -57,7 +57,7 @@ const IndexPage = () => {
             return
         }
 
-        setAlertText('판결문을 이미지화합니다\n(이미지를 꾹 눌러 저장해주세요)')
+        setAlertText('판결문을 이미지화합니다\n(판결문 이미지를 저장해주세요)')
 
         setPendingCapture(true)
 
