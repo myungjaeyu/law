@@ -138,11 +138,11 @@ const IndexPage = ({ data }: IndexProps) => {
             <CaptureImage src={'/uploads/' + data.thumbnail} alt='디지털시민법정' />
 
             <Center>
-                <Button
+                {(name === data.name) && <Button
                     onClick={handleCapture}
                 >
                     판결문 저장
-                </Button>
+                </Button>}
 
                 <Alert
                     opend={!!alertText}
@@ -152,14 +152,14 @@ const IndexPage = ({ data }: IndexProps) => {
 
                 <Button
                     disabled={false}
-                    background={'#5B9BF9'}
+                    background={(name === data.name) ? '#5B9BF9' : '#F3A968'}
                     onClick={handleNextPage}
                 >
-                    새로운 사건 판결
+                    {(name === data.name) ? '새로운 사건 판결' : '나도 판결해보기'}
                 </Button>
             </Center>
 
-            <ShareCener>
+            {(name === data.name) && <ShareCener>
                 <ShareTitle>공유하기</ShareTitle>
                 <ShareContent>
                     <ShareIcon id='kakao-share' src='/icons/free-icon-kakao-talk.svg' />
@@ -169,7 +169,7 @@ const IndexPage = ({ data }: IndexProps) => {
                 <CopyToClipboard text={shareLink(data.id)}>
                     <ShareButton onClick={handleCopy}>링크 복사하기</ShareButton>
                 </CopyToClipboard>
-            </ShareCener>
+            </ShareCener>}
 
         </div>
     )
@@ -197,7 +197,7 @@ width: 160px;
 text-align: center;
 border-radius: 16px;
 cursor: pointer;
-margin-bottom: 12px;
+margin-top: 12px;
 
 ${({ disabled }: ButtonProps) => `${disabled && 'background: #BABABA;' || ''}`}
 `
