@@ -4,7 +4,7 @@ export const case_list: any[] = [
     { id: 2, name: '기프티콘', src: '2' },
     { id: 4, name: '사진', src: '4' },
     { id: 1, name: '상태메세지', src: '1' },
-    { id: 6, name: '주작', src: '6' }
+    { id: 6, name: '주작(거짓)', src: '6' }
 ]
 
 export const case_quiz1 = {
@@ -56,7 +56,7 @@ export const case_quiz1 = {
             ]
         },
         {
-            id: 6, name: '주작', data: [
+            id: 6, name: '주작(거짓)', data: [
                 { id: 1, name: '사건카드 1', text: '양스타 채널의 구독자인 이독자는 양스타의 공식 SNS 계정이 아닌 비공식 SNS 계정을 알고 싶어졌다. 이독자는 양스타의  영상 속에 잠시 스친 교복을 보고 학교를 추측해서 비공식 계정을 발견하고 업로드된 모든 사진에 ‘크리에이터 양스타 맞죠?’라는 댓글을 달아 불안감을 조성했다.' },
                 { id: 2, name: '사건카드 2', text: '이독자는 양스타의 비공식 계정을 살펴보다가 방송에 출연했던 고양이가 길냥이가 아니라 양스타가 오래 전부터 길러온 고양이라는 걸 알게 되었다. 이독자는 양스타의 SNS에서 고양이와 함께 찍은 셀카를 캡처해서 ‘주작 방송한 크리에이터 신상공개’라는 제목으로 인터넷 게시판에 올렸다.' },
                 { id: 3, name: '사건카드 3', text: '이독자의 ‘주작 방송한 크리에이터 신상공개’ 게시물은 조회 수가 폭증했고 게시물에는 수많은 댓글이 달렸다. 그중 대다수는 ‘이 세상에서 없어져라’와 같은 폭력적인 댓글이 대다수였다.' },
@@ -71,7 +71,7 @@ export const case_quiz1 = {
         { id: 3, name: '악성댓글', src: '3' },
         { id: 4, name: '사진', src: '4' },
         { id: 5, name: '익명', src: '5' },
-        { id: 6, name: '주작', src: '6' }
+        { id: 6, name: '주작(거짓)', src: '6' }
     ],
     defendant: [
         {
@@ -131,7 +131,7 @@ export const case_quiz1 = {
         },
         {
             id: 6,
-            name: '주작',
+            name: '주작(거짓)',
             incidents: [
                 { id: 1, src: '6/26' },
                 { id: 2, src: '6/27' },
@@ -346,7 +346,7 @@ export const people_list = [
         ]
     },
     {
-        id: 6, name: '주작', src: 'recovery_6', data: [
+        id: 6, name: '주작(거짓)', src: 'recovery_6', data: [
             { id: 1, name: '이독자 (16세, 여)', src: 'law_6_1' },
             { id: 2, name: '이독자 (16세, 여)', src: 'law_6_2' },
             { id: 3, name: '게시판 네티즌 (남/여)', src: 'law_6_3' },
@@ -414,7 +414,7 @@ export const to_recovery = [
             { id: 5, name: '익명 게시판에 있는 저에 대한 이야기를 다 지워주세요.' }
         ]
     },
-    // 주작
+    // 주작(거짓)
     {
         id: 6, data: [
             { id: 1, name: '제 잘못에서 시작된 일이지만 악플은 견디기 힘들어요.' },
@@ -558,7 +558,7 @@ export const law_right = [
             { id: 5, right: [LAW_LIST[0], LAW_LIST[4],], similar: [LAW_LIST[2], LAW_LIST[3], LAW_LIST[6],] }
         ]
     },
-    {//주작
+    {//주작(거짓)
         id: 6, data: [
             { id: 1, right: [LAW_LIST[8], LAW_LIST[9],], similar: [LAW_LIST[7], LAW_LIST[10],] },
             { id: 2, right: [LAW_LIST[10],], similar: [LAW_LIST[2], LAW_LIST[6],] },
