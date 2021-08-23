@@ -4,7 +4,7 @@ import { useRouter } from 'next/router'
 
 import { useSelector } from 'react-redux'
 
-import { case_list, case_quiz2 } from '../utils/assets'
+import { case_list, case_quiz2, case_quiz1 } from '../utils/assets'
 
 const descriptions = [
     '',
@@ -94,7 +94,7 @@ const IndexPage = ({ type }: Props) => {
 
             <CardGroup>
 
-                {status.map((e) =>
+                {status.map((e, i) =>
                     <CardBox key={e.id}>
                         <CardContent>
                             <Card onClick={() => handleClick(e.id)}>
@@ -104,7 +104,7 @@ const IndexPage = ({ type }: Props) => {
                             </Card>
 
                             <CardArrowBox>
-                                <CardArrow src='/images/E/Arrow.png' />
+                                {status.length - 1 !== i && <CardArrow src='/images/E/Arrow.png' />}
                             </CardArrowBox>
 
                         </CardContent>
@@ -115,6 +115,11 @@ const IndexPage = ({ type }: Props) => {
                 )}
 
             </CardGroup>
+
+            <Text>
+                {!!(caseId && incidentId) && case_quiz1.messages.find(e => e.id === caseId).data.find(e => e.id === incidentId).text}
+            </Text>
+
 
         </Container>
     )
@@ -157,7 +162,7 @@ align-items: center;
 `
 
 const Card = styled.div`
-width: 80%;
+width: 77%;
 position: relative;
 `
 
@@ -225,6 +230,14 @@ padding: 2%;
 
 const CardArrow = styled.img`
 width: 100%;
+`
+
+const Text = styled.div`
+color #fff;
+color: #5E5B69;
+font-size: 14px;
+line-height: 170%;
+padding: 4px 8px 0;
 `
 
 export default IndexPage

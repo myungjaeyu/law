@@ -310,12 +310,12 @@ const IndexPage = () => {
 
             {!isSimilar ? <Alert
                 opend={opendVerifyModal}
-                text={isRight ? '정확한 법률 근거를 찾았습니다.' : '부적절한 법률 근거입니다. 다시 선택하십시오.'}
+                text={isRight ? '정확한 법률 근거를 찾았습니다.' : '부적절한 법률 근거입니다.\n다시 선택하십시오.'}
                 onOk={handleVerifyOk}
             /> :
                 <Confirm
                     opend={opendVerifyModal}
-                    text='보다 정확한 법률로 처벌할 수 있습니다. 다시 검토하시겠습니까?'
+                    text={`보다 정확한 법률로 처벌할 수 있습니다.\n다시 검토하시겠습니까?`}
                     onOk={handleVerifySimilarOk}
                     onCancel={handleVerifySimilarCancel}
                     okText='아니요'
@@ -324,7 +324,7 @@ const IndexPage = () => {
 
             <Confirm
                 opend={opendConfirmModal}
-                text={'피고를 처벌할 법륜 근거가 더 있습니다. 이대로 판결 하시겠습니까?'}
+                text={'피고를 처벌할 법륜 근거가 더 있습니다.\n이대로 판결 하시겠습니까?'}
                 onOk={handleConfirmOk}
                 onCancel={handleConfirmCancel}
                 okText='아니요'
