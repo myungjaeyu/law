@@ -287,6 +287,74 @@ export const case_quiz3 = [
     },
 ]
 
+export const lawPenals = [
+    {
+        name: '명예에 관한 죄 | 형법 제307조 1항',
+        prison: 24,
+        fine: 500
+    },
+    {
+        name: '명예에 관한 죄 | 형법 제307조 2항',
+        prison: 0,
+        fine: 1000
+    },
+    {
+        name: '명예에 관한 죄 | 형법 제311조',
+        prison: 12,
+        fine: 200
+    },
+    {
+        name: '권리행사를 방해하는 죄 | 형법 제324조 1항',
+        prison: 60,
+        fine: 3000
+    },
+    {
+        name: '경절도와 강도의 죄 | 형법 제329조',
+        prison: 72,
+        fine: 1000
+    },
+    {
+        name: '경범죄 처벌법 제3조 1항',
+        prison: 0,
+        fine: 10
+    },
+    {
+        name: '정보통신망법 제70조 1항',
+        prison: 36,
+        fine: 3000
+    },
+    {
+        name: '정보통신망법 제70조 2항',
+        prison: 60,
+        fine: 1000
+    },
+    {
+        name: '정보통신망법 제74조',
+        prison: 12,
+        fine: 1000
+    },
+    {
+        name: '개인정보 보호법 제71조',
+        prison: 60,
+        fine: 5000
+    },
+    {
+        name: '성폭력처벌법 제13조',
+        prison: 24,
+        fine: 2000
+    },
+    {
+        name: '성폭력처벌법 제14조 1항',
+        prison: 84,
+        fine: 5000
+    },
+    {
+        name: '성폭력처벌법 제14조의 2 1항',
+        prison: 60,
+        fine: 5000
+    }
+]
+
 export const young_penalty = [
     { id: 1, name: '피해학생에 대한 서면사과' },
     { id: 2, name: '피해학생 및 신고고발 학생에 대한 접촉, 협박 및 보복행위의 금지' },

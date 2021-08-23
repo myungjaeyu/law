@@ -7,7 +7,7 @@ import FixedCard from '../../components/FixedCard'
 import Header from '../../components/Header'
 import { Range } from 'react-range'
 
-import { people_list, young_penalty } from '../../utils/assets'
+import { lawPenals, people_list, young_penalty } from '../../utils/assets'
 import { isEndWithConsonant } from '../../utils/text'
 import { useCallback, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
@@ -31,6 +31,9 @@ const IndexPage = () => {
     const [defendantName, setDefendantName] = useState('')
     const [penalty, setPanalty]: any = useState({})
     const [isFine, setIsFine] = useState(false)
+
+    const [maxPrison, setMaxPrison] = useState(0)
+    const [maxFine, setMaxFine] = useState(0)
 
     const [prison, setPrison] = useState(0)
     const [fine, setFine] = useState(0)
@@ -127,11 +130,31 @@ const IndexPage = () => {
 
         if (caseId && incidentId) {
 
+            let _fine = 0
+            let _prison = 0
+
             handleCaseDefendantName(caseId, incidentId)
 
             setIsSchoolLaw(!!laws.find(e => e === '학교폭력예방법 제 17조'))
 
             setIsPenalLaw(!!laws.filter(e => e != '학교폭력예방법 제 17조').length)
+
+            for (let i = 0; i < laws.length; i++) {
+
+                const law = laws[i]
+
+                if (law !== '학교폭력예방법 제 17조') {
+                    const data = lawPenals.find(e => e.name === law)
+
+                    _fine += data.fine
+                    _prison += data.prison
+
+                }
+
+            }
+
+            setMaxPrison(_prison)
+            setMaxFine(_fine)
 
         }
 
@@ -189,7 +212,7 @@ const IndexPage = () => {
 
             </Collapse>}
 
-            {isPenalLaw && <Collapse
+            {(isPenalLaw && maxPrison !== 0) && <Collapse
                 title={'징역'}
                 checked={!!prison}
                 opend={true}
@@ -207,7 +230,7 @@ const IndexPage = () => {
                             <Range
                                 step={1}
                                 min={0}
-                                max={100}
+                                max={maxPrison}
                                 values={[prison]}
                                 onChange={handlePrison}
                                 renderTrack={({ props, children }) => <RangeTrack selected={!!prison} {...props} style={{ ...props.style }}>{children}</RangeTrack>}
@@ -221,7 +244,7 @@ const IndexPage = () => {
 
             </Collapse>}
 
-            {isPenalLaw && <Collapse
+            {(isPenalLaw && maxPrison !== 0) && <Collapse
                 title={'벌금'}
                 checked={!!fine}
                 opend={true}
@@ -239,7 +262,7 @@ const IndexPage = () => {
                             <Range
                                 step={1}
                                 min={0}
-                                max={100}
+                                max={maxFine}
                                 values={[fine]}
                                 onChange={handleFine}
                                 renderTrack={({ props, children }) => <RangeTrack selected={!!fine} {...props} style={{ ...props.style }}>{children}</RangeTrack>}
