@@ -213,7 +213,7 @@ const IndexPage = () => {
             </Collapse>}
 
             {(isPenalLaw && maxPrison !== 0) && <Collapse
-                title={'징역'}
+                title={`징역 (최대 ${maxPrison}개월)`}
                 checked={!!prison}
                 opend={true}
             >
@@ -244,8 +244,8 @@ const IndexPage = () => {
 
             </Collapse>}
 
-            {(isPenalLaw && maxPrison !== 0) && <Collapse
-                title={'벌금'}
+            {(isPenalLaw && maxFine !== 0) && <Collapse
+                title={`벌금 (최대 ${maxFine}개월)`}
                 checked={!!fine}
                 opend={true}
             >

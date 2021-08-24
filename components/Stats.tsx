@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import { useSelector } from 'react-redux'
 
 import { case_list, case_quiz2, case_quiz1 } from '../utils/assets'
+import { media } from '../config/styles'
 
 const descriptions = [
     '',
@@ -21,10 +22,12 @@ type Props = {
 
 const IndexPage = ({ type }: Props) => {
 
-    const { caseId, incidentId, incidentTypeId } = useSelector((state: any) => ({
+    const { caseId, incidentId, incidentTypeId, laws, penal } = useSelector((state: any) => ({
         caseId: state.control.data.caseId,
         incidentId: state.control.data.incidentId,
-        incidentTypeId: state.control.data.incidentTypeId
+        incidentTypeId: state.control.data.incidentTypeId,
+        laws: state.control.data.laws,
+        penal: state.control.data.penal
     }))
 
     const router = useRouter()
@@ -65,10 +68,10 @@ const IndexPage = ({ type }: Props) => {
                         cur.text = cur.text.replace('사이버', '사이버\n')
                         break
                     case 3:
-                        cur.text = '법률'
+                        cur.text = laws.join(', ')
                         break
                     case 4:
-                        cur.text = '판결'
+                        cur.text = penal
                         break
                     default: break
                 }
@@ -199,21 +202,28 @@ const CardText = styled.div`
 width: 100%;
 position: absolute;
 text-align: center;
-font-size: 12px;
+font-size: 4px;
 color: #fff;
-top: 35%;
 white-space: pre-wrap;
 word-wrap: break-word;
 line-height: 130%;
 
 display: flex;
 justify-content: center;
+align-items: center;
+height: 100%;
+
+overflow: hidden;
 
 div {
     width: 90%;
 }
 
 ${({ proceed }: CardTextProps) => proceed ? 'color: #4DA1CC;' : ''}
+
+${media.phone} {
+    font-size: 12px;
+}
 `
 
 const CardLabel = styled.div`
