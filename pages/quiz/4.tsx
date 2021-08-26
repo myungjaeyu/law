@@ -245,7 +245,7 @@ const IndexPage = () => {
             </Collapse>}
 
             {(isPenalLaw && maxFine !== 0) && <Collapse
-                title={`벌금 (최대 ${maxFine}개월)`}
+                title={`벌금 (최대 ${maxFine}만원 )`}
                 checked={!!fine}
                 opend={true}
             >
