@@ -68,7 +68,29 @@ const IndexPage = ({ type }: Props) => {
                         cur.text = cur.text.replace('사이버', '사이버\n')
                         break
                     case 3:
-                        cur.text = laws.join(', ')
+
+                        const laws_data = laws.reduce((acc, cur) => {
+
+                            switch (cur) {
+                                case '학교폭력예방 및 대책에 관한 법률':
+                                    cur = '학교폭력예방법'
+                                    break
+                                case '정보통신망 이용촉진 및 정보보호 등에 관한 법률':
+                                    cur = '정보통신망법'
+                                    break
+                                case '성폭력범죄의 처벌 등에 관한 특례법':
+                                    cur = '성폭력처벌법'
+                                    break
+                                default:
+                                    break
+                            }
+
+                            acc.push(cur)
+
+                            return acc
+                        }, [])
+
+                        cur.text = laws_data.join(', ')
                         break
                     case 4:
                         cur.text = penal

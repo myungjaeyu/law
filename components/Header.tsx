@@ -2,11 +2,19 @@ import styled from '@emotion/styled'
 import Link from 'next/link'
 import { media } from '../config/styles'
 
+import { useSelector } from 'react-redux'
+
+import { case_list } from '../utils/assets'
+
 type Props = {
     link: string
 }
 
 const IndexPage = ({ link }: Props) => {
+
+    const { caseId } = useSelector((state: any) => ({
+        caseId: state.control.data.caseId
+    }))
 
     return (
         <Container>
@@ -17,7 +25,7 @@ const IndexPage = ({ link }: Props) => {
             </ItemPadding>
             <ItemPadding>
                 <TitleBox>
-                    <Title>상태 메시지</Title>
+                    <Title>{case_list.find((e) => e.id === caseId).name}</Title>
 
                 </TitleBox>
             </ItemPadding>

@@ -51,7 +51,7 @@ const IndexPage = ({ data }: IndexProps) => {
 
     const handleCapture = useCallback(() => {
 
-        setAlertText('판결문이 이미지화되었습니다\n(판결문 이미지를 저장해주세요)')
+        setAlertText('판결문이 이미지화되었습니다\n(이미지를 눌러 저장해주세요)')
 
     }, [])
 
