@@ -72,13 +72,17 @@ const IndexPage = ({ type }: Props) => {
                         const laws_data = laws.reduce((acc, cur) => {
 
                             switch (cur) {
-                                case '학교폭력예방 및 대책에 관한 법률':
+                                case '학교폭력예방법 제 17조':
                                     cur = '학교폭력예방법'
                                     break
-                                case '정보통신망 이용촉진 및 정보보호 등에 관한 법률':
+                                case '정보통신망법 제70조 1항':
+                                case '정보통신망법 제70조 2항':
+                                case '정보통신망법 제74조':
                                     cur = '정보통신망법'
                                     break
-                                case '성폭력범죄의 처벌 등에 관한 특례법':
+                                case '성폭력처벌법 제13조':
+                                case '성폭력처벌법 제14조 1항':
+                                case '성폭력처벌법 제14조의 2 1항':
                                     cur = '성폭력처벌법'
                                     break
                                 default:

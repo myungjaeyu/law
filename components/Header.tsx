@@ -25,7 +25,7 @@ const IndexPage = ({ link }: Props) => {
             </ItemPadding>
             <ItemPadding>
                 <TitleBox>
-                    <Title>{case_list.find((e) => e.id === caseId).name}</Title>
+                    <Title>{!!caseId && case_list.find((e) => e.id === caseId).name}</Title>
 
                 </TitleBox>
             </ItemPadding>
