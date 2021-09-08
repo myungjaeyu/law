@@ -324,7 +324,7 @@ const IndexPage = () => {
 
             <Confirm
                 opend={opendConfirmModal}
-                text={'피고를 처벌할 법륜 근거가 더 있습니다.\n이대로 판결 하시겠습니까?'}
+                text={'피고를 처벌할 법률 근거가 더 있습니다.\n이대로 판결 하시겠습니까?'}
                 onOk={handleConfirmOk}
                 onCancel={handleConfirmCancel}
                 okText='아니요'

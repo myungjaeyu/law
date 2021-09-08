@@ -13,7 +13,7 @@ const descriptions = [
     '사건카드와 관련된 사건유형을 선택하세요',
     '사건유형과 관련된 법률을 선택하세요',
     '피고에게 처벌을 내려주세요',
-    '피고의 일상 회복을 위한 의견을 적어보세요'
+    '일상회복을 위한 의견을 적어보세요'
 ]
 
 type Props = {
@@ -69,32 +69,32 @@ const IndexPage = ({ type }: Props) => {
                         break
                     case 3:
 
-                        const laws_data = laws.reduce((acc, cur) => {
+                        // const laws_data = laws.reduce((acc, cur) => {
 
-                            switch (cur) {
-                                case '학교폭력예방법 제 17조':
-                                    cur = '학교폭력예방법'
-                                    break
-                                case '정보통신망법 제70조 1항':
-                                case '정보통신망법 제70조 2항':
-                                case '정보통신망법 제74조':
-                                    cur = '정보통신망법'
-                                    break
-                                case '성폭력처벌법 제13조':
-                                case '성폭력처벌법 제14조 1항':
-                                case '성폭력처벌법 제14조의 2 1항':
-                                    cur = '성폭력처벌법'
-                                    break
-                                default:
-                                    break
-                            }
+                        //     switch (cur) {
+                        //         case '학교폭력예방법 제 17조':
+                        //             cur = '학교폭력예방법'
+                        //             break
+                        //         case '정보통신망법 제70조 1항':
+                        //         case '정보통신망법 제70조 2항':
+                        //         case '정보통신망법 제74조':
+                        //             cur = '정보통신망법'
+                        //             break
+                        //         case '성폭력처벌법 제13조':
+                        //         case '성폭력처벌법 제14조 1항':
+                        //         case '성폭력처벌법 제14조의 2 1항':
+                        //             cur = '성폭력처벌법'
+                        //             break
+                        //         default:
+                        //             break
+                        //     }
 
-                            acc.push(cur)
+                        //     acc.push(cur)
 
-                            return acc
-                        }, [])
+                        //     return acc
+                        // }, [])
 
-                        cur.text = laws_data.join(', ')
+                        cur.text = laws.join(', ')
                         break
                     case 4:
                         cur.text = penal
@@ -208,6 +208,7 @@ const CardBadge = styled.div`
 position: absolute;
 top: -8px;
 right: -8px;
+z-index: 1;
 background: #4DA1CC;
 border: 3px solid #fff;
 font-size: 14px;
@@ -228,7 +229,7 @@ const CardText = styled.div`
 width: 100%;
 position: absolute;
 text-align: center;
-font-size: 4px;
+font-size: 11px;
 color: #fff;
 white-space: pre-wrap;
 word-wrap: break-word;

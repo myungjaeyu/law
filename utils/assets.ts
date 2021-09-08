@@ -619,11 +619,11 @@ export const law_right = [
     },
     {//익명
         id: 5, data: [
-            { id: 1, right: [LAW_LIST[0], LAW_LIST[10],], similar: [LAW_LIST[3], LAW_LIST[4],] },
+            { id: 1, right: [LAW_LIST[0], LAW_LIST[10],], similar: [LAW_LIST[3], LAW_LIST[4], LAW_LIST[7]] },
             { id: 2, right: [LAW_LIST[0], LAW_LIST[8], LAW_LIST[9],], similar: [LAW_LIST[1],] },
-            { id: 3, right: [LAW_LIST[0], LAW_LIST[3],], similar: [LAW_LIST[2], LAW_LIST[4], LAW_LIST[6], LAW_LIST[10],] },
-            { id: 4, right: [LAW_LIST[0], LAW_LIST[3],], similar: [LAW_LIST[2], LAW_LIST[4], LAW_LIST[6], LAW_LIST[10],] },
-            { id: 5, right: [LAW_LIST[0], LAW_LIST[4],], similar: [LAW_LIST[2], LAW_LIST[3], LAW_LIST[6],] }
+            { id: 3, right: [LAW_LIST[0], LAW_LIST[3], LAW_LIST[7]], similar: [LAW_LIST[2], LAW_LIST[4], LAW_LIST[6], LAW_LIST[10],] },
+            { id: 4, right: [LAW_LIST[0], LAW_LIST[3], LAW_LIST[7]], similar: [LAW_LIST[2], LAW_LIST[4], LAW_LIST[6], LAW_LIST[10],] },
+            { id: 5, right: [LAW_LIST[0], LAW_LIST[4],], similar: [LAW_LIST[2], LAW_LIST[3], LAW_LIST[6], LAW_LIST[7]] }
         ]
     },
     {//주작(거짓)

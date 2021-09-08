@@ -293,7 +293,7 @@ ${media.phone} {
 
 const Text = styled.div`
 color: #5167A3;
-padding-right: 8px;
+padding-right: 12px;
 width: 70%;
 word-break: break-all;
 
