@@ -295,7 +295,7 @@ export const lawPenals = [
     },
     {
         name: '명예에 관한 죄 | 형법 제307조 2항',
-        prison: 0,
+        prison: 60,
         fine: 1000
     },
     {
@@ -325,8 +325,8 @@ export const lawPenals = [
     },
     {
         name: '정보통신망법 제70조 2항',
-        prison: 60,
-        fine: 1000
+        prison: 84,
+        fine: 5000
     },
     {
         name: '정보통신망법 제74조',
