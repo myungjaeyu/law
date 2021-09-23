@@ -2,7 +2,7 @@ import styled from '@emotion/styled'
 
 import { useCallback, useState, useEffect } from 'react'
 
-import Link from 'next/link'
+import Alert from '../../components/Alert'
 
 import Stats from '../../components/Stats'
 import Collapse from '../../components/Collapse'
@@ -34,6 +34,8 @@ const IndexPage = () => {
     const router = useRouter()
 
     const [checked, setChecked] = useState(false)
+    const [opendModal, setOpendModal] = useState(false)
+    const [message, setMessage] = useState('')
 
     const handleCheck = () => {
 
@@ -44,6 +46,29 @@ const IndexPage = () => {
     }
 
     const handleNextPage = useCallback(() => {
+
+        switch(caseId) {
+            case 1:
+            case 2:
+            case 3:
+                setMessage('공정한 판결이였어요.\n내가 진행한 사건의 판결문을\n확인해보세요!')                
+                break
+            case 4:
+            case 5:
+            case 6:
+                setMessage('사건을 훌륭하게 판결하셨네요.\n내가 진행한 사건의 판결문을\n확인해보세요!') 
+                break
+        }
+
+        setOpendModal(true)
+
+    }, [router])
+
+    const handleOk = useCallback(() => {
+
+        setMessage('')
+
+        setOpendModal(false)
 
         router.push('/sentencing')
 
@@ -88,6 +113,8 @@ const IndexPage = () => {
             <Center>
                 <Button onClick={handleNextPage}>다음</Button>
             </Center>
+
+            <Alert opend={opendModal} text={message} onOk={handleOk} />
 
         </Container>
     )

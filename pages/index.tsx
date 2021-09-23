@@ -130,8 +130,6 @@ img {width: 90%; }
 const ImgPadding = styled.div`
 width: 50%;
 display: inline-block;
-
-&:nth-child(2) img { margin-bottom: 14px; }
 `
 
 export default IndexPage
