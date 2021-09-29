@@ -108,6 +108,26 @@ const IndexPage = () => {
 
     }, [fine, isFine, penalty, isHighlightBorder])
 
+    const changeInputPrison = useCallback(({ target: { value }}) => {
+
+        if (maxPrison < value) {
+            value = maxPrison
+        }
+
+        handlePrison([value])
+
+    }, [maxPrison])
+
+    const changeInputFine = useCallback(({ target: { value }}) => {
+
+        if (maxFine < value) {
+            value = maxFine
+        }
+
+        handleFine([value])
+
+    }, [maxFine])
+
     const handleNextPage = useCallback(() => {
 
         if (!isHighlightBorder) {
@@ -222,7 +242,7 @@ const IndexPage = () => {
                     <PanaltyRange>
 
                         <PanaltyRangeLabel>
-                            {prison} 개월
+                            <PanaltyInput value={prison} onChange={changeInputPrison} /> 개월
                         </PanaltyRangeLabel>
 
                         <PanaltyRangeBox>
@@ -254,7 +274,7 @@ const IndexPage = () => {
                     <PanaltyRange>
 
                         <PanaltyRangeLabel>
-                            {fine} 만원
+                            <PanaltyInput max={maxFine} value={fine} onChange={changeInputFine}/> 만원
                         </PanaltyRangeLabel>
 
                         <PanaltyRangeBox>
@@ -295,7 +315,17 @@ display: flex;
 align-items: center;
 `
 const PanaltyRangeLabel = styled.div`
-width: 30%;
+width: 45%;
+font-weight: 700;
+`
+
+const PanaltyInput = styled.input`
+display: inline-block;
+width: 45%;
+text-align: right;
+outline: none;
+border-radius: 8px;
+border: 2px solid #ccc;
 font-weight: 700;
 `
 
