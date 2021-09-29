@@ -167,11 +167,12 @@ margin-top: 16px;
 
 const Center = styled.div`
 width: 100%;
-display: flex;
-justify-content: center;
+margin: auto;
+text-align: center;
 `
 
 const Button = styled.div`
+margin: auto;
 background: #F3A968;
 color: #fff;
 padding: 8px 12px;
