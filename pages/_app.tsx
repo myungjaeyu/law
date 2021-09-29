@@ -12,7 +12,13 @@ function MyApp({ Component, pageProps }: AppProps) {
 
     useEffect(() => {
 
-        (window as any).Kakao.init('67b62f0b4973e69f308c9374eeec7d23')
+        try {
+
+            (window as any).Kakao.init('67b62f0b4973e69f308c9374eeec7d23')
+
+        } catch (error) {
+            
+        }
 
     }, [])
 
