@@ -19,8 +19,6 @@ const DynamicCarousel: any = dynamic(
     { ssr: false }
 )
 
-const cases = case_quiz2
-
 const IndexPage = () => {
 
     const router = useRouter()
@@ -42,23 +40,25 @@ const IndexPage = () => {
 
     const handleSlideNext = useCallback(() => {
 
-        let id = slideId === cases.length - 1 ? 0 : slideId + 1
+        let id = slideId === case_quiz2.length - 1 ? 0 : slideId + 1
 
         setSlideId(id)
 
-        setTitle(cases.find((e) => e.id === id).name)
-        setDescription(cases.find((e) => e.id === id).text)        
+        setTitle(case_quiz2.find((e) => e.id === id).name)
+        setDescription('')
+        setDescription(case_quiz2.find((e) => e.id === id).text)
 
     }, [slideId])
 
     const handleSlidePrev = useCallback(() => {
 
-        let id = slideId === 0 ? cases.length - 1 : slideId - 1
+        let id = slideId === 0 ? case_quiz2.length - 1 : slideId - 1
 
         setSlideId(id)
 
-        setTitle(cases.find((e) => e.id === id).name)
-        setDescription(cases.find((e) => e.id === id).text)
+        setTitle(case_quiz2.find((e) => e.id === id).name)
+        setDescription('')        
+        setDescription(case_quiz2.find((e) => e.id === id).text)
 
     }, [slideId])
 
@@ -91,15 +91,16 @@ const IndexPage = () => {
 
     useEffect(() => {
 
-        setSlides(cases.map((e, i) => ({
+        setSlides(case_quiz2.map((e, i) => ({
             key: `${e.id}`,
             content: <img src={`/images/D/${e.src}.png`} alt={`type_${e.id}`} />
         })))
 
         animateScroll.scrollToBottom()
 
-        setTitle(cases.find((e) => e.id === 0).name)
-        setDescription(cases.find((e) => e.id === 0).text)
+        setTitle(case_quiz2.find((e) => e.id === 0).name)
+        setDescription('')        
+        setDescription(case_quiz2.find((e) => e.id === 0).text)
 
     }, [])
 
@@ -110,7 +111,7 @@ const IndexPage = () => {
             <Stats type={2} />
 
             <CarouselTitle>
-                {cases.find((e) => e.id === slideId).name}
+                {title}
             </CarouselTitle>
 
             <CarouselGroup>
