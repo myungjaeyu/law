@@ -19,33 +19,6 @@ const DynamicCarousel: any = dynamic(
     { ssr: false }
 )
 
-const Slide = ({ slideId, slides, handleSlidePrev, handleSlideNext}) => {
-
-
-    return (<>
-        <CarouselGroup>
-            <CarouselBox>
-                <DynamicCarousel goToSlide={slideId} offsetRadius={2} slides={slides} />
-            </CarouselBox>
-
-            <CarouselControl>
-                <div onClick={handleSlidePrev}></div>
-                <div onClick={handleSlideNext}></div>
-            </CarouselControl>
-            
-            <CarouselIndicateBox>
-                <CarouselIndicate src='/icons/arrow-alt-circle-left-regular.svg' />
-                <CarouselIndicate src='/icons/arrow-alt-circle-right-regular.svg' />
-            </CarouselIndicateBox>
-        </CarouselGroup>
-
-        <CarouselStepGroup>
-            {[0, 1, 2, 3, 4, 5, 6, 7].map((e) => <CarouselStep key={e} selected={e === slideId} />)}
-        </CarouselStepGroup>
-    </>
-    )
-}
-
 const IndexPage = () => {
 
     const router = useRouter()
@@ -73,8 +46,6 @@ const IndexPage = () => {
 
         const text = case_quiz2.find((e) => e.id === id).text
 
-        alert(text)
-
         setTitle(case_quiz2.find((e) => e.id === id).name)
         setDescription(e => text)
 
@@ -87,8 +58,6 @@ const IndexPage = () => {
         setSlideId(id)
 
         const text = case_quiz2.find((e) => e.id === id).text
-
-        alert(text)
 
         setTitle(case_quiz2.find((e) => e.id === id).name)
         setDescription(e => text)
@@ -147,9 +116,25 @@ const IndexPage = () => {
                 {title}
             </CarouselTitle>
 
-            <Slide slideId={slideId} slides={slides} handleSlidePrev={handleSlidePrev} handleSlideNext={handleSlideNext} />
+            <CarouselGroup>
+                <CarouselBox>
+                    <DynamicCarousel goToSlide={slideId} offsetRadius={2} slides={slides} />
+                </CarouselBox>
+                <CarouselControl>
+                    <div onClick={handleSlidePrev}></div>
+                    <div onClick={handleSlideNext}></div>
+                </CarouselControl>
+                <CarouselIndicateBox>
+                    <CarouselIndicate src='/icons/arrow-alt-circle-left-regular.svg' />
+                    <CarouselIndicate src='/icons/arrow-alt-circle-right-regular.svg' />
+                </CarouselIndicateBox>
+            </CarouselGroup>
 
-            <CarouselDescription>{description}</CarouselDescription>
+            <CarouselStepGroup>
+                {[0, 1, 2, 3, 4, 5, 6, 7].map((e) => <CarouselStep key={e} selected={e === slideId} />)}
+            </CarouselStepGroup>
+
+            {case_quiz2.filter(e => e.id === slideId).map(e =>  <CarouselDescription>{e.text}</CarouselDescription>)}
 
             <Center>
                 <Button onClick={handleNextPage}>다음</Button>
