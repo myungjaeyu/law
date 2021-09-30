@@ -46,6 +46,8 @@ const IndexPage = () => {
 
         const text = case_quiz2.find((e) => e.id === id).text
 
+        alert(text)
+
         setTitle(case_quiz2.find((e) => e.id === id).name)
         setDescription(e => text)
 
@@ -58,6 +60,8 @@ const IndexPage = () => {
         setSlideId(id)
 
         const text = case_quiz2.find((e) => e.id === id).text
+
+        alert(text)
 
         setTitle(case_quiz2.find((e) => e.id === id).name)
         setDescription(e => text)
@@ -118,7 +122,7 @@ const IndexPage = () => {
 
             <CarouselGroup>
                 <CarouselBox>
-                    {/* <DynamicCarousel goToSlide={slideId} offsetRadius={2} slides={slides} /> */}
+                    <DynamicCarousel goToSlide={slideId} offsetRadius={2} slides={slides} />
                 </CarouselBox>
                 <CarouselControl>
                     <div onClick={handleSlidePrev}></div>
@@ -130,9 +134,9 @@ const IndexPage = () => {
                 </CarouselIndicateBox>
             </CarouselGroup>
 
-            {/* <CarouselStepGroup>
+            <CarouselStepGroup>
                 {[0, 1, 2, 3, 4, 5, 6, 7].map((e) => <CarouselStep key={e} selected={e === slideId} />)}
-            </CarouselStepGroup> */}
+            </CarouselStepGroup>
 
             <CarouselDescription>{description}</CarouselDescription>
 
