@@ -130,9 +130,9 @@ const IndexPage = () => {
                 </CarouselIndicateBox>
             </CarouselGroup>
 
-            <CarouselStepGroup>
+            {/* <CarouselStepGroup>
                 {[0, 1, 2, 3, 4, 5, 6, 7].map((e) => <CarouselStep key={e} selected={e === slideId} />)}
-            </CarouselStepGroup>
+            </CarouselStepGroup> */}
 
             <CarouselDescription>{description}</CarouselDescription>
 
