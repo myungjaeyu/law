@@ -32,6 +32,9 @@ const IndexPage = () => {
 
     const dispatch = useDispatch()
 
+    const [title, setTitle] = useState('')
+    const [description, setDescription] = useState('')
+
     const [slideId, setSlideId] = useState(0)
     const [slides, setSlides] = useState([])
     const [opendModal, setOpendModal] = useState(false)
@@ -43,6 +46,9 @@ const IndexPage = () => {
 
         setSlideId(id)
 
+        setTitle(cases.find((e) => e.id === id).name)
+        setDescription(cases.find((e) => e.id === id).text)        
+
     }, [slideId])
 
     const handleSlidePrev = useCallback(() => {
@@ -50,6 +56,9 @@ const IndexPage = () => {
         let id = slideId === 0 ? cases.length - 1 : slideId - 1
 
         setSlideId(id)
+
+        setTitle(cases.find((e) => e.id === id).name)
+        setDescription(cases.find((e) => e.id === id).text)
 
     }, [slideId])
 
@@ -89,6 +98,9 @@ const IndexPage = () => {
 
         animateScroll.scrollToBottom()
 
+        setTitle(cases.find((e) => e.id === 0).name)
+        setDescription(cases.find((e) => e.id === 0).text)
+
     }, [])
 
     return (
@@ -120,7 +132,7 @@ const IndexPage = () => {
             </CarouselStepGroup>
 
             <CarouselDescription>
-                {cases.find((e) => e.id === slideId).text}
+                {description}
             </CarouselDescription>
 
             <Center>
