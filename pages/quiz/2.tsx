@@ -19,6 +19,8 @@ const DynamicCarousel: any = dynamic(
     { ssr: false }
 )
 
+const Description = ({text}) => <CarouselDescription>{text}</CarouselDescription>
+
 const IndexPage = () => {
 
     const router = useRouter()
@@ -132,9 +134,7 @@ const IndexPage = () => {
                 {[0, 1, 2, 3, 4, 5, 6, 7].map((e) => <CarouselStep key={e} selected={e === slideId} />)}
             </CarouselStepGroup>
 
-            <CarouselDescription>
-                {description}
-            </CarouselDescription>
+            <Description text={description} />
 
             <Center>
                 <Button onClick={handleNextPage}>다음</Button>
