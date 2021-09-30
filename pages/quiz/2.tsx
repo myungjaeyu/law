@@ -19,6 +19,33 @@ const DynamicCarousel: any = dynamic(
     { ssr: false }
 )
 
+const Slide = ({ slideId, slides, handleSlidePrev, handleSlideNext}) => {
+
+
+    return (<>
+        <CarouselGroup>
+            <CarouselBox>
+                <DynamicCarousel goToSlide={slideId} offsetRadius={2} slides={slides} />
+            </CarouselBox>
+
+            <CarouselControl>
+                <div onClick={handleSlidePrev}></div>
+                <div onClick={handleSlideNext}></div>
+            </CarouselControl>
+            
+            <CarouselIndicateBox>
+                <CarouselIndicate src='/icons/arrow-alt-circle-left-regular.svg' />
+                <CarouselIndicate src='/icons/arrow-alt-circle-right-regular.svg' />
+            </CarouselIndicateBox>
+        </CarouselGroup>
+
+        <CarouselStepGroup>
+            {[0, 1, 2, 3, 4, 5, 6, 7].map((e) => <CarouselStep key={e} selected={e === slideId} />)}
+        </CarouselStepGroup>
+    </>
+    )
+}
+
 const IndexPage = () => {
 
     const router = useRouter()
@@ -120,23 +147,7 @@ const IndexPage = () => {
                 {title}
             </CarouselTitle>
 
-            <CarouselGroup>
-                <CarouselBox>
-                    <DynamicCarousel goToSlide={slideId} offsetRadius={2} slides={slides} />
-                </CarouselBox>
-                <CarouselControl>
-                    <div onClick={handleSlidePrev}></div>
-                    <div onClick={handleSlideNext}></div>
-                </CarouselControl>
-                <CarouselIndicateBox>
-                    <CarouselIndicate src='/icons/arrow-alt-circle-left-regular.svg' />
-                    <CarouselIndicate src='/icons/arrow-alt-circle-right-regular.svg' />
-                </CarouselIndicateBox>
-            </CarouselGroup>
-
-            <CarouselStepGroup>
-                {[0, 1, 2, 3, 4, 5, 6, 7].map((e) => <CarouselStep key={e} selected={e === slideId} />)}
-            </CarouselStepGroup>
+            <Slide slideId={slideId} slides={slides} handleSlidePrev={handleSlidePrev} handleSlideNext={handleSlideNext} />
 
             <CarouselDescription>{description}</CarouselDescription>
 
