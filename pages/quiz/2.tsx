@@ -49,7 +49,7 @@ const IndexPage = () => {
         const text = case_quiz2.find((e) => e.id === id).text
 
         setTitle(case_quiz2.find((e) => e.id === id).name)
-        setDescription(`${text}`)
+        setDescription(e => text)
 
     }, [slideId])
 
@@ -61,8 +61,8 @@ const IndexPage = () => {
 
         const text = case_quiz2.find((e) => e.id === id).text
 
-        setTitle(case_quiz2.find((e) => e.id === id).name)    
-        setDescription(`${text}`)
+        setTitle(case_quiz2.find((e) => e.id === id).name)
+        setDescription(e => text)
 
     }, [slideId])
 
