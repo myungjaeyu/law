@@ -51,7 +51,7 @@ const IndexPage = () => {
             case 1:
             case 2:
             case 3:
-                setMessage('공정한 판결이였어요.\n내가 진행한 사건의 판결문을\n확인해보세요!')                
+                setMessage('공정한 판결이었어요.\n내가 진행한 사건의 판결문을\n확인해보세요!')                
                 break
             case 4:
             case 5:
