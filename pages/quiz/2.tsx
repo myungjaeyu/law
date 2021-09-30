@@ -46,9 +46,10 @@ const IndexPage = () => {
 
         setSlideId(id)
 
+        const text = case_quiz2.find((e) => e.id === id).text
+
         setTitle(case_quiz2.find((e) => e.id === id).name)
-        setDescription('')
-        setDescription(case_quiz2.find((e) => e.id === id).text)
+        setDescription(`${text}`)
 
     }, [slideId])
 
@@ -58,9 +59,10 @@ const IndexPage = () => {
 
         setSlideId(id)
 
-        setTitle(case_quiz2.find((e) => e.id === id).name)
-        setDescription('')        
-        setDescription(case_quiz2.find((e) => e.id === id).text)
+        const text = case_quiz2.find((e) => e.id === id).text
+
+        setTitle(case_quiz2.find((e) => e.id === id).name)    
+        setDescription(`${text}`)
 
     }, [slideId])
 
