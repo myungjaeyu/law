@@ -31,7 +31,6 @@ const IndexPage = () => {
     const dispatch = useDispatch()
 
     const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
 
     const [slideId, setSlideId] = useState(0)
     const [slides, setSlides] = useState([])
@@ -44,10 +43,7 @@ const IndexPage = () => {
 
         setSlideId(id)
 
-        const text = case_quiz2.find((e) => e.id === id).text
-
         setTitle(case_quiz2.find((e) => e.id === id).name)
-        setDescription(e => text)
 
     }, [slideId])
 
@@ -57,10 +53,7 @@ const IndexPage = () => {
 
         setSlideId(id)
 
-        const text = case_quiz2.find((e) => e.id === id).text
-
         setTitle(case_quiz2.find((e) => e.id === id).name)
-        setDescription(e => text)
 
     }, [slideId])
 
@@ -101,8 +94,6 @@ const IndexPage = () => {
         animateScroll.scrollToBottom()
 
         setTitle(case_quiz2.find((e) => e.id === 0).name)
-        setDescription('')        
-        setDescription(case_quiz2.find((e) => e.id === 0).text)
 
     }, [])
 
@@ -134,7 +125,14 @@ const IndexPage = () => {
                 {[0, 1, 2, 3, 4, 5, 6, 7].map((e) => <CarouselStep key={e} selected={e === slideId} />)}
             </CarouselStepGroup>
 
-            {case_quiz2.filter(e => e.id === slideId).map(e =>  <CarouselDescription>{e.text}</CarouselDescription>)}
+            <CarouselDescription visible={0 === slideId}>모두가 볼 수 있는 인터넷, 핸드폰 문자 서비스 등을 통해 욕설, 거친 언어, 인신 공격적 발언을 남기는 행위는 사이버 언어폭력이며 모욕죄에 해당한다.</CarouselDescription>
+            <CarouselDescription visible={1 === slideId}>모두가 볼 수 있는 인터넷, SNS 등에 사람의 명예를 훼손시킬만한 사실을 공개하는 경우 사이버 명예훼손 죄에 해당한다. 이때 공개한 내용이 사실이거나 거짓이어도 모두 명예훼손으로 처벌받을 수 있다.</CarouselDescription>
+            <CarouselDescription visible={2 === slideId}>상대방에게 반복적으로 공포감, 불안감을 유발하는 이메일이나 쪽지를 보내거나 블로그, SNS 등에 방문하여 댓글 혹은 좋아요를 눌러 관찰하고 있음을 알리는 행위는 사이버 스토킹으로 처벌받을 수 있다.</CarouselDescription>
+            <CarouselDescription visible={3 === slideId}>성적인 묘사 혹은 성적 비하 발언, 성차별적 욕설 등 성적 불쾌감을 느낄 수 있는 내용을 인터넷이나 핸드폰을 통해 많은 사람들이 볼 수 있는 곳에 공개하거나 음란한 동영상, 사진을 퍼뜨리는 행위는 사이버 성폭력으로 처벌받을 수 있다.</CarouselDescription>
+            <CarouselDescription visible={4 === slideId}>모두가 볼 수 있는 공간에 개인의 사생활을 언급하거나 신상정보에 해당하는 내용을 퍼뜨리는 행위는 개인정보 보호법에 따라 처벌받을 수 있다. 신상정보에는 이름이나 거주지, 재학 중인 학교, 사진 등이 포함된다.</CarouselDescription>
+            <CarouselDescription visible={5 === slideId}>인터넷이나 SNS 등에서 한 사람을 따돌리거나 안티 활동을 하는 행위는 사이버 따돌림으로 판단한다.</CarouselDescription>
+            <CarouselDescription visible={6 === slideId}>사이버 머니, 스마트폰 데이터, 게임 아이템 등을 강제로 뺏은 행위는 절도죄로 처벌받을 수 있다.</CarouselDescription>
+            <CarouselDescription visible={7 === slideId}>인터넷이나 핸드폰을 이용해 상대방이 원치 않는 행동을 하도록 협박하는 것은 사이버 강요에 해당한다.</CarouselDescription>
 
             <Center>
                 <Button onClick={handleNextPage}>다음</Button>
@@ -214,6 +212,10 @@ background: #D5D5D5;
 ${({ selected }: CarouselStepProps) => selected ? 'background: #9BC802;' : ''}
 `
 
+type CarouselDescriptionProps = {
+    visible: boolean
+}
+
 const CarouselDescription = styled.div`
 color: #5E5B69;
 padding-top: 16px;
@@ -221,6 +223,9 @@ line-height: 170%;
 width: 85%;
 min-height: 140px;
 margin: auto;
+display: none;
+
+${({ visible }: CarouselDescriptionProps) => visible ? 'display: block;': ''}
 `
 
 const Center = styled.div`
