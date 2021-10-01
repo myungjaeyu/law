@@ -309,7 +309,7 @@ export const lawPenals = [
         fine: 3000
     },
     {
-        name: '경절도와 강도의 죄 | 형법 제329조',
+        name: '절도와 강도의 죄 | 형법 제329조',
         prison: 72,
         fine: 1000
     },
